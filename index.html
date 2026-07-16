@@ -68,7 +68,7 @@
     }
 
     .container {
-      width: min(calc(100% - 40px), var(--max-width));
+      width: min(calc(100% - 40px), var(--max));
       margin: 0 auto;
     }
 
@@ -444,6 +444,89 @@
       color: var(--muted);
     }
 
+    .app-card-link {
+      color: inherit;
+      cursor: pointer;
+      transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        background 0.25s ease,
+        box-shadow 0.25s ease;
+    }
+
+    .app-card-link:hover {
+      transform: translateY(-6px);
+      border-color: rgba(124, 92, 255, 0.42);
+      background:
+        linear-gradient(
+          145deg,
+          rgba(124, 92, 255, 0.18),
+          rgba(255, 255, 255, 0.055)
+        );
+      box-shadow: 0 24px 55px rgba(0, 0, 0, 0.22);
+    }
+
+    .app-card-main {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .app-icon-wrap {
+      width: 88px;
+      height: 88px;
+      flex: 0 0 88px;
+      display: grid;
+      place-items: center;
+      border-radius: 24px;
+      background:
+        radial-gradient(
+          circle at 30% 20%,
+          rgba(124, 92, 255, 0.18),
+          transparent 55%
+        ),
+        rgba(255, 255, 255, 0.045);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .app-icon-svg {
+      width: 72px;
+      height: 72px;
+      display: block;
+    }
+
+    .product-meta {
+      margin-bottom: 12px;
+    }
+
+    .app-link-text {
+      display: inline-block;
+      margin-top: 18px;
+      color: #c8c1ff;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .app-card-arrow {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      color: white;
+      background: rgba(255, 255, 255, 0.055);
+      font-size: 20px;
+      transition:
+        transform 0.25s ease,
+        background 0.25s ease;
+    }
+
+    .app-card-link:hover .app-card-arrow {
+      transform: translateX(4px);
+      background: rgba(124, 92, 255, 0.18);
+    }
+
     .status {
       padding: 9px 15px;
       border: 1px solid rgba(40, 215, 192, 0.25);
@@ -557,7 +640,7 @@
 
     @media (max-width: 650px) {
       .container {
-        width: min(calc(100% - 28px), var(--max-width));
+        width: min(calc(100% - 28px), var(--max));
       }
 
       nav a:not(.nav-button) {
@@ -583,6 +666,14 @@
 
       .app-card {
         grid-template-columns: 1fr;
+      }
+
+      .app-card-main {
+        align-items: flex-start;
+      }
+
+      .app-card-arrow {
+        display: none;
       }
 
       .status {
@@ -831,27 +922,74 @@
         </div>
 
 
-        <div class="app-card">
+        
+        <a
+          class="app-card app-card-link"
+          href="keypulse-dual-mode-hud-keyboard-visualizer/"
+          aria-label="Open KeyPulse Dual Mode HUD — Keyboard Visualizer"
+        >
 
-          <div>
+          <div class="app-card-main">
 
-            <h3>
-              New products are on the way.
-            </h3>
+            <div class="app-icon-wrap" aria-hidden="true">
+              <svg
+                class="app-icon-svg"
+                viewBox="0 0 128 128"
+                xmlns="http://www.w3.org/2000/svg"
+                role="img"
+              >
+                <defs>
+                  <linearGradient id="kpGradient" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#7c5cff"/>
+                    <stop offset="100%" stop-color="#5a43d8"/>
+                  </linearGradient>
+                </defs>
 
-            <p>
-              App details, features, support information,
-              and Google Play download links will be available
-              here as new products are released.
-            </p>
+                <rect
+                  x="18"
+                  y="18"
+                  width="92"
+                  height="92"
+                  rx="28"
+                  fill="none"
+                  stroke="url(#kpGradient)"
+                  stroke-width="10"
+                />
+
+                <rect x="40" y="43" width="13" height="13" rx="2" fill="#f7f9ff"/>
+                <rect x="58" y="43" width="13" height="13" rx="2" fill="#f7f9ff"/>
+                <rect x="76" y="43" width="13" height="13" rx="2" fill="#f7f9ff"/>
+                <rect x="42" y="69" width="44" height="12" rx="3" fill="#f7f9ff"/>
+              </svg>
+            </div>
+
+            <div>
+              <div class="product-meta">
+                <span class="status">CHROME EXTENSION</span>
+              </div>
+
+              <h3>
+                KeyPulse Dual Mode HUD
+              </h3>
+
+              <p>
+                A privacy-focused keyboard visualizer with a compact floating HUD
+                and a full keyboard mode for presentations, recordings, demos,
+                and shortcut visibility.
+              </p>
+
+              <span class="app-link-text">
+                View product page →
+              </span>
+            </div>
 
           </div>
 
-          <div class="status">
-            COMING SOON
+          <div class="app-card-arrow" aria-hidden="true">
+            →
           </div>
 
-        </div>
+        </a>
 
       </div>
 
