@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Thanh Thuc — Independent App Developer</title>
+
+  <meta
+    name="description"
+    content="Official website of Thanh Thuc, an independent app developer building simple and useful digital products."
+  />
+
+  <meta name="theme-color" content="#070b14" />
+
+  <style>
+    :root {
+      --bg: #070b14;
+      --text: #f7f9fc;
+      --muted: #9ca6bb;
+      --primary: #7c5cff;
+      --secondary: #28d7c0;
+      --border: rgba(255, 255, 255, 0.1);
+      --card: rgba(255, 255, 255, 0.06);
+      --max-width: 1180px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+
+      background:
+        radial-gradient(
+          circle at 15% 0%,
+          rgba(124, 92, 255, 0.24),
+          transparent 32%
+        ),
+        radial-gradient(
+          circle at 85% 20%,
+          rgba(40, 215, 192, 0.13),
+          transparent 25%
+        ),
+        var(--bg);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(calc(100% - 40px), var(--max-width));
+      margin: 0 auto;
+    }
+
+    /* HEADER */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(7, 11, 20, 0.72);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    .navbar {
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    nav a {
+      font-size: 14px;
+      color: var(--muted);
+      transition: color 0.2s ease;
+    }
+
+    nav a:hover {
+      color: white;
+    }
+
+    .nav-button {
+      padding: 10px 17px;
+      color: white !important;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: calc(100vh - 72px);
+      display: flex;
+      align-items: center;
+      padding: 80px 0;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: center;
+      gap: 80px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 24px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(124, 92, 255, 0.3);
+      background: rgba(124, 92, 255, 0.1);
+      color: #d8d3ff;
+      font-size: 14px;
+    }
+
+    .badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--secondary);
+      box-shadow: 0 0 12px var(--secondary);
+    }
+
+    h1 {
+      max-width: 720px;
+      margin-bottom: 26px;
+      font-size: clamp(52px, 7vw, 90px);
+      line-height: 0.98;
+      letter-spacing: -0.06em;
+    }
+
+    .gradient-text {
+      background: linear-gradient(
+        90deg,
+        #ffffff,
+        #b9adff 45%,
+        #69e8d5
+      );
+
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-description {
+      max-width: 600px;
+      margin-bottom: 34px;
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .button {
+      min-height: 52px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 22px;
+      border-radius: 14px;
+      font-weight: 700;
+      transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-3px);
+    }
+
+    .button-primary {
+      background: linear-gradient(135deg, #7c5cff, #647cff);
+      box-shadow: 0 12px 35px rgba(124, 92, 255, 0.35);
+    }
+
+    .button-primary:hover {
+      box-shadow: 0 18px 45px rgba(124, 92, 255, 0.45);
+    }
+
+    .button-secondary {
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    /* HERO VISUAL */
+
+    .hero-visual {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 520px;
+    }
+
+    .glow {
+      position: absolute;
+      width: 370px;
+      height: 370px;
+      border-radius: 50%;
+      background: rgba(124, 92, 255, 0.28);
+      filter: blur(90px);
+    }
+
+    .visual-card {
+      position: relative;
+      z-index: 1;
+      width: min(100%, 420px);
+      padding: 30px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 32px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255, 255, 255, 0.11),
+          rgba(255, 255, 255, 0.035)
+        );
+
+      box-shadow:
+        0 40px 100px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+
+      transform: rotate(2deg);
+    }
+
+    .visual-content {
+      min-height: 450px;
+      display: flex;
+      flex-direction: column;
+      padding: 28px;
+      border-radius: 24px;
+      background:
+        linear-gradient(
+          160deg,
+          #17213b,
+          #0a0f1e 75%
+        );
+    }
+
+    .visual-line {
+      width: 48px;
+      height: 5px;
+      margin-bottom: 60px;
+      border-radius: 999px;
+      background: linear-gradient(
+        90deg,
+        var(--primary),
+        var(--secondary)
+      );
+    }
+
+    .visual-label {
+      margin-bottom: 12px;
+      color: var(--secondary);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+    }
+
+    .visual-content h2 {
+      max-width: 300px;
+      margin-bottom: 16px;
+      font-size: 36px;
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+    }
+
+    .visual-content p {
+      color: #8e99af;
+      font-size: 14px;
+    }
+
+    .visual-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: auto;
+    }
+
+    .visual-stat {
+      min-height: 115px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .visual-stat strong {
+      font-size: 20px;
+    }
+
+    .visual-stat span {
+      color: #8994aa;
+      font-size: 12px;
+    }
+
+    /* SECTIONS */
+
+    .content-section {
+      padding: 110px 0;
+    }
+
+    .section-heading {
+      max-width: 700px;
+      margin-bottom: 50px;
+    }
+
+    .kicker {
+      margin-bottom: 10px;
+      color: var(--secondary);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .section-heading h2 {
+      margin-bottom: 16px;
+      font-size: clamp(36px, 5vw, 56px);
+      line-height: 1.08;
+      letter-spacing: -0.045em;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    /* FEATURES */
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .feature {
+      min-height: 270px;
+      padding: 30px;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      background: var(--card);
+      transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        background 0.25s ease;
+    }
+
+    .feature:hover {
+      transform: translateY(-7px);
+      background: rgba(255, 255, 255, 0.085);
+      border-color: rgba(124, 92, 255, 0.4);
+    }
+
+    .feature-number {
+      margin-bottom: 45px;
+      color: #8270ff;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+    }
+
+    .feature h3 {
+      margin-bottom: 10px;
+      font-size: 20px;
+    }
+
+    .feature p {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    /* APPS */
+
+    .app-card {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 30px;
+      padding: 38px;
+      border: 1px solid var(--border);
+      border-radius: 28px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(124, 92, 255, 0.12),
+          rgba(255, 255, 255, 0.04)
+        );
+    }
+
+    .app-card h3 {
+      margin-bottom: 10px;
+      font-size: 28px;
+      letter-spacing: -0.03em;
+    }
+
+    .app-card p {
+      max-width: 650px;
+      color: var(--muted);
+    }
+
+    .status {
+      padding: 9px 15px;
+      border: 1px solid rgba(40, 215, 192, 0.25);
+      border-radius: 999px;
+      color: #7cead9;
+      background: rgba(40, 215, 192, 0.08);
+      font-size: 13px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    /* CONTACT */
+
+    .contact {
+      position: relative;
+      overflow: hidden;
+      padding: 80px 30px;
+      text-align: center;
+      border: 1px solid var(--border);
+      border-radius: 34px;
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(124, 92, 255, 0.18),
+          rgba(40, 215, 192, 0.08)
+        );
+    }
+
+    .contact h2 {
+      margin-bottom: 18px;
+      font-size: clamp(40px, 6vw, 65px);
+      line-height: 1.05;
+      letter-spacing: -0.05em;
+    }
+
+    .contact p {
+      max-width: 600px;
+      margin: 0 auto 30px;
+      color: var(--muted);
+    }
+
+    .email-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 15px 22px;
+      border-radius: 14px;
+      background: white;
+      color: #111827;
+      font-weight: 700;
+      transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+    }
+
+    .email-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+    }
+
+    /* FOOTER */
+
+    footer {
+      padding: 35px 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .footer-links a:hover {
+      color: white;
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 900px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-content {
+        text-align: center;
+      }
+
+      .hero-description {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-actions {
+        justify-content: center;
+      }
+
+      .features {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 650px) {
+      .container {
+        width: min(calc(100% - 28px), var(--max-width));
+      }
+
+      nav a:not(.nav-button) {
+        display: none;
+      }
+
+      .hero {
+        min-height: auto;
+        padding: 65px 0;
+      }
+
+      h1 {
+        font-size: clamp(48px, 15vw, 70px);
+      }
+
+      .hero-visual {
+        min-height: 450px;
+      }
+
+      .visual-card {
+        transform: none;
+      }
+
+      .app-card {
+        grid-template-columns: 1fr;
+      }
+
+      .status {
+        width: fit-content;
+      }
+
+      .contact {
+        padding: 55px 20px;
+      }
+
+      .email-button {
+        width: 100%;
+        font-size: 14px;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="container navbar">
+
+      <a href="#" class="brand">
+        Thanh Thuc
+      </a>
+
+      <nav>
+        <a href="#about">About</a>
+        <a href="#apps">Apps</a>
+        <a href="#contact" class="nav-button">Contact</a>
+      </nav>
+
+    </div>
+  </header>
+
+
+  <main>
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+      <div class="container hero-grid">
+
+        <div class="hero-content">
+
+          <div class="badge">
+            <span class="badge-dot"></span>
+            Independent App Developer
+          </div>
+
+          <h1>
+            Building
+            <span class="gradient-text">
+              simple products
+            </span>
+            that make a difference.
+          </h1>
+
+          <p class="hero-description">
+            I build mobile applications and digital products
+            focused on simplicity, performance, and a great
+            user experience.
+          </p>
+
+          <div class="hero-actions">
+
+            <a href="#apps" class="button button-primary">
+              Explore My Apps →
+            </a>
+
+            <a
+              href="mailto:thanhthuc284917@gmail.com"
+              class="button button-secondary"
+            >
+              Get in Touch
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <div class="hero-visual">
+
+          <div class="glow"></div>
+
+          <div class="visual-card">
+
+            <div class="visual-content">
+
+              <div class="visual-line"></div>
+
+              <div class="visual-label">
+                DIGITAL PRODUCTS
+              </div>
+
+              <h2>
+                Designed with purpose.
+              </h2>
+
+              <p>
+                Simple, reliable products designed to solve
+                real problems and provide a better experience.
+              </p>
+
+              <div class="visual-stats">
+
+                <div class="visual-stat">
+                  <strong>Apps</strong>
+                  <span>Mobile products</span>
+                </div>
+
+                <div class="visual-stat">
+                  <strong>UX</strong>
+                  <span>Simple experiences</span>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ABOUT -->
+
+    <section class="content-section" id="about">
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <div class="kicker">
+            About
+          </div>
+
+          <h2>
+            Good technology should make things simpler.
+          </h2>
+
+          <p>
+            My goal is to create useful applications that are
+            easy to understand, reliable to use, and thoughtfully
+            designed for the people who use them.
+          </p>
+
+        </div>
+
+
+        <div class="features">
+
+          <article class="feature">
+
+            <div class="feature-number">
+              01
+            </div>
+
+            <h3>
+              Simple by Design
+            </h3>
+
+            <p>
+              Clear interfaces and thoughtful interactions
+              make products easier and more enjoyable to use.
+            </p>
+
+          </article>
+
+
+          <article class="feature">
+
+            <div class="feature-number">
+              02
+            </div>
+
+            <h3>
+              Built for Performance
+            </h3>
+
+            <p>
+              Applications are developed with a focus on
+              speed, stability, and reliable performance.
+            </p>
+
+          </article>
+
+
+          <article class="feature">
+
+            <div class="feature-number">
+              03
+            </div>
+
+            <h3>
+              Continuously Improved
+            </h3>
+
+            <p>
+              Products evolve over time through improvements,
+              updates, and feedback from real users.
+            </p>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- APPS -->
+
+    <section class="content-section" id="apps">
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <div class="kicker">
+            Products
+          </div>
+
+          <h2>
+            Apps & Projects
+          </h2>
+
+          <p>
+            Applications and digital products developed and
+            published by Thanh Thuc will be featured here.
+          </p>
+
+        </div>
+
+
+        <div class="app-card">
+
+          <div>
+
+            <h3>
+              New products are on the way.
+            </h3>
+
+            <p>
+              App details, features, support information,
+              and Google Play download links will be available
+              here as new products are released.
+            </p>
+
+          </div>
+
+          <div class="status">
+            COMING SOON
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- CONTACT -->
+
+    <section class="content-section" id="contact">
+
+      <div class="container">
+
+        <div class="contact">
+
+          <h2>
+            Let's connect.
+          </h2>
+
+          <p>
+            For app support, questions, feedback, or business
+            inquiries, feel free to contact me directly by email.
+          </p>
+
+          <a
+            href="mailto:thanhthuc284917@gmail.com"
+            class="email-button"
+          >
+            thanhthuc284917@gmail.com
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <footer>
+
+    <div class="container footer-inner">
+
+      <p>
+        © <span id="year"></span> Thanh Thuc.
+        All rights reserved.
+      </p>
+
+      <div class="footer-links">
+        <a href="#apps">Apps</a>
+        <a href="#contact">Support</a>
+        <a href="mailto:thanhthuc284917@gmail.com">Contact</a>
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <script>
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+  </script>
+
+</body>
+</html>
