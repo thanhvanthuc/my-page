@@ -327,13 +327,6 @@
       font-weight: 700;
     }
 
-    .hero-mini-logo {
-      width: 32px;
-      height: 32px;
-      object-fit: cover;
-      border-radius: 10px;
-    }
-
     h1 {
       max-width: 760px;
       margin-bottom: 26px;
@@ -499,14 +492,6 @@
       align-items: center;
       justify-content: space-between;
       gap: 20px;
-    }
-
-    .core-logo {
-      width: 68px;
-      height: 68px;
-      border-radius: 20px;
-      object-fit: cover;
-      box-shadow: 0 16px 34px rgba(121,101,255,0.22);
     }
 
     .core-status {
@@ -997,6 +982,207 @@
       font-size: 13px;
     }
 
+
+    /* GLOBAL INTERACTION LAYER */
+
+    .cursor-glow {
+      position: fixed;
+      z-index: 999;
+      width: 260px;
+      height: 260px;
+      left: 0;
+      top: 0;
+      pointer-events: none;
+      border-radius: 50%;
+      opacity: 0;
+      background: radial-gradient(
+        circle,
+        rgba(121,101,255,0.14) 0%,
+        rgba(84,216,201,0.07) 34%,
+        rgba(0,0,0,0) 72%
+      );
+      filter: blur(12px);
+      transform: translate(-50%, -50%);
+      transition: opacity 0.2s ease;
+      mix-blend-mode: screen;
+    }
+
+    .spotlight {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+    }
+
+    .spotlight::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      width: 260px;
+      height: 260px;
+      left: var(--mx, 50%);
+      top: var(--my, 50%);
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      pointer-events: none;
+      opacity: 0;
+      background: radial-gradient(
+        circle,
+        rgba(121,101,255,0.19),
+        rgba(84,216,201,0.07) 40%,
+        transparent 72%
+      );
+      transition: opacity 0.25s ease;
+    }
+
+    .spotlight:hover::after {
+      opacity: 1;
+    }
+
+    .about-card,
+    .capability,
+    .destination-card,
+    .quote-panel,
+    .contact-shell {
+      background-clip: padding-box;
+    }
+
+    .about-card:hover,
+    .capability:hover,
+    .destination-card:hover {
+      box-shadow:
+        0 22px 60px rgba(0,0,0,0.22),
+        0 0 0 1px rgba(121,101,255,0.08);
+    }
+
+    .capability::before,
+    .destination-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      padding: 1px;
+      border-radius: inherit;
+      background: linear-gradient(
+        120deg,
+        rgba(121,101,255,0.00),
+        rgba(121,101,255,0.34),
+        rgba(84,216,201,0.22),
+        rgba(121,101,255,0.00)
+      );
+      background-size: 220% 220%;
+      -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+
+    .capability:hover::before,
+    .destination-card:hover::before {
+      opacity: 1;
+      animation: borderFlow 2.8s linear infinite;
+    }
+
+    @keyframes borderFlow {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 200% 50%; }
+    }
+
+    .process {
+      position: relative;
+    }
+
+    .process::before {
+      content: "";
+      position: absolute;
+      left: 73px;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: linear-gradient(
+        to bottom,
+        transparent,
+        rgba(121,101,255,0.42),
+        rgba(84,216,201,0.30),
+        transparent
+      );
+    }
+
+    .process-row {
+      position: relative;
+    }
+
+    .process-row::before {
+      content: "";
+      position: absolute;
+      left: 68px;
+      top: 50%;
+      width: 11px;
+      height: 11px;
+      transform: translateY(-50%);
+      border-radius: 50%;
+      background: #111827;
+      border: 2px solid rgba(160,140,255,0.9);
+      box-shadow: 0 0 18px rgba(121,101,255,0.38);
+      transition:
+        transform 0.25s ease,
+        background 0.25s ease,
+        box-shadow 0.25s ease;
+    }
+
+    .process-row:hover::before {
+      transform: translateY(-50%) scale(1.3);
+      background: var(--accent);
+      box-shadow: 0 0 22px rgba(84,216,201,0.58);
+    }
+
+    .quote-panel {
+      animation: quoteGlow 9s ease-in-out infinite alternate;
+    }
+
+    @keyframes quoteGlow {
+      0% {
+        box-shadow: 0 18px 60px rgba(121,101,255,0.06);
+      }
+      100% {
+        box-shadow: 0 22px 70px rgba(84,216,201,0.10);
+      }
+    }
+
+    .destination-card {
+      transform-style: preserve-3d;
+      perspective: 900px;
+    }
+
+    .destination-card > * {
+      position: relative;
+      z-index: 2;
+      transition: transform 0.25s ease;
+    }
+
+    .destination-card:hover > * {
+      transform: translateZ(12px);
+    }
+
+    .contact-shell::before {
+      content: "";
+      position: absolute;
+      width: 340px;
+      height: 340px;
+      left: -100px;
+      top: -140px;
+      border-radius: 50%;
+      background: rgba(121,101,255,0.13);
+      filter: blur(55px);
+      animation: contactFloat 10s ease-in-out infinite alternate;
+    }
+
+    @keyframes contactFloat {
+      to { transform: translate(130px, 70px) scale(1.1); }
+    }
+
     /* RESPONSIVE */
 
     @media (max-width: 1040px) {
@@ -1103,6 +1289,11 @@
         grid-column: span 12;
       }
 
+      .process::before,
+      .process-row::before {
+        display: none;
+      }
+
       .process-row {
         grid-template-columns: 1fr;
         gap: 10px;
@@ -1189,6 +1380,7 @@
 </head>
 
 <body>
+  <div class="cursor-glow" aria-hidden="true"></div>
 
   <header class="site-header">
     <div class="container navbar">
@@ -1221,20 +1413,17 @@
         <div class="hero-content reveal">
 
           <div class="hero-logo-badge">
-            <img class="hero-mini-logo" src="assets/thanh-thuc-logo.png" alt="" />
             Independent developer & digital product builder
           </div>
 
           <h1>
-            Building thoughtful
-            <span class="gradient-text">digital experiences</span>
-            with purpose.
+            Thoughtful products.
+            <span class="gradient-text">Clear purpose.</span>
           </h1>
 
           <p class="hero-copy">
-            I create focused browser tools, practical utilities, and digital products
-            designed around clarity, usefulness, privacy-conscious decisions, and
-            the small details that make software feel genuinely good to use.
+            I build focused browser tools and digital utilities that aim to be useful,
+            clear, privacy-conscious, and satisfying to use.
           </p>
 
           <div class="hero-actions">
@@ -1243,7 +1432,7 @@
           </div>
 
           <p class="hero-microcopy">
-            Independent work. Small teams. Clear intent. Products built to solve real problems without unnecessary complexity.
+            Independent work shaped by clarity, usefulness, and careful execution.
           </p>
 
         </div>
@@ -1267,7 +1456,6 @@
 
             <div class="hero-core">
               <div class="hero-core-top">
-                <img class="core-logo" src="assets/thanh-thuc-logo.png" alt="Thanh Thuc logo" />
                 <span class="core-status">Building independently</span>
               </div>
 
@@ -1344,7 +1532,7 @@
 
         <div class="about-stack">
 
-          <article class="about-card reveal">
+          <article class="about-card spotlight reveal">
             <h3>Independent by nature</h3>
             <p>
               Working independently creates room to explore ideas quickly, challenge assumptions, and shape products
@@ -1353,7 +1541,7 @@
             </p>
           </article>
 
-          <article class="about-card reveal">
+          <article class="about-card spotlight reveal">
             <h3>Utility over noise</h3>
             <p>
               Not every product needs an enormous feature list. I prefer tools that are easy to understand,
@@ -1362,7 +1550,7 @@
             </p>
           </article>
 
-          <article class="about-card reveal">
+          <article class="about-card spotlight reveal">
             <h3>Design is part of the function</h3>
             <p>
               Visual polish is not decoration added at the end. Layout, hierarchy, motion, spacing, feedback,
@@ -1371,7 +1559,7 @@
             </p>
           </article>
 
-          <article class="about-card reveal">
+          <article class="about-card spotlight reveal">
             <h3>Trust should be designed in</h3>
             <p>
               Privacy-conscious choices, clear communication, and predictable behavior are part of the product experience.
@@ -1400,10 +1588,10 @@
         </div>
 
 
-        <div class="capability-grid">
+        <div class="capability spotlight-grid">
 
-          <article class="capability large reveal">
-            <div class="capability-number">01</div>
+          <article class="capability spotlight large reveal">
+            <div class="capability spotlight-number">01</div>
             <h3>Browser extensions</h3>
             <p>
               Lightweight extensions that live close to the user’s workflow, adding useful capabilities without forcing
@@ -1411,32 +1599,32 @@
             </p>
           </article>
 
-          <article class="capability medium reveal">
-            <div class="capability-number">02</div>
+          <article class="capability spotlight medium reveal">
+            <div class="capability spotlight-number">02</div>
             <h3>Utility products</h3>
             <p>
               Focused tools for specific tasks, designed to be quick to understand and easy to return to whenever needed.
             </p>
           </article>
 
-          <article class="capability small reveal">
-            <div class="capability-number">03</div>
+          <article class="capability spotlight small reveal">
+            <div class="capability spotlight-number">03</div>
             <h3>UI & interaction</h3>
             <p>
               Interfaces with strong visual hierarchy, responsive behavior, useful motion, and clear feedback.
             </p>
           </article>
 
-          <article class="capability small reveal">
-            <div class="capability-number">04</div>
+          <article class="capability spotlight small reveal">
+            <div class="capability spotlight-number">04</div>
             <h3>Privacy-conscious software</h3>
             <p>
               Product decisions that minimize unnecessary data use and make behavior easier for users to understand.
             </p>
           </article>
 
-          <article class="capability small reveal">
-            <div class="capability-number">05</div>
+          <article class="capability spotlight small reveal">
+            <div class="capability spotlight-number">05</div>
             <h3>Experimental ideas</h3>
             <p>
               Small, unusual, or visual product experiments that explore new interactions and interesting ways to solve familiar problems.
@@ -1465,7 +1653,7 @@
 
         <div class="process">
 
-          <div class="process-row reveal">
+          <div class="process-row spotlight reveal">
             <div class="process-index">01 — Understand</div>
             <div>
               <h3>Find the real friction.</h3>
@@ -1476,7 +1664,7 @@
             <div class="process-arrow">→</div>
           </div>
 
-          <div class="process-row reveal">
+          <div class="process-row spotlight reveal">
             <div class="process-index">02 — Simplify</div>
             <div>
               <h3>Remove everything that does not help.</h3>
@@ -1487,7 +1675,7 @@
             <div class="process-arrow">→</div>
           </div>
 
-          <div class="process-row reveal">
+          <div class="process-row spotlight reveal">
             <div class="process-index">03 — Build</div>
             <div>
               <h3>Create the smallest complete experience.</h3>
@@ -1498,7 +1686,7 @@
             <div class="process-arrow">→</div>
           </div>
 
-          <div class="process-row reveal">
+          <div class="process-row spotlight reveal">
             <div class="process-index">04 — Refine</div>
             <div>
               <h3>Polish where real use exposes friction.</h3>
@@ -1519,7 +1707,7 @@
     <section class="section">
       <div class="container">
 
-        <div class="quote-panel reveal">
+        <div class="quote-panel spotlight reveal">
           <div class="quote-mark">“</div>
 
           <blockquote>
@@ -1552,7 +1740,7 @@
 
         <div class="destination-grid">
 
-          <a class="destination-card reveal" href="app/">
+          <a class="destination-card spotlight reveal" href="app/">
             <div class="destination-label">Apps & Products</div>
 
             <div>
@@ -1566,7 +1754,7 @@
           </a>
 
 
-          <a class="destination-card reveal" href="privacy-policy/">
+          <a class="destination-card spotlight reveal" href="privacy-policy/">
             <div class="destination-label">Privacy Center</div>
 
             <div>
@@ -1588,7 +1776,7 @@
     <section class="section">
       <div class="container">
 
-        <div class="contact-shell reveal">
+        <div class="contact-shell spotlight reveal">
           <div class="kicker">Contact</div>
 
           <h2>Questions, feedback, support, or something interesting to discuss?</h2>
@@ -1685,15 +1873,57 @@
 
     revealItems.forEach((item) => observer.observe(item));
 
+    const finePointer = window.matchMedia("(pointer: fine)").matches;
     const parallaxTarget = document.querySelector("[data-parallax]");
+    const cursorGlow = document.querySelector(".cursor-glow");
+    const spotlightItems = document.querySelectorAll(".spotlight");
+    const tiltCards = document.querySelectorAll(".capability, .destination-card");
 
-    if (parallaxTarget && window.matchMedia("(pointer: fine)").matches) {
+    if (finePointer) {
+      document.body.addEventListener("mouseenter", () => {
+        cursorGlow.style.opacity = "1";
+      });
+
+      document.body.addEventListener("mouseleave", () => {
+        cursorGlow.style.opacity = "0";
+      });
+
       window.addEventListener("mousemove", (event) => {
-        const x = (event.clientX / window.innerWidth - 0.5) * 12;
-        const y = (event.clientY / window.innerHeight - 0.5) * 12;
+        cursorGlow.style.left = `${event.clientX}px`;
+        cursorGlow.style.top = `${event.clientY}px`;
 
-        parallaxTarget.style.transform =
-          `translate3d(${x}px, ${y}px, 0)`;
+        if (parallaxTarget) {
+          const x = (event.clientX / window.innerWidth - 0.5) * 12;
+          const y = (event.clientY / window.innerHeight - 0.5) * 12;
+
+          parallaxTarget.style.transform =
+            `translate3d(${x}px, ${y}px, 0)`;
+        }
+      });
+
+      spotlightItems.forEach((item) => {
+        item.addEventListener("mousemove", (event) => {
+          const rect = item.getBoundingClientRect();
+          item.style.setProperty("--mx", `${event.clientX - rect.left}px`);
+          item.style.setProperty("--my", `${event.clientY - rect.top}px`);
+        });
+      });
+
+      tiltCards.forEach((card) => {
+        card.addEventListener("mousemove", (event) => {
+          const rect = card.getBoundingClientRect();
+          const px = (event.clientX - rect.left) / rect.width;
+          const py = (event.clientY - rect.top) / rect.height;
+          const rotateY = (px - 0.5) * 4;
+          const rotateX = (0.5 - py) * 4;
+
+          card.style.transform =
+            `translateY(-6px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        });
+
+        card.addEventListener("mouseleave", () => {
+          card.style.transform = "";
+        });
       });
     }
   </script>
