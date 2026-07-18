@@ -1,91 +1,392 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Thanh Thuc — Independent App Developer</title>
-<meta name="description" content="Official homepage of Thanh Thuc, featuring apps and privacy policies.">
-<style>
-:root{
-  --bg:#070b14;--bg2:#0e1320;--text:#f7f9fc;--muted:#9ca6bb;
-  --primary:#7c5cff;--secondary:#28d7c0;--border:rgba(255,255,255,.1);
-  --card:rgba(255,255,255,.06);--max:1180px
-}
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  min-height:100vh;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  color:var(--text);line-height:1.6;background:
-  radial-gradient(circle at 15% 0%,rgba(124,92,255,.22),transparent 32%),
-  radial-gradient(circle at 85% 20%,rgba(40,215,192,.11),transparent 25%),var(--bg)
-}
-a{color:inherit;text-decoration:none}
-img{display:block;max-width:100%}
-.container{width:min(calc(100% - 40px),var(--max));margin:0 auto}
-header{position:sticky;top:0;z-index:100;background:rgba(7,11,20,.78);border-bottom:1px solid rgba(255,255,255,.06);backdrop-filter:blur(18px)}
-.nav{height:72px;display:flex;align-items:center;justify-content:space-between;gap:24px}
-.brand{font-size:18px;font-weight:800;letter-spacing:-.03em}
-nav{display:flex;align-items:center;gap:10px}
-nav a{padding:10px 14px;border-radius:11px;color:var(--muted);font-size:14px;transition:.2s}
-nav a:hover,nav a.active{color:white;background:rgba(255,255,255,.07)}
-.hero{padding:110px 0 90px}
-.hero h1{max-width:850px;font-size:clamp(50px,7vw,88px);line-height:.98;letter-spacing:-.06em;margin-bottom:24px}
-.gradient{background:linear-gradient(90deg,#fff,#b9adff 45%,#69e8d5);-webkit-background-clip:text;background-clip:text;color:transparent}
-.hero p{max-width:720px;color:var(--muted);font-size:18px}
-.actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:32px}
-.btn{min-height:50px;padding:0 20px;display:inline-flex;align-items:center;justify-content:center;border-radius:14px;font-weight:750;transition:.2s}
-.btn:hover{transform:translateY(-3px)}
-.btn.primary{background:linear-gradient(135deg,#7c5cff,#647cff);box-shadow:0 12px 35px rgba(124,92,255,.3)}
-.btn.secondary{border:1px solid var(--border);background:rgba(255,255,255,.06)}
-.section{padding:95px 0}
-.section.alt{background:rgba(255,255,255,.025);border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06)}
-.kicker{color:var(--secondary);font-size:13px;font-weight:800;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px}
-.heading{max-width:760px;margin-bottom:46px}
-.heading h2{font-size:clamp(34px,5vw,56px);line-height:1.08;letter-spacing:-.045em;margin-bottom:14px}
-.heading p{color:var(--muted);font-size:17px}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.card{padding:28px;border:1px solid var(--border);border-radius:24px;background:var(--card);transition:.25s}
-.card:hover{transform:translateY(-6px);border-color:rgba(124,92,255,.38);background:rgba(255,255,255,.085)}
-.card h3{font-size:22px;letter-spacing:-.03em;margin-bottom:9px}
-.card p{color:var(--muted);font-size:15px}
-.product-card{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:24px;padding:28px;border:1px solid var(--border);border-radius:26px;background:linear-gradient(145deg,rgba(124,92,255,.12),rgba(255,255,255,.04));transition:.25s}
-.product-card:hover{transform:translateY(-5px);border-color:rgba(124,92,255,.42);box-shadow:0 24px 55px rgba(0,0,0,.22)}
-.product-icon{width:82px;height:82px;border-radius:22px;box-shadow:0 14px 34px rgba(124,92,255,.25)}
-.product-card h3{font-size:27px;letter-spacing:-.03em;margin-bottom:8px}
-.product-card p{color:var(--muted);max-width:690px}
-.arrow{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--border);background:rgba(255,255,255,.05)}
-footer{padding:34px 0;border-top:1px solid rgba(255,255,255,.07);color:var(--muted);font-size:14px}
-.footer{display:flex;justify-content:space-between;gap:20px}
-@media(max-width:900px){.grid{grid-template-columns:1fr}.product-card{grid-template-columns:auto 1fr}.arrow{display:none}}
-@media(max-width:650px){.container{width:min(calc(100% - 28px),var(--max))}nav{gap:2px}nav a{padding:9px 10px}.hero{padding:78px 0 65px}.product-card{grid-template-columns:1fr}.product-icon{width:72px;height:72px}.footer{flex-direction:column}}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thanh Thuc — Independent Developer & Digital Product Builder</title>
+  <meta name="description" content="Official homepage of Thanh Thuc — an independent developer focused on thoughtful digital products, practical tools, privacy-conscious software, and polished user experiences." />
+  <meta name="theme-color" content="#080c16" />
+  <style>
+    :root{
+      --bg:#080c16;--bg-soft:#0d1322;--surface:rgba(255,255,255,.055);
+      --surface-strong:rgba(255,255,255,.08);--text:#f7f9fd;--muted:#9ea8bb;
+      --muted-2:#7f8a9f;--line:rgba(255,255,255,.09);--primary:#7965ff;
+      --primary-2:#9a88ff;--accent:#54d8c9;--max-width:1180px;
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      min-height:100vh;font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      color:var(--text);line-height:1.65;overflow-x:hidden;
+      background:
+        radial-gradient(circle at 12% 0%,rgba(121,101,255,.22),transparent 30%),
+        radial-gradient(circle at 88% 18%,rgba(84,216,201,.10),transparent 24%),
+        var(--bg);
+    }
+    a{color:inherit;text-decoration:none}
+    .container{width:min(calc(100% - 40px),var(--max-width));margin:0 auto}
+
+    .site-header{
+      position:sticky;top:0;z-index:100;border-bottom:1px solid rgba(255,255,255,.07);
+      background:rgba(8,12,22,.76);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)
+    }
+    .navbar{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:28px}
+    .brand{display:inline-flex;flex-direction:column;gap:2px}
+    .brand strong{font-size:18px;letter-spacing:-.03em}
+    .brand span{font-size:11px;color:var(--muted-2);letter-spacing:.14em;text-transform:uppercase}
+    .nav-links{display:flex;align-items:center;gap:26px}
+    .nav-links a{color:var(--muted);font-size:14px;transition:.2s}
+    .nav-links a:hover{color:#fff;transform:translateY(-1px)}
+    .nav-pill{padding:10px 16px;border:1px solid var(--line);border-radius:12px;color:#fff!important;background:rgba(255,255,255,.055)}
+
+    .hero{
+      position:relative;min-height:760px;display:flex;align-items:center;padding:96px 0 90px;
+      isolation:isolate;overflow:hidden
+    }
+    .hero:before{
+      content:"";position:absolute;z-index:-2;width:520px;height:520px;left:-160px;top:-210px;
+      border-radius:50%;background:rgba(121,101,255,.20);filter:blur(105px)
+    }
+    .hero:after{
+      content:"";position:absolute;z-index:-2;width:400px;height:400px;right:-120px;bottom:-100px;
+      border-radius:50%;background:rgba(84,216,201,.10);filter:blur(90px)
+    }
+    .hero-grid{display:grid;grid-template-columns:1.06fr .94fr;gap:72px;align-items:center}
+    .badge{
+      display:inline-flex;align-items:center;gap:9px;margin-bottom:22px;padding:8px 13px;
+      border:1px solid rgba(121,101,255,.28);border-radius:999px;background:rgba(121,101,255,.10);
+      color:#d6d0ff;font-size:13px;font-weight:700
+    }
+    .badge-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 14px rgba(84,216,201,.8)}
+    h1{max-width:760px;margin-bottom:26px;font-size:clamp(54px,7vw,92px);line-height:.98;letter-spacing:-.065em}
+    .gradient-text{
+      background:linear-gradient(90deg,#fff,#c9c1ff 48%,#77e5da);
+      -webkit-background-clip:text;background-clip:text;color:transparent
+    }
+    .hero-copy{max-width:650px;margin-bottom:34px;color:var(--muted);font-size:18px}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:14px}
+    .button{
+      min-height:52px;display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:0 22px;
+      border-radius:14px;font-weight:750;transition:.22s
+    }
+    .button:hover{transform:translateY(-3px)}
+    .button-primary{background:linear-gradient(135deg,var(--primary),var(--primary-2));box-shadow:0 16px 38px rgba(121,101,255,.32)}
+    .button-secondary{border:1px solid var(--line);background:rgba(255,255,255,.055)}
+
+    .hero-panel{
+      min-height:510px;padding:28px;border:1px solid rgba(255,255,255,.11);border-radius:32px;
+      background:linear-gradient(145deg,rgba(255,255,255,.085),rgba(255,255,255,.025));
+      box-shadow:0 38px 90px rgba(0,0,0,.34)
+    }
+    .hero-panel-inner{
+      min-height:450px;padding:28px;display:flex;flex-direction:column;border-radius:24px;
+      background:radial-gradient(circle at 100% 0%,rgba(121,101,255,.16),transparent 32%),linear-gradient(160deg,#171d31,#0a0f1d 74%)
+    }
+    .panel-label{color:var(--accent);font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase}
+    .hero-panel h2{max-width:320px;margin:18px 0 12px;font-size:38px;line-height:1.05;letter-spacing:-.04em}
+    .hero-panel p{color:#8f9bb0;font-size:14px}
+    .panel-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:auto}
+    .panel-card{
+      min-height:122px;padding:18px;display:flex;flex-direction:column;justify-content:flex-end;
+      border:1px solid rgba(255,255,255,.07);border-radius:18px;background:rgba(255,255,255,.045)
+    }
+    .panel-card strong{margin-bottom:3px;font-size:18px}
+    .panel-card span{color:#8994aa;font-size:12px}
+
+    .section{padding:112px 0}
+    .section-soft{background:var(--bg-soft)}
+    .section-heading{max-width:760px;margin-bottom:52px}
+    .kicker{margin-bottom:10px;color:var(--accent);font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase}
+    .section-heading h2{margin-bottom:16px;font-size:clamp(38px,5vw,60px);line-height:1.05;letter-spacing:-.05em}
+    .section-heading p{color:var(--muted);font-size:17px}
+
+    .intro-grid{display:grid;grid-template-columns:.78fr 1.22fr;gap:72px;align-items:start}
+    .intro-title{position:sticky;top:120px}
+    .intro-title h2{font-size:clamp(38px,5vw,58px);line-height:1.05;letter-spacing:-.05em}
+    .intro-copy{display:grid;gap:28px}
+    .intro-block{padding-bottom:28px;border-bottom:1px solid var(--line)}
+    .intro-block:last-child{border-bottom:0;padding-bottom:0}
+    .intro-block h3{margin-bottom:10px;font-size:22px;letter-spacing:-.03em}
+    .intro-block p{color:var(--muted);font-size:16px}
+
+    .principles{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .principle{
+      min-height:280px;padding:30px;border:1px solid var(--line);border-radius:24px;background:var(--surface);transition:.25s
+    }
+    .principle:hover{transform:translateY(-6px);border-color:rgba(121,101,255,.36);background:var(--surface-strong)}
+    .principle-number{margin-bottom:54px;color:var(--primary-2);font-size:13px;font-weight:800;letter-spacing:.12em}
+    .principle h3{margin-bottom:10px;font-size:21px;letter-spacing:-.025em}
+    .principle p{color:var(--muted);font-size:15px}
+
+    .journey{display:grid;gap:16px}
+    .journey-row{display:grid;grid-template-columns:160px 1fr;gap:28px;padding:28px 0;border-top:1px solid var(--line)}
+    .journey-row:last-child{border-bottom:1px solid var(--line)}
+    .journey-row strong{color:#c9c1ff;font-size:14px;letter-spacing:.04em}
+    .journey-row h3{margin-bottom:8px;font-size:22px;letter-spacing:-.03em}
+    .journey-row p{color:var(--muted);font-size:15px}
+
+    .explore-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+    .explore-card{
+      min-height:300px;padding:32px;border:1px solid var(--line);border-radius:28px;
+      background:radial-gradient(circle at 100% 0%,rgba(121,101,255,.14),transparent 36%),rgba(255,255,255,.045);
+      transition:.25s
+    }
+    .explore-card:hover{transform:translateY(-6px);border-color:rgba(121,101,255,.38)}
+    .explore-card .label{margin-bottom:70px;color:var(--accent);font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase}
+    .explore-card h3{margin-bottom:10px;font-size:31px;letter-spacing:-.04em}
+    .explore-card p{max-width:470px;color:var(--muted)}
+    .explore-link{display:inline-block;margin-top:22px;color:#d2ccff;font-weight:700}
+
+    .contact-shell{
+      padding:78px;border:1px solid var(--line);border-radius:34px;text-align:center;
+      background:
+        radial-gradient(circle at 0% 0%,rgba(121,101,255,.20),transparent 34%),
+        radial-gradient(circle at 100% 100%,rgba(84,216,201,.12),transparent 30%),
+        rgba(255,255,255,.045)
+    }
+    .contact-shell h2{margin-bottom:16px;font-size:clamp(42px,6vw,72px);line-height:1;letter-spacing:-.055em}
+    .contact-shell p{max-width:650px;margin:0 auto 28px;color:var(--muted);font-size:17px}
+
+    .site-footer{padding:44px 0 28px;border-top:1px solid rgba(255,255,255,.07);background:#070b13}
+    .footer-main{display:grid;grid-template-columns:1.2fr .8fr;gap:60px;padding-bottom:34px}
+    .footer-brand h3{margin-bottom:10px;font-size:24px;letter-spacing:-.03em}
+    .footer-brand p{max-width:520px;color:var(--muted);font-size:14px}
+    .footer-nav{display:grid;grid-template-columns:1fr 1fr;gap:30px}
+    .footer-col strong{display:block;margin-bottom:12px;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#d8d2ff}
+    .footer-col a{display:block;width:fit-content;margin-bottom:8px;color:var(--muted);font-size:14px}
+    .footer-col a:hover{color:#fff}
+    .footer-bottom{padding-top:24px;display:flex;justify-content:space-between;gap:20px;border-top:1px solid rgba(255,255,255,.07);color:var(--muted-2);font-size:13px}
+
+    @media(max-width:960px){
+      .hero-grid,.intro-grid,.footer-main{grid-template-columns:1fr}
+      .hero-content{text-align:center}.hero-copy{margin-left:auto;margin-right:auto}.hero-actions{justify-content:center}
+      .intro-title{position:static}.principles,.explore-grid{grid-template-columns:1fr}
+    }
+    @media(max-width:700px){
+      .container{width:min(calc(100% - 28px),var(--max-width))}
+      .nav-links a:not(.nav-pill){display:none}
+      .hero{min-height:auto;padding:70px 0}
+      h1{font-size:clamp(50px,15vw,72px)}
+      .panel-grid,.footer-nav{grid-template-columns:1fr}
+      .journey-row{grid-template-columns:1fr;gap:10px}
+      .section{padding:80px 0}.contact-shell{padding:50px 22px}
+      .button{width:100%}.hero-actions{flex-direction:column}.footer-bottom{flex-direction:column}
+    }
+  </style>
 </head>
 <body>
-<header><div class="container nav"><a class="brand" href="./">Thanh Thuc</a>
-<nav><a class="active" href="./">Home</a><a href="app/">Apps</a><a href="privacy-policy/">Privacy</a></nav></div></header>
+
+<header class="site-header">
+  <div class="container navbar">
+    <a class="brand" href="./">
+      <strong>Thanh Thuc</strong>
+      <span>Independent Developer</span>
+    </a>
+    <nav class="nav-links" aria-label="Primary navigation">
+      <a href="./">Home</a>
+      <a href="app/">Apps</a>
+      <a href="privacy-policy/">Privacy</a>
+      <a class="nav-pill" href="mailto:thanhthuc284917@gmail.com">Contact</a>
+    </nav>
+  </div>
+</header>
+
 <main>
-<section class="hero"><div class="container">
-<div class="kicker">Independent App Developer</div>
-<h1>Building <span class="gradient">simple products</span> that make a difference.</h1>
-<p>I build useful digital products focused on simplicity, performance, privacy, and a clear user experience. Explore my applications or review their privacy policies from one central place.</p>
-<div class="actions"><a class="btn primary" href="app/">Explore Apps →</a><a class="btn secondary" href="privacy-policy/">Privacy Policies</a></div>
-</div></section>
 
-<section class="section alt"><div class="container">
-<div class="heading"><div class="kicker">Explore</div><h2>Everything in one place.</h2><p>This site is organized into dedicated areas for products and privacy documentation.</p></div>
-<div class="grid">
-<a class="card" href="app/"><h3>Apps</h3><p>Browse applications and extensions, then open a dedicated product page for details, features, and support.</p></a>
-<a class="card" href="privacy-policy/"><h3>Privacy Policies</h3><p>Find the privacy policy for each published product from a centralized privacy directory.</p></a>
-<a class="card" href="mailto:thanhthuc284917@gmail.com"><h3>Support</h3><p>For product support, feedback, or business inquiries, contact me directly by email.</p></a>
-</div></div></section>
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-content">
+      <div class="badge"><span class="badge-dot"></span>Independent developer & digital product builder</div>
+      <h1>Building thoughtful <span class="gradient-text">digital experiences</span> with purpose.</h1>
+      <p class="hero-copy">
+        I create practical software, browser tools, and digital experiences with a focus on clarity,
+        useful functionality, privacy-conscious design, and the small details that make products feel better to use.
+      </p>
+      <div class="hero-actions">
+        <a class="button button-primary" href="app/">Explore Apps →</a>
+        <a class="button button-secondary" href="privacy-policy/">Privacy Center</a>
+      </div>
+    </div>
 
-<section class="section"><div class="container">
-<div class="heading"><div class="kicker">Featured Product</div><h2>KeyPulse Dual Mode HUD</h2><p>A privacy-focused Chrome keyboard visualizer with compact HUD and full keyboard modes.</p></div>
-<a class="product-card" href="app/keypulse-dual-mode-hud-keyboard-visualizer/">
-<img class="product-icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAADP0lEQVR4nO2csU4bQRCG11YeIQXiAagi0aVDQlYKyoiCh6RAlBSRhUSXLlIeI+8ARbTINnfn2b3lZsf/99Ww3O3/7czdCHt1dn7xmkCWL60Wuts8t1oKDNxvr5uss5pTAQi9D+bIUCUAwfdJjQhFAhB8DEpEWFt/kPDjUJLV0QpA8LE5Vg0mKwDhx+dYhqMCEP7pMJVlszlASik9vNy0XA5GuL16arbW4DNAyekndF9KZBh6HvjQAgg/FiUZDGVb1QIIvi9yHjWtYa8CWE4/4feLJZvDjM2DIDhN3gXg9J8GpVXAXAEIPw4lWdECxFmnxNRPkZy5qQJQ/uNhzYwWIA4CiIMA4iCAOAggDgKIgwDiIIA4CCAOAoiDAOIggDgIIA4CiIMA4iCAOAggDgKIgwDiIIA4TT8ePpe/f37/876Gpfh2+f2r9zWk1IkASsFn8j17i+DeAhTD38X7/l0F8L75XvDcBzcBCH8fr/1wEYDwh/HYF/dnAPBlcQE4/dMsvT9UAHEQQBwEEKeLSeAYmx8/TVOy7a/H0b45d40W19AzVABxEEAcBBAHAcRBAHEQQBwEEAcBxEEAcbqeBLaYrs1dI+qEzwoVQBwEEAcBxEEAcRBAHAQQBwHEQQBxEEAcBBCn61HwIdZ/0PQm0viYCiAOAoiDAOIggDgIIA4CiIMA4iCAOKEGQZEGLFFYvAJ4fzFi7yy9P7QAcVwEoAoM47EvbhUACfbx2g/XFoAE//HcB/dnAHUJvO+/i9fAvAlKXyLpHXymCwEyvWyKEu4tAHxBAHEQQBwEEAcBxEEAcRBAHAQQBwHEQQBxEEAcBBAHAcRBAHEQQBwEEAcBxEEAcRBAHJMAt1dPn30d0BhrZuuUUrrfXn/mtUCH5MxpAeKYBaANxKEkq3cBLG0ACfrHktFu1rQAcfYEoArEpvT0p1T50bD8hx5ebmp+HRoz51B+aAElr4RUA39KMhjKdnV2fvE69MN3m+fii6EiLEPNwRs72E0/HUxFiMfoWwDTwdNhKsvJ10AkiM+xDEefAQ6peSYAP6yH1zwIohrEoSQrcwXYhWrQJzWHtEqADCL0wZzqPEuAXZBhWVq15GYCQEzeACVf4mc1iB4qAAAAAElFTkSuQmCC" alt="KeyPulse icon">
-<div><h3>KeyPulse Dual Mode HUD — Keyboard Visualizer</h3><p>Visualize keyboard activity directly on the page for presentations, recordings, demos, and shortcut visibility.</p></div>
-<div class="arrow">→</div></a>
-</div></section>
+    <div class="hero-panel">
+      <div class="hero-panel-inner">
+        <div class="panel-label">Independent product development</div>
+        <h2>Ideas turned into useful, focused products.</h2>
+        <p>
+          From lightweight browser utilities to purpose-built digital tools, each project begins with
+          a clear problem and a simpler way to solve it.
+        </p>
+        <div class="panel-grid">
+          <div class="panel-card"><strong>Product thinking</strong><span>Start with the problem, not the feature list.</span></div>
+          <div class="panel-card"><strong>Privacy minded</strong><span>Prefer minimal data use and transparent behavior.</span></div>
+          <div class="panel-card"><strong>Focused UX</strong><span>Make the right action feel obvious and effortless.</span></div>
+          <div class="panel-card"><strong>Iterative work</strong><span>Improve through testing, feedback, and refinement.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-soft">
+  <div class="container intro-grid">
+    <div class="intro-title">
+      <div class="kicker">About this site</div>
+      <h2>A home for the work behind the products.</h2>
+    </div>
+    <div class="intro-copy">
+      <div class="intro-block">
+        <h3>Independent by nature</h3>
+        <p>
+          This site represents an independent development practice built around experimentation,
+          practical problem solving, and the freedom to explore useful product ideas without unnecessary complexity.
+        </p>
+      </div>
+      <div class="intro-block">
+        <h3>Small products, real utility</h3>
+        <p>
+          Not every useful tool needs to become a large platform. Many of the best ideas are focused,
+          direct, and designed to do one important thing exceptionally well.
+        </p>
+      </div>
+      <div class="intro-block">
+        <h3>Thoughtful software matters</h3>
+        <p>
+          Good software should respect attention, communicate clearly, and avoid creating friction where none is needed.
+          That mindset shapes both the user interface and the technical decisions behind each project.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-heading">
+      <div class="kicker">Principles</div>
+      <h2>The values behind the work.</h2>
+      <p>These are the recurring ideas that guide how products are planned, designed, built, and improved over time.</p>
+    </div>
+    <div class="principles">
+      <article class="principle">
+        <div class="principle-number">01</div>
+        <h3>Clarity over clutter</h3>
+        <p>Interfaces should help users understand what is happening without forcing them to learn a complicated system first.</p>
+      </article>
+      <article class="principle">
+        <div class="principle-number">02</div>
+        <h3>Useful before impressive</h3>
+        <p>Visual polish matters, but it should support the core purpose of the product rather than distract from it.</p>
+      </article>
+      <article class="principle">
+        <div class="principle-number">03</div>
+        <h3>Respect user trust</h3>
+        <p>Privacy, transparent behavior, and responsible data handling should be part of product design from the beginning.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section section-soft">
+  <div class="container">
+    <div class="section-heading">
+      <div class="kicker">How I work</div>
+      <h2>From rough idea to refined product.</h2>
+      <p>A lightweight process keeps development focused while leaving room to discover better solutions along the way.</p>
+    </div>
+    <div class="journey">
+      <div class="journey-row">
+        <strong>01 — Understand</strong>
+        <div><h3>Start with the real problem.</h3><p>Define the user need, the context, and what a successful experience should feel like before writing too much code.</p></div>
+      </div>
+      <div class="journey-row">
+        <strong>02 — Simplify</strong>
+        <div><h3>Reduce the experience to what matters.</h3><p>Remove unnecessary steps, features, and visual noise so the product can stay focused on its primary job.</p></div>
+      </div>
+      <div class="journey-row">
+        <strong>03 — Build</strong>
+        <div><h3>Create a strong, practical first version.</h3><p>Prioritize reliability, usability, and a coherent experience before expanding into edge cases and extra features.</p></div>
+      </div>
+      <div class="journey-row">
+        <strong>04 — Refine</strong>
+        <div><h3>Improve through real use.</h3><p>Observe friction, fix inconsistencies, and make measured improvements based on how the product behaves outside the initial design.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-heading">
+      <div class="kicker">Explore</div>
+      <h2>Go deeper into the work.</h2>
+      <p>This homepage is the introduction. Product pages and privacy information live in their own dedicated sections.</p>
+    </div>
+
+    <div class="explore-grid">
+      <a class="explore-card" href="app/">
+        <div class="label">Apps & Products</div>
+        <h3>Explore the product directory.</h3>
+        <p>Browse released applications, browser extensions, product pages, support information, and future projects.</p>
+        <span class="explore-link">Open Apps →</span>
+      </a>
+
+      <a class="explore-card" href="privacy-policy/">
+        <div class="label">Privacy Center</div>
+        <h3>Read privacy information by product.</h3>
+        <p>Visit the privacy hub to find general privacy information and dedicated policies for individual apps and extensions.</p>
+        <span class="explore-link">Open Privacy Center →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="contact-shell">
+      <div class="kicker">Contact</div>
+      <h2>Questions, feedback, or support?</h2>
+      <p>For product support, general questions, feedback, or collaboration inquiries, you can reach me directly by email.</p>
+      <a class="button button-primary" href="mailto:thanhthuc284917@gmail.com">thanhthuc284917@gmail.com</a>
+    </div>
+  </div>
+</section>
+
 </main>
-<footer><div class="container footer"><p>© <span id="year"></span> Thanh Thuc. All rights reserved.</p><p>thanhthuc284917@gmail.com</p></div></footer>
-<script>document.getElementById("year").textContent=new Date().getFullYear()</script>
-</body></html>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-main">
+      <div class="footer-brand">
+        <h3>Thanh Thuc</h3>
+        <p>
+          Independent developer building practical, thoughtful digital products with a focus on usability,
+          clarity, privacy, and purposeful design.
+        </p>
+      </div>
+      <div class="footer-nav">
+        <div class="footer-col">
+          <strong>Explore</strong>
+          <a href="./">Home</a>
+          <a href="app/">Apps</a>
+          <a href="privacy-policy/">Privacy</a>
+        </div>
+        <div class="footer-col">
+          <strong>Contact</strong>
+          <a href="mailto:thanhthuc284917@gmail.com">Email</a>
+          <a href="mailto:thanhthuc284917@gmail.com?subject=Product%20Support">Support</a>
+          <a href="mailto:thanhthuc284917@gmail.com?subject=General%20Inquiry">General inquiry</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> Thanh Thuc. All rights reserved.</span>
+      <span>Independent software & digital product development.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
