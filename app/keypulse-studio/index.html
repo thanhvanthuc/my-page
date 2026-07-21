@@ -684,7 +684,6 @@
     .media-frame {
       position: relative;
       overflow: hidden;
-      min-height: 430px;
       border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: 28px;
       background:
@@ -704,10 +703,10 @@
     }
 
     .media-frame img {
+      display: block;
       width: 100%;
-      height: 100%;
-      min-height: 430px;
-      object-fit: cover;
+      height: auto;
+      object-fit: contain;
     }
 
     .shot-placeholder {
@@ -755,12 +754,9 @@
       color: var(--muted-dark);
     }
 
-    .media-frame.tall {
-      min-height: 520px;
-    }
-
+    .media-frame.tall,
     .media-frame.compact {
-      min-height: 290px;
+      min-height: 0;
     }
 
     .media-frame.compact .shot-placeholder {
@@ -1007,6 +1003,136 @@
     .use-case-copy p {
       color: var(--muted-dark);
       font-size: 13px;
+    }
+
+
+    /* Use case carousel */
+
+    .use-case-carousel {
+      position: relative;
+    }
+
+    .use-case-viewport {
+      overflow: hidden;
+      border: 1px solid rgba(32, 40, 56, 0.10);
+      border-radius: 30px;
+      background: white;
+      box-shadow: 0 24px 64px rgba(44, 56, 78, 0.10);
+    }
+
+    .use-case-track {
+      display: flex;
+      width: 100%;
+      transition: transform 0.48s cubic-bezier(.22, .61, .36, 1);
+      will-change: transform;
+    }
+
+    .use-case-slide {
+      min-width: 100%;
+      background: white;
+    }
+
+    .use-case-slide-media {
+      width: 100%;
+      overflow: hidden;
+      background: #eef0f8;
+      border-bottom: 1px solid rgba(32, 40, 56, 0.08);
+    }
+
+    .use-case-slide-media img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .use-case-slide-copy {
+      position: relative;
+      padding: 34px 38px 38px;
+    }
+
+    .use-case-count {
+      display: inline-block;
+      margin-bottom: 14px;
+      color: #6550cb;
+      font-size: 11px;
+      font-weight: 850;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .use-case-slide-copy h3 {
+      margin-bottom: 10px;
+      color: var(--ink);
+      font-size: clamp(26px, 3vw, 36px);
+      line-height: 1.08;
+      letter-spacing: -0.04em;
+    }
+
+    .use-case-slide-copy p {
+      max-width: 720px;
+      color: var(--muted-dark);
+      font-size: 15px;
+    }
+
+    .use-case-carousel-controls {
+      margin-top: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .use-case-carousel-arrows {
+      display: flex;
+      gap: 10px;
+    }
+
+    .use-case-carousel-button {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(32, 40, 56, 0.12);
+      border-radius: 50%;
+      color: var(--ink);
+      background: white;
+      font: inherit;
+      font-size: 18px;
+      cursor: pointer;
+      transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+    .use-case-carousel-button:hover {
+      transform: translateY(-2px);
+      border-color: rgba(113, 87, 238, 0.38);
+      box-shadow: 0 10px 24px rgba(44, 56, 78, 0.10);
+    }
+
+    .use-case-carousel-dots {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .use-case-dot {
+      width: 9px;
+      height: 9px;
+      padding: 0;
+      border: 0;
+      border-radius: 999px;
+      background: rgba(32, 40, 56, 0.20);
+      cursor: pointer;
+      transition:
+        width 0.2s ease,
+        background 0.2s ease;
+    }
+
+    .use-case-dot.is-active {
+      width: 28px;
+      background: var(--purple);
     }
 
     .privacy-actions {
@@ -1369,21 +1495,22 @@
 
       .effect-grid,
       .stats-grid,
-      .keyboard-detail-grid,
-      .use-case-card {
+      .keyboard-detail-grid {
         grid-template-columns: 1fr;
+      }
+
+      .use-case-slide-copy {
+        padding: 26px 22px 28px;
+      }
+
+      .use-case-carousel-controls {
+        align-items: center;
       }
 
       .media-frame,
       .media-frame.tall,
-      .media-frame.compact,
-      .shot-placeholder {
-        min-height: 300px;
-      }
-
-      .use-case-media,
-      .use-case-media .shot-placeholder {
-        min-height: 240px;
+      .media-frame.compact {
+        min-height: 0;
       }
     }
   </style>
@@ -1862,50 +1989,102 @@
           </p>
         </div>
 
-        <div class="use-case-grid">
-          <article class="use-case-card">
-            <div class="use-case-media">
-              <img
-                src="assets/keypulse-tutorial-demo.png"
-                alt="KeyPulse Studio used alongside a browser tutorial to visualize keyboard shortcuts."
-                loading="lazy"
-              />
-            </div>
-            <div class="use-case-copy"><strong>Teaching & shortcut demos</strong><p>Make combinations easier to follow when explaining browser workflows, hotkeys, or keyboard-driven actions.</p></div>
-          </article>
+        <div class="use-case-carousel" aria-label="KeyPulse Studio use cases">
+          <div class="use-case-viewport">
+            <div class="use-case-track">
 
-          <article class="use-case-card">
-            <div class="use-case-media">
-              <img
-                src="assets/keypulse-recording-hud.png"
-                alt="KeyPulse Compact HUD positioned over a webpage for a screen recording."
-                loading="lazy"
-              />
-            </div>
-            <div class="use-case-copy"><strong>Screen recordings</strong><p>Add immediate keyboard context to recorded demos without building a separate overlay workflow.</p></div>
-          </article>
+              <article class="use-case-slide" data-slide="0">
+                <div class="use-case-slide-media">
+                  <img
+                    src="assets/keypulse-tutorial-demo.png"
+                    alt="KeyPulse Studio used alongside a browser tutorial to visualize keyboard shortcuts."
+                    loading="lazy"
+                  />
+                </div>
+                <div class="use-case-slide-copy">
+                  <span class="use-case-count">01 / 04</span>
+                  <h3>Teaching &amp; shortcut demos</h3>
+                  <p>
+                    Make combinations easier to follow when explaining browser workflows,
+                    hotkeys, or keyboard-driven actions.
+                  </p>
+                </div>
+              </article>
 
-          <article class="use-case-card">
-            <div class="use-case-media">
-              <img
-                src="assets/keypulse-presentation-demo.png"
-                alt="KeyPulse Studio used during a presentation or live keyboard demonstration."
-                loading="lazy"
-              />
-            </div>
-            <div class="use-case-copy"><strong>Presentations & live demos</strong><p>Help an audience understand which physical keys are being used while you demonstrate something on screen.</p></div>
-          </article>
+              <article class="use-case-slide" data-slide="1">
+                <div class="use-case-slide-media">
+                  <img
+                    src="assets/keypulse-recording-hud.png"
+                    alt="KeyPulse Compact HUD positioned over a webpage for a screen recording."
+                    loading="lazy"
+                  />
+                </div>
+                <div class="use-case-slide-copy">
+                  <span class="use-case-count">02 / 04</span>
+                  <h3>Screen recordings</h3>
+                  <p>
+                    Add immediate keyboard context to recorded demos without building
+                    a separate overlay workflow.
+                  </p>
+                </div>
+              </article>
 
-          <article class="use-case-card">
-            <div class="use-case-media">
-              <img
-                src="assets/keypulse-everyday-effects.png"
-                alt="KeyPulse Studio showing a colorful keyboard effect during everyday browsing."
-                loading="lazy"
-              />
+              <article class="use-case-slide" data-slide="2">
+                <div class="use-case-slide-media">
+                  <img
+                    src="assets/keypulse-presentation-demo.png"
+                    alt="KeyPulse Studio used during a presentation or live keyboard demonstration."
+                    loading="lazy"
+                  />
+                </div>
+                <div class="use-case-slide-copy">
+                  <span class="use-case-count">03 / 04</span>
+                  <h3>Presentations &amp; live demos</h3>
+                  <p>
+                    Help an audience understand which physical keys are being used
+                    while you demonstrate something on screen.
+                  </p>
+                </div>
+              </article>
+
+              <article class="use-case-slide" data-slide="3">
+                <div class="use-case-slide-media">
+                  <img
+                    src="assets/keypulse-everyday-effects.png"
+                    alt="KeyPulse Studio showing a colorful keyboard effect during everyday browsing."
+                    loading="lazy"
+                  />
+                </div>
+                <div class="use-case-slide-copy">
+                  <span class="use-case-count">04 / 04</span>
+                  <h3>Everyday visual feedback</h3>
+                  <p>
+                    Use KeyPulse simply because seeing the keyboard react can make
+                    normal browsing, shortcuts, and typing feel more alive.
+                  </p>
+                </div>
+              </article>
+
             </div>
-            <div class="use-case-copy"><strong>Everyday visual feedback</strong><p>Use KeyPulse simply because seeing the keyboard react can make normal browsing, shortcuts, and typing feel more alive.</p></div>
-          </article>
+          </div>
+
+          <div class="use-case-carousel-controls">
+            <div class="use-case-carousel-arrows">
+              <button class="use-case-carousel-button" type="button" data-carousel-prev aria-label="Previous use case">
+                ←
+              </button>
+              <button class="use-case-carousel-button" type="button" data-carousel-next aria-label="Next use case">
+                →
+              </button>
+            </div>
+
+            <div class="use-case-carousel-dots" role="tablist" aria-label="Choose use case">
+              <button class="use-case-dot is-active" type="button" data-carousel-dot="0" aria-label="Show Teaching and shortcut demos" aria-selected="true"></button>
+              <button class="use-case-dot" type="button" data-carousel-dot="1" aria-label="Show Screen recordings" aria-selected="false"></button>
+              <button class="use-case-dot" type="button" data-carousel-dot="2" aria-label="Show Presentations and live demos" aria-selected="false"></button>
+              <button class="use-case-dot" type="button" data-carousel-dot="3" aria-label="Show Everyday visual feedback" aria-selected="false"></button>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -2044,6 +2223,56 @@
     </div>
   </footer>
 
+
+  <script>
+    (() => {
+      const carousel = document.querySelector(".use-case-carousel");
+      if (!carousel) return;
+
+      const track = carousel.querySelector(".use-case-track");
+      const slides = [...carousel.querySelectorAll(".use-case-slide")];
+      const dots = [...carousel.querySelectorAll("[data-carousel-dot]")];
+      const prev = carousel.querySelector("[data-carousel-prev]");
+      const next = carousel.querySelector("[data-carousel-next]");
+
+      let index = 0;
+      let touchStartX = null;
+
+      const showSlide = (nextIndex) => {
+        index = (nextIndex + slides.length) % slides.length;
+        track.style.transform = `translateX(-${index * 100}%)`;
+
+        dots.forEach((dot, dotIndex) => {
+          const active = dotIndex === index;
+          dot.classList.toggle("is-active", active);
+          dot.setAttribute("aria-selected", active ? "true" : "false");
+        });
+      };
+
+      prev.addEventListener("click", () => showSlide(index - 1));
+      next.addEventListener("click", () => showSlide(index + 1));
+
+      dots.forEach((dot) => {
+        dot.addEventListener("click", () => {
+          showSlide(Number(dot.dataset.carouselDot));
+        });
+      });
+
+      carousel.addEventListener("touchstart", (event) => {
+        touchStartX = event.changedTouches[0].clientX;
+      }, { passive: true });
+
+      carousel.addEventListener("touchend", (event) => {
+        if (touchStartX === null) return;
+
+        const delta = event.changedTouches[0].clientX - touchStartX;
+        touchStartX = null;
+
+        if (Math.abs(delta) < 45) return;
+        showSlide(delta < 0 ? index + 1 : index - 1);
+      }, { passive: true });
+    })();
+  </script>
 
 </body>
 </html>
