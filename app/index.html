@@ -1,1420 +1,343 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>Apps & Extensions — Thanh Thuc</title>
-
-  <meta
-    name="description"
-    content="Explore browser extensions, utilities, and focused digital products developed by Thanh Thuc."
-  />
-
-  <meta name="theme-color" content="#070b13" />
-
-  <style>
-    :root {
-      --bg: #070b13;
-      --bg-soft: #0b111d;
-      --panel: rgba(255,255,255,.045);
-      --panel-strong: rgba(255,255,255,.065);
-      --text: #f7f9fd;
-      --muted: #9ea9bc;
-      --muted-2: #7d889b;
-      --line: rgba(255,255,255,.085);
-      --purple: #7d68ff;
-      --purple-2: #a18dff;
-      --cyan: #57d8ca;
-      --max: 1180px;
-      --radius-xl: 34px;
-      --radius-lg: 24px;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      min-height: 100vh;
-      overflow-x: hidden;
-      color: var(--text);
-      font-family:
-        Inter,
-        ui-sans-serif,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        sans-serif;
-      line-height: 1.65;
-      background:
-        radial-gradient(circle at 12% 0%, rgba(125,104,255,.18), transparent 28%),
-        radial-gradient(circle at 88% 14%, rgba(87,216,202,.08), transparent 24%),
-        linear-gradient(180deg, #0a0f1a 0%, var(--bg) 100%);
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      z-index: -10;
-      pointer-events: none;
-      opacity: .24;
-      background-image:
-        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
-      background-size: 44px 44px;
-      mask-image: linear-gradient(to bottom, black 0%, transparent 90%);
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    img {
-      display: block;
-      max-width: 100%;
-    }
-
-    .container {
-      width: min(calc(100% - 40px), var(--max));
-      margin: 0 auto;
-    }
-
-    .section {
-      position: relative;
-      padding: 110px 0;
-    }
-
-    .section-soft {
-      background: linear-gradient(
-        180deg,
-        rgba(255,255,255,.018),
-        rgba(255,255,255,.028)
-      );
-      border-top: 1px solid rgba(255,255,255,.035);
-      border-bottom: 1px solid rgba(255,255,255,.035);
-    }
-
-    .eyebrow {
-      margin-bottom: 12px;
-      color: var(--cyan);
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: .16em;
-      text-transform: uppercase;
-    }
-
-    .section-heading {
-      max-width: 780px;
-      margin-bottom: 52px;
-    }
-
-    .section-heading h2 {
-      margin-bottom: 16px;
-      font-size: clamp(40px, 5vw, 62px);
-      line-height: 1.04;
-      letter-spacing: -.055em;
-    }
-
-    .section-heading p {
-      max-width: 720px;
-      color: var(--muted);
-      font-size: 17px;
-    }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(24px);
-      transition:
-        opacity .65s ease,
-        transform .65s ease;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: none;
-    }
-
-    /* HEADER */
-
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      border-bottom: 1px solid rgba(255,255,255,.07);
-      background: rgba(7,11,19,.74);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-    }
-
-    .navbar {
-      min-height: 78px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 28px;
-    }
-
-    .brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      min-width: 0;
-    }
-
-    .brand-logo {
-      width: 44px;
-      height: 44px;
-      flex: 0 0 44px;
-      object-fit: cover;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,.1);
-      box-shadow: 0 12px 30px rgba(125,104,255,.2);
-    }
-
-    .brand-copy {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
-    .brand-copy strong {
-      font-size: 18px;
-      line-height: 1.15;
-      letter-spacing: -.03em;
-    }
-
-    .brand-copy span {
-      color: var(--muted-2);
-      font-size: 10px;
-      letter-spacing: .13em;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 24px;
-    }
-
-    .nav-links a {
-      color: var(--muted);
-      font-size: 14px;
-      transition: color .2s ease;
-    }
-
-    .nav-links a:hover,
-    .nav-links a[aria-current="page"] {
-      color: white;
-    }
-
-    .nav-cta {
-      padding: 10px 16px;
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      color: white !important;
-      background: rgba(255,255,255,.05);
-    }
-
-    /* HERO */
-
-    .hero {
-      position: relative;
-      min-height: 680px;
-      display: flex;
-      align-items: center;
-      padding: 90px 0 84px;
-      overflow: hidden;
-      isolation: isolate;
-    }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      z-index: -2;
-      width: 600px;
-      height: 600px;
-      left: -220px;
-      top: -260px;
-      border-radius: 50%;
-      background: rgba(125,104,255,.20);
-      filter: blur(110px);
-      animation: heroGlowA 12s ease-in-out infinite alternate;
-    }
-
-    .hero::after {
-      content: "";
-      position: absolute;
-      z-index: -2;
-      width: 420px;
-      height: 420px;
-      right: -150px;
-      bottom: -100px;
-      border-radius: 50%;
-      background: rgba(87,216,202,.08);
-      filter: blur(95px);
-      animation: heroGlowB 14s ease-in-out infinite alternate;
-    }
-
-    @keyframes heroGlowA {
-      to { transform: translate(55px, 24px) scale(1.08); }
-    }
-
-    @keyframes heroGlowB {
-      to { transform: translate(-45px, -22px) scale(.96); }
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.08fr .92fr;
-      gap: 72px;
-      align-items: center;
-    }
-
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 20px;
-      padding: 8px 12px;
-      border: 1px solid rgba(125,104,255,.25);
-      border-radius: 999px;
-      background: rgba(125,104,255,.08);
-      color: #d7d1ff;
-      font-size: 13px;
-      font-weight: 700;
-    }
-
-    .hero-badge::before {
-      content: "";
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--cyan);
-      box-shadow: 0 0 14px rgba(87,216,202,.74);
-    }
-
-    h1 {
-      max-width: 760px;
-      margin-bottom: 24px;
-      font-size: clamp(54px, 7vw, 86px);
-      line-height: .98;
-      letter-spacing: -.065em;
-    }
-
-    .gradient-text {
-      background: linear-gradient(
-        90deg,
-        #ffffff 0%,
-        #c9c2ff 46%,
-        #7be2d8 100%
-      );
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-
-    .hero-copy {
-      max-width: 650px;
-      color: var(--muted);
-      font-size: 18px;
-    }
-
-    .hero-panel {
-      position: relative;
-      min-height: 410px;
-      padding: 28px;
-      border: 1px solid rgba(255,255,255,.1);
-      border-radius: 30px;
-      background:
-        radial-gradient(circle at 100% 0%, rgba(125,104,255,.16), transparent 35%),
-        linear-gradient(160deg, rgba(24,31,50,.96), rgba(10,15,28,.98));
-      box-shadow: 0 28px 80px rgba(0,0,0,.26);
-      overflow: hidden;
-    }
-
-    .hero-panel::before,
-    .hero-panel::after {
-      content: "";
-      position: absolute;
-      border-radius: 50%;
-      border: 1px solid rgba(255,255,255,.06);
-    }
-
-    .hero-panel::before {
-      width: 300px;
-      height: 300px;
-      right: -90px;
-      top: -80px;
-      animation: orbitSlow 18s linear infinite;
-    }
-
-    .hero-panel::after {
-      width: 210px;
-      height: 210px;
-      right: -30px;
-      top: -15px;
-      border-color: rgba(125,104,255,.11);
-      animation: orbitSlow 14s linear infinite reverse;
-    }
-
-    @keyframes orbitSlow {
-      to { transform: rotate(360deg); }
-    }
-
-    .hero-panel-inner {
-      position: relative;
-      z-index: 2;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .hero-panel-label {
-      color: var(--cyan);
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: .15em;
-      text-transform: uppercase;
-    }
-
-    .hero-panel h2 {
-      max-width: 340px;
-      margin-top: 70px;
-      font-size: 38px;
-      line-height: 1.05;
-      letter-spacing: -.045em;
-    }
-
-    .hero-panel p {
-      max-width: 360px;
-      margin-top: 14px;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    /* VALUES */
-
-    .values-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
-    }
-
-    .value-card {
-      min-height: 210px;
-      padding: 26px;
-      border: 1px solid var(--line);
-      border-radius: 22px;
-      background: var(--panel);
-      transition:
-        transform .2s ease,
-        border-color .2s ease,
-        background .2s ease;
-    }
-
-    .value-card:hover {
-      transform: translateY(-3px);
-      border-color: rgba(125,104,255,.26);
-      background: var(--panel-strong);
-    }
-
-    .value-index {
-      margin-bottom: 34px;
-      color: var(--purple-2);
-      font-size: 13px;
-      font-weight: 800;
-      letter-spacing: .1em;
-    }
-
-    .value-card h3 {
-      margin-bottom: 8px;
-      font-size: 21px;
-      letter-spacing: -.03em;
-    }
-
-    .value-card p {
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    /* PRODUCT DIRECTORY */
-
-    .product-list {
-      display: grid;
-      gap: 22px;
-    }
-
-    .product-card {
-      position: relative;
-      overflow: hidden;
-      display: grid;
-      grid-template-columns: 136px minmax(0, 1fr) auto;
-      gap: 28px;
-      align-items: center;
-      padding: 34px;
-      border: 1px solid var(--line);
-      border-radius: 28px;
-      background:
-        radial-gradient(circle at 100% 0%, rgba(125,104,255,.14), transparent 34%),
-        linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.035));
-      transition:
-        transform .22s ease,
-        border-color .22s ease,
-        box-shadow .22s ease;
-    }
-
-    .product-icon-slot {
-      width: 136px;
-      height: 136px;
-      display: grid;
-      place-items: center;
-      overflow: hidden;
-      border: 1px solid rgba(125,104,255,.28);
-      border-radius: 30px;
-      background:
-        radial-gradient(circle at 30% 20%, rgba(125,104,255,.16), transparent 48%),
-        rgba(255,255,255,.04);
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.05),
-        0 18px 42px rgba(0,0,0,.20);
-    }
-
-    .product-icon {
-      width: 104px;
-      height: 104px;
-      display: block;
-      object-fit: contain;
-      border-radius: 23px;
-    }
-
-    .product-content {
-      min-width: 0;
-    }
-
-    .product-card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(125,104,255,.32);
-      box-shadow: 0 20px 54px rgba(0,0,0,.22);
-    }
-
-    .product-meta {
-      display: inline-flex;
-      width: fit-content;
-      margin-bottom: 18px;
-      padding: 7px 10px;
-      border: 1px solid rgba(87,216,202,.18);
-      border-radius: 999px;
-      color: #8de9df;
-      background: rgba(87,216,202,.06);
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-    }
-
-    .product-card h3 {
-      margin-bottom: 10px;
-      font-size: 32px;
-      letter-spacing: -.04em;
-    }
-
-    .product-card p {
-      max-width: 760px;
-      color: var(--muted);
-      font-size: 15px;
-    }
-
-    .product-link {
-      display: inline-block;
-      margin-top: 20px;
-      color: #d4ceff;
-      font-weight: 750;
-    }
-
-    .product-arrow {
-      width: 52px;
-      height: 52px;
-      display: grid;
-      place-items: center;
-      border: 1px solid var(--line);
-      border-radius: 50%;
-      color: white;
-      background: rgba(255,255,255,.04);
-      font-size: 20px;
-      transition:
-        transform .2s ease,
-        background .2s ease;
-    }
-
-    .product-card:hover .product-arrow {
-      transform: translateX(4px);
-      background: rgba(125,104,255,.12);
-    }
-
-    .product-card::after {
-      content: "";
-      position: absolute;
-      width: 220px;
-      height: 220px;
-      left: var(--mx, 82%);
-      top: var(--my, 20%);
-      transform: translate(-50%, -50%);
-      border-radius: 50%;
-      pointer-events: none;
-      opacity: 0;
-      background: radial-gradient(
-        circle,
-        rgba(125,104,255,.11),
-        rgba(87,216,202,.035) 40%,
-        transparent 72%
-      );
-      transition: opacity .2s ease;
-    }
-
-    .product-card:hover::after {
-      opacity: 1;
-    }
-
-    /* PHILOSOPHY */
-
-    .philosophy-grid {
-      display: grid;
-      grid-template-columns: .85fr 1.15fr;
-      gap: 70px;
-      align-items: start;
-    }
-
-    .philosophy-copy h2 {
-      margin-bottom: 18px;
-      font-size: clamp(40px, 5vw, 60px);
-      line-height: 1.05;
-      letter-spacing: -.055em;
-    }
-
-    .philosophy-copy p {
-      color: var(--muted);
-      font-size: 17px;
-    }
-
-    .philosophy-list {
-      display: grid;
-      gap: 16px;
-    }
-
-    .philosophy-item {
-      padding: 24px 0;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .philosophy-item:first-child {
-      padding-top: 0;
-    }
-
-    .philosophy-item:last-child {
-      border-bottom: 0;
-    }
-
-    .philosophy-item h3 {
-      margin-bottom: 8px;
-      font-size: 22px;
-      letter-spacing: -.03em;
-    }
-
-    .philosophy-item p {
-      color: var(--muted);
-      font-size: 15px;
-    }
-
-    /* TRAIL + CLICK */
-
-    .trail-dot,
-    .click-ring,
-    .click-particle {
-      position: fixed;
-      pointer-events: none;
-      border-radius: 50%;
-      z-index: 999;
-    }
-
-    .trail-dot {
-      width: 5px;
-      height: 5px;
-      left: 0;
-      top: 0;
-      opacity: 0;
-      transform: translate(-50%, -50%);
-      background: linear-gradient(135deg, var(--purple-2), var(--cyan));
-      box-shadow: 0 0 8px rgba(125,104,255,.34);
-    }
-
-    .click-ring {
-      width: 18px;
-      height: 18px;
-      border: 1px solid rgba(125,104,255,.9);
-      box-shadow: 0 0 8px rgba(125,104,255,.24);
-      animation: clickRing .58s ease-out forwards;
-    }
-
-    .click-particle {
-      width: 5px;
-      height: 5px;
-      background: linear-gradient(135deg, var(--purple-2), var(--cyan));
-      box-shadow: 0 0 7px rgba(125,104,255,.22);
-      animation: clickParticle .54s ease-out forwards;
-    }
-
-    @keyframes clickRing {
-      from {
-        opacity: .95;
-        transform: translate(-50%, -50%) scale(.5);
-      }
-      to {
-        opacity: 0;
-        transform: translate(-50%, -50%) scale(3.6);
-      }
-    }
-
-    @keyframes clickParticle {
-      from {
-        opacity: 1;
-        transform:
-          translate(-50%, -50%)
-          translate(0,0)
-          scale(1);
-      }
-      to {
-        opacity: 0;
-        transform:
-          translate(-50%, -50%)
-          translate(var(--dx), var(--dy))
-          scale(.25);
-      }
-    }
-
-    /* FOOTER */
-
-    .site-footer {
-      padding: 48px 0 28px;
-      border-top: 1px solid rgba(255,255,255,.07);
-      background: #060a12;
-    }
-
-    .footer-main {
-      display: grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap: 70px;
-      padding-bottom: 34px;
-    }
-
-    .footer-lockup {
-      display: inline-flex;
-      align-items: center;
-      gap: 15px;
-      margin-bottom: 16px;
-    }
-
-    .footer-logo {
-      width: 56px;
-      height: 56px;
-      flex: 0 0 56px;
-      object-fit: cover;
-      border-radius: 17px;
-      border: 1px solid rgba(255,255,255,.1);
-      box-shadow: 0 14px 34px rgba(125,104,255,.16);
-    }
-
-    .footer-lockup h3 {
-      margin-bottom: 2px;
-      font-size: 24px;
-      letter-spacing: -.035em;
-    }
-
-    .footer-lockup span {
-      color: var(--muted-2);
-      font-size: 11px;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-    }
-
-    .footer-brand p {
-      max-width: 560px;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .footer-nav {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 34px;
-    }
-
-    .footer-col strong {
-      display: block;
-      margin-bottom: 12px;
-      color: #d8d2ff;
-      font-size: 13px;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-    }
-
-    .footer-col a {
-      display: block;
-      width: fit-content;
-      margin-bottom: 8px;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .footer-col a:hover {
-      color: white;
-    }
-
-    .footer-bottom {
-      padding-top: 24px;
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-      border-top: 1px solid rgba(255,255,255,.07);
-      color: var(--muted-2);
-      font-size: 13px;
-    }
-
-    @media (max-width: 980px) {
-      .hero-grid,
-      .philosophy-grid,
-      .footer-main {
-        grid-template-columns: 1fr;
-      }
-
-      .values-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media (max-width: 760px) {
-      .container {
-        width: min(calc(100% - 28px), var(--max));
-      }
-
-      .nav-links a:not(.nav-cta) {
-        display: none;
-      }
-
-      .brand-logo {
-        width: 40px;
-        height: 40px;
-        flex-basis: 40px;
-      }
-
-      .brand-copy strong {
-        font-size: 16px;
-      }
-
-      .brand-copy span {
-        font-size: 9px;
-      }
-
-      .hero {
-        min-height: auto;
-        padding: 74px 0 80px;
-      }
-
-      h1 {
-        font-size: clamp(50px, 15vw, 72px);
-      }
-
-      .values-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .product-card {
-        grid-template-columns: 92px minmax(0, 1fr);
-        gap: 20px;
-      }
-
-      .product-icon-slot {
-        width: 92px;
-        height: 92px;
-        border-radius: 22px;
-      }
-
-      .product-icon {
-        width: 70px;
-        height: 70px;
-        border-radius: 18px;
-      }
-
-      .product-arrow {
-        display: none;
-      }
-
-      .section {
-        padding: 82px 0;
-      }
-
-      .footer-nav {
-        grid-template-columns: 1fr;
-      }
-
-      .footer-bottom {
-        flex-direction: column;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .brand-copy span {
-        display: none;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      *,
-      *::before,
-      *::after {
-        animation-duration: .001ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: .001ms !important;
-        scroll-behavior: auto !important;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — KeyPulse Dual Mode HUD</title>
+<meta name="description" content="Privacy Policy for KeyPulse Dual Mode HUD - Keyboard Visualizer, version 1.3.1.">
+<meta name="theme-color" content="#070b13">
+<style>
+:root{--bg:#070b13;--bg2:#0b111d;--text:#f7f9fd;--muted:#9ea9bc;--muted2:#7d889b;--line:rgba(255,255,255,.085);--purple:#7d68ff;--purple2:#a18dff;--cyan:#57d8ca;--max:1180px}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{min-height:100vh;color:var(--text);font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.68;background:radial-gradient(circle at 10% 0%,rgba(125,104,255,.16),transparent 28%),radial-gradient(circle at 90% 12%,rgba(87,216,202,.07),transparent 24%),linear-gradient(180deg,#0a0f1a 0%,var(--bg) 100%)}a{color:inherit;text-decoration:none}img{display:block;max-width:100%}.container{width:min(calc(100% - 40px),var(--max));margin:0 auto}
+.site-header{position:sticky;top:0;z-index:100;border-bottom:1px solid rgba(255,255,255,.07);background:rgba(7,11,19,.76);backdrop-filter:blur(18px)}.navbar{min-height:78px;display:flex;align-items:center;justify-content:space-between;gap:28px}.brand{display:inline-flex;align-items:center;gap:12px}.brand-logo{width:44px;height:44px;border-radius:14px;border:1px solid rgba(255,255,255,.1);box-shadow:0 12px 30px rgba(125,104,255,.2)}.brand-copy{display:flex;flex-direction:column;gap:2px}.brand-copy strong{font-size:18px;line-height:1.15;letter-spacing:-.03em}.brand-copy span{color:var(--muted2);font-size:10px;letter-spacing:.13em;text-transform:uppercase}.nav-links{display:flex;align-items:center;gap:24px}.nav-links a{color:var(--muted);font-size:14px}.nav-links a:hover,.nav-links a[aria-current=page]{color:white}.nav-cta{padding:10px 16px;border:1px solid var(--line);border-radius:12px;color:white!important;background:rgba(255,255,255,.05)}
+.hero{padding:94px 0 78px;border-bottom:1px solid rgba(255,255,255,.05)}.hero-inner{max-width:920px}.doc-label{margin-bottom:18px;color:var(--cyan);font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase}h1{max-width:900px;font-size:clamp(52px,7vw,88px);line-height:.98;letter-spacing:-.065em}.lead{max-width:780px;margin-top:26px;color:var(--muted);font-size:18px}.hero-meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}.meta-pill{padding:8px 11px;border:1px solid var(--line);border-radius:999px;color:#d8d2ff;background:rgba(125,104,255,.07);font-size:12px}
+.summary{padding:34px 0 92px}.summary-card{padding:26px 28px;border:1px solid var(--line);border-radius:24px;background:rgba(255,255,255,.04)}.summary-card strong{display:block;margin-bottom:8px;color:#d8d2ff;font-size:14px}.summary-card p{max-width:900px;color:var(--muted);font-size:15px}
+.policy-wrap{padding:0 0 110px}.policy-layout{display:grid;grid-template-columns:240px minmax(0,1fr);gap:64px;align-items:start}.policy-aside{position:sticky;top:108px;padding:22px;border:1px solid var(--line);border-radius:20px;background:rgba(255,255,255,.035)}.policy-aside .eyebrow{margin-bottom:12px;color:var(--cyan);font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.policy-aside p{color:var(--muted);font-size:14px}.policy-aside a{display:inline-block;margin-top:20px;color:#d8d2ff;font-size:13px;font-weight:750}
+.policy-content{min-width:0}.policy-section{display:grid;grid-template-columns:120px minmax(0,1fr);gap:28px;padding:0 0 44px;margin-bottom:44px;border-bottom:1px solid var(--line)}.policy-section:last-child{margin-bottom:0;border-bottom:0}.section-meta{padding-top:8px;color:var(--muted2);font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}.section-copy h2{margin-bottom:16px;font-size:clamp(30px,4vw,44px);line-height:1.08;letter-spacing:-.045em}.section-copy p,.section-copy ul{max-width:760px;color:var(--muted);font-size:15px}.section-copy p+p{margin-top:14px}.section-copy ul{margin-top:14px;padding-left:21px}.section-copy li+li{margin-top:7px}.note{max-width:760px;margin-top:22px;padding:18px 20px;border:1px solid rgba(87,216,202,.12);border-radius:16px;background:rgba(87,216,202,.055);color:#b9c6c8;font-size:13px}.note strong{display:block;margin-bottom:5px;color:#d8e6e4}
+
+.site-footer{padding:48px 0 28px;border-top:1px solid rgba(255,255,255,.07);background:#060a12}.footer-main{display:grid;grid-template-columns:1.2fr .8fr;gap:70px;padding-bottom:34px}.footer-lockup{display:inline-flex;align-items:center;gap:15px;margin-bottom:16px}.footer-logo{width:56px;height:56px;border-radius:17px;border:1px solid rgba(255,255,255,.1);box-shadow:0 14px 34px rgba(125,104,255,.16)}.footer-lockup h3{font-size:24px}.footer-lockup span{color:var(--muted2);font-size:11px;letter-spacing:.12em;text-transform:uppercase}.footer-brand p{max-width:560px;color:var(--muted);font-size:14px}.footer-nav{display:grid;grid-template-columns:1fr 1fr;gap:34px}.footer-col strong{display:block;margin-bottom:12px;color:#d8d2ff;font-size:13px;letter-spacing:.1em;text-transform:uppercase}.footer-col a{display:block;width:fit-content;margin-bottom:8px;color:var(--muted);font-size:14px}.footer-bottom{padding-top:24px;display:flex;justify-content:space-between;gap:20px;border-top:1px solid rgba(255,255,255,.07);color:var(--muted2);font-size:13px}
+@media(max-width:980px){.policy-layout,.footer-main{grid-template-columns:1fr}.policy-aside{position:static}}@media(max-width:760px){.container{width:min(calc(100% - 28px),var(--max))}.nav-links a:not(.nav-cta){display:none}.brand-copy span{display:none}.hero{padding:74px 0 62px}.policy-section{grid-template-columns:1fr;gap:10px}.footer-nav{grid-template-columns:1fr}.footer-bottom{flex-direction:column}}
+
+@media (min-width:981px){
+  .hero-inner{
+    max-width:none;
+    padding-left:0;
+    padding-right:0;
+  }
+  .summary>.container{
+    padding-left:0;
+    padding-right:0;
+  }
+  .summary-card{
+    width:100%;
+    max-width:none;
+  }
+}
+
+</style>
 </head>
-
 <body>
+<header class="site-header">
+  <div class="container navbar">
+    <a class="brand" href="../../" aria-label="Thanh Thuc home">
+      <img class="brand-logo" src="../../assets/thanh-thuc-logo.png" alt="Thanh Thuc logo">
+      <span class="brand-copy"><strong>Thanh Thuc</strong><span>Independent Developer</span></span>
+    </a>
+    <nav class="nav-links" aria-label="Primary navigation">
+      <a href="../../">Home</a>
+      <a href="../../app/">Apps</a>
+      <a href="../" aria-current="page">Privacy</a>
+      <a class="nav-cta" href="mailto:thanhthuc284917@gmail.com">Contact</a>
+    </nav>
+  </div>
+</header>
 
-  <header class="site-header">
-    <div class="container navbar">
+<main>
+<section class="hero">
+  <div class="container hero-inner">
+    <div class="doc-label">KeyPulse Dual Mode HUD - Keyboard Visualizer</div>
+    <h1>Privacy Policy</h1>
+    <p class="lead">This Privacy Policy describes how KeyPulse Dual Mode HUD - Keyboard Visualizer
+        handles keyboard events, temporary session statistics, webpage access, and locally
+        stored interface preferences. The policy is written specifically for version 1.3.1
+        of the extension.</p>
+    <div class="hero-meta"><span class="meta-pill">Effective date: July 16, 2026</span><span class="meta-pill">Version covered: 1.3.1</span></div>
+  </div>
+</section>
 
-      <a class="brand" href="../" aria-label="Thanh Thuc home">
-        <img class="brand-logo" src="../assets/thanh-thuc-logo.png" alt="Thanh Thuc logo" />
-        <span class="brand-copy">
-          <strong>Thanh Thuc</strong>
-          <span>Independent Developer</span>
-        </span>
-      </a>
-
-      <nav class="nav-links" aria-label="Primary navigation">
-        <a href="../">Home</a>
-        <a href="./" aria-current="page">Apps</a>
-        <a href="../privacy-policy/">Privacy</a>
-        <a class="nav-cta" href="mailto:thanhthuc284917@gmail.com">Contact</a>
-      </nav>
-
+<section class="summary">
+  <div class="container">
+    <div class="summary-card">
+      <strong>Privacy summary</strong>
+      <p>KeyPulse processes supported keyboard events locally so it can update its on-screen
+        keyboard visualizer. It does not maintain a persistent keypress history, does not send
+        typed content to a server, and does not use advertising or analytics. The extension
+        stores only limited interface preferences locally: widget visibility, display mode,
+        and HUD position.</p>
     </div>
-  </header>
+  </div>
+</section>
 
-
-  <main>
-
-    <!-- HERO -->
-    <section class="hero">
-      <div class="container hero-grid">
-
-        <div class="reveal">
-          <div class="hero-badge">
-            Apps, extensions & focused utilities
-          </div>
-
-          <h1>
-            Small tools.
-            <span class="gradient-text">Useful impact.</span>
-          </h1>
-
-          <p class="hero-copy">
-            This is the home for the browser extensions, utilities, and focused
-            digital products I build. The common thread is simple: solve a real
-            problem clearly, keep the experience lightweight, and avoid unnecessary complexity.
-          </p>
-        </div>
-
-
-        <div class="hero-panel reveal">
-          <div class="hero-panel-inner">
-
-            <div class="hero-panel-label">
-              Product directory
-            </div>
-
-            <div>
-              <h2>Software that stays close to the task.</h2>
-
-              <p>
-                Focused products can be easier to understand, faster to use,
-                and more respectful of attention than oversized platforms.
-              </p>
-            </div>
-
-          </div>
-        </div>
-
+<section class="policy-wrap">
+  <div class="container policy-layout">
+    <aside class="policy-aside">
+      <div class="eyebrow">Policy overview</div>
+      <p>This page explains KeyPulse keyboard-event processing, temporary session statistics, local storage, webpage access, data retention, and privacy safeguards for version 1.3.1.</p>
+      <a href="../">← Back to Privacy Center</a>
+    </aside>
+    <div class="policy-content">
+      
+    <article class="policy-section">
+      <div class="section-meta">01</div>
+      <div class="section-copy">
+        <h2>Scope and Purpose of This Policy</h2>
+        <p>This Privacy Policy applies to the KeyPulse Dual Mode HUD - Keyboard Visualizer
+          browser extension, version 1.3.1. It explains the extension&#x27;s treatment of keyboard
+          events, temporary statistics, locally stored settings, and the webpage access required
+          to display the visual keyboard HUD.</p><p>KeyPulse has a narrow and specific purpose: it provides a floating visual keyboard
+          that reacts to supported physical key presses. The extension includes a compact mode
+          and a full keyboard mode and allows users to show, hide, and reposition the HUD.</p><p>KeyPulse is not designed as a text-input logger, analytics platform, productivity
+          monitor, advertising service, or cloud-based account product. Its core function is to
+          provide immediate visual feedback inside the browser.</p><p>This policy does not govern the privacy practices of the browser itself, the extension
+          marketplace, websites visited by the user, the operating system, or other extensions
+          and applications installed on the device.</p>
       </div>
-    </section>
+    </article>
+    
 
-
-    <!-- VALUES -->
-    <section class="section section-soft">
-      <div class="container">
-
-        <div class="section-heading reveal">
-          <div class="eyebrow">What these products aim for</div>
-
-          <h2>
-            A consistent approach across different tools.
-          </h2>
-
-          <p>
-            Each product may solve a different problem, but the underlying priorities
-            stay similar: clear behavior, purposeful design, useful defaults, and a
-            strong respect for the user’s time and trust.
-          </p>
-        </div>
-
-
-        <div class="values-grid">
-
-          <article class="value-card reveal">
-            <div class="value-index">01</div>
-            <h3>Focused scope</h3>
-            <p>
-              Products are designed around a specific job rather than an endless list of unrelated features.
-            </p>
-          </article>
-
-          <article class="value-card reveal">
-            <div class="value-index">02</div>
-            <h3>Lightweight behavior</h3>
-            <p>
-              Tools should feel easy to access and quick to understand without introducing unnecessary friction.
-            </p>
-          </article>
-
-          <article class="value-card reveal">
-            <div class="value-index">03</div>
-            <h3>Clear interaction</h3>
-            <p>
-              Interfaces should communicate what is happening and make the next action easy to recognize.
-            </p>
-          </article>
-
-          <article class="value-card reveal">
-            <div class="value-index">04</div>
-            <h3>Privacy awareness</h3>
-            <p>
-              When possible, products favor minimal data use, transparent behavior, and local processing.
-            </p>
-          </article>
-
-        </div>
-
+    <article class="policy-section">
+      <div class="section-meta">02</div>
+      <div class="section-copy">
+        <h2>How the Extension Operates</h2>
+        <p>KeyPulse uses a content script on ordinary HTTP and HTTPS webpages. This allows the
+          extension to place its keyboard visualizer into the webpage and respond to supported
+          keyboard activity while the user is interacting with that page.</p><p>The extension&#x27;s toolbar action can be used to show or hide the visualizer on the
+          current page. The HUD itself can be displayed in compact or full-keyboard mode and
+          can be moved to a preferred screen position.</p><p>The visualizer operates locally inside the browser. KeyPulse does not require a
+          developer-operated backend, online account, or remote API to determine which key
+          should be highlighted.</p><p>When the current page is reloaded or replaced by navigation, the page&#x27;s content-script
+          session is recreated. Temporary counters begin again, while locally stored interface
+          preferences can be used to restore the user&#x27;s chosen HUD configuration.</p>
       </div>
-    </section>
+    </article>
+    
 
-
-    <!-- PRODUCT DIRECTORY -->
-    <section class="section">
-      <div class="container">
-
-        <div class="section-heading reveal">
-          <div class="eyebrow">Available products</div>
-
-          <h2>
-            Explore current apps and extensions.
-          </h2>
-
-          <p>
-            Product pages contain more detail about what each tool does, how it works,
-            and where to find support or related information.
-          </p>
-        </div>
-
-
-        <div class="product-list">
-
-          <a
-            class="product-card reveal"
-            href="keypulse-dual-mode-hud-keyboard-visualizer/"
-            aria-label="Open KeyPulse Dual Mode HUD — Keyboard Visualizer"
-          >
-
-            <div class="product-icon-slot" aria-hidden="true">
-              <img
-                class="product-icon"
-                src="keypulse-dual-mode-hud-keyboard-visualizer/assets/icon128.png"
-                alt=""
-              />
-            </div>
-
-            <div class="product-content">
-              <div class="product-meta">
-                Browser extension
-              </div>
-
-              <h3>
-                KeyPulse Dual Mode HUD — Keyboard Visualizer
-              </h3>
-
-              <p>
-                A focused keyboard visualization tool with a compact floating HUD
-                and a full keyboard view, designed for demonstrations, recordings,
-                presentations, and clearer shortcut visibility.
-              </p>
-
-              <span class="product-link">
-                View product page →
-              </span>
-            </div>
-
-            <div class="product-arrow" aria-hidden="true">
-              →
-            </div>
-
-          </a>
-
-        </div>
-
+    <article class="policy-section">
+      <div class="section-meta">03</div>
+      <div class="section-copy">
+        <h2>Keyboard Event Processing</h2>
+        <p>KeyPulse listens for browser keydown and keyup events on supported webpages. The extension uses the browser-provided KeyboardEvent.code value to determine which physical key position
+          should be represented in the HUD.</p><p>Depending on the key pressed, the extension may highlight the corresponding visual key
+          and may display the recognized key label in compact mode. This can include represented
+          letter keys, number keys, punctuation keys, modifier keys, navigation keys, function
+          keys, Space, Enter, and other supported physical keys.</p><p>These events are processed for immediate visual feedback. KeyPulse does not create a
+          persistent chronological record of keyboard activity and does not save a replayable
+          history of every key pressed.</p><p>The extension does not intentionally preserve complete typed sentences, search terms,
+          messages, form submissions, or document text. Keyboard events are handled as they occur
+          and are used only for visual state changes and temporary in-memory statistics.</p>
       </div>
-    </section>
+    </article>
+    
 
-
-    <!-- PHILOSOPHY -->
-    <section class="section section-soft">
-      <div class="container philosophy-grid">
-
-        <div class="philosophy-copy reveal">
-          <div class="eyebrow">Product philosophy</div>
-
-          <h2>
-            Useful software does not need to feel heavy.
-          </h2>
-
-          <p>
-            Many everyday tasks benefit more from a focused utility than from a large
-            platform. The goal is to build tools that are easy to understand,
-            easy to return to, and confident about what they are designed to do.
-          </p>
-        </div>
-
-
-        <div class="philosophy-list">
-
-          <article class="philosophy-item reveal">
-            <h3>Make the core job obvious</h3>
-            <p>
-              A product should communicate its purpose quickly and avoid making users search through unnecessary layers.
-            </p>
-          </article>
-
-          <article class="philosophy-item reveal">
-            <h3>Keep the interface calm</h3>
-            <p>
-              Visual hierarchy, spacing, and motion should support the task instead of competing for attention.
-            </p>
-          </article>
-
-          <article class="philosophy-item reveal">
-            <h3>Improve through real use</h3>
-            <p>
-              Products become better when friction is identified in real workflows and refined with deliberate changes.
-            </p>
-          </article>
-
-        </div>
-
+    <article class="policy-section">
+      <div class="section-meta">04</div>
+      <div class="section-copy">
+        <h2>Password Fields and Sensitive Input</h2>
+        <p>KeyPulse includes a specific safeguard for standard HTML password fields. When a
+          keydown event originates from an input element with type=&quot;password&quot; ,
+          the extension ignores that keydown event for the purpose of updating the key
+          visualizer and increasing the temporary press counter.</p><p>As a result, ordinary browser-recognized password fields are excluded from the normal
+          keydown visualization path. KeyPulse does not intentionally use those password-field
+          key presses to update the current-key display or temporary page-session statistics.</p><p>Some websites may create custom sensitive-input controls that are not technically
+          implemented as standard password inputs. Those design choices are controlled by the
+          website and are outside KeyPulse&#x27;s control.</p><p>Regardless of input type, the reviewed version of KeyPulse does not transmit keyboard
+          events to a developer-controlled backend and does not maintain a persistent remote
+          keypress history.</p>
       </div>
-    </section>
+    </article>
+    
 
-  </main>
-
-
-  <footer class="site-footer">
-    <div class="container">
-
-      <div class="footer-main">
-
-        <div class="footer-brand">
-
-          <a class="footer-lockup" href="../" aria-label="Thanh Thuc home">
-            <img class="footer-logo" src="../assets/thanh-thuc-logo.png" alt="Thanh Thuc logo" />
-
-            <div>
-              <h3>Thanh Thuc</h3>
-              <span>Independent Developer</span>
-            </div>
-          </a>
-
-          <p>
-            Independent developer building practical, thoughtful digital products
-            with a focus on clarity, usefulness, privacy-conscious decisions,
-            and purposeful interaction design.
-          </p>
-
-        </div>
-
-
-        <div class="footer-nav">
-
-          <div class="footer-col">
-            <strong>Explore</strong>
-            <a href="../">Home</a>
-            <a href="./">Apps</a>
-            <a href="../privacy-policy/">Privacy</a>
-          </div>
-
-          <div class="footer-col">
-            <strong>Contact</strong>
-            <a href="mailto:thanhthuc284917@gmail.com">Email</a>
-            <a href="mailto:thanhthuc284917@gmail.com?subject=Product%20Support">Support</a>
-            <a href="mailto:thanhthuc284917@gmail.com?subject=General%20Inquiry">General inquiry</a>
-          </div>
-
-        </div>
-
+    <article class="policy-section">
+      <div class="section-meta">05</div>
+      <div class="section-copy">
+        <h2>Temporary Press Count and Press Rate</h2>
+        <p>KeyPulse maintains a temporary count of recognized key presses during the active page
+          session. It also calculates an approximate presses-per-minute rate based on the number
+          of recognized presses and the time elapsed since the visualizer session began.</p><p>These figures exist only in memory for the current content-script session. They are
+          intended to provide live information inside the HUD and are not written into Chrome&#x27;s
+          local extension storage.</p><p>The temporary count and rate are not uploaded to a server, used for analytics, tied to
+          an account, or combined with activity from other websites.</p><p>Reloading the page or navigating to another page creates a new content-script session,
+          causing these temporary statistics to start again.</p>
       </div>
+    </article>
+    
 
-
-      <div class="footer-bottom">
-        <span>© <span id="year"></span> Thanh Thuc. All rights reserved.</span>
-        <span>Independent software & digital product development.</span>
+    <article class="policy-section">
+      <div class="section-meta">06</div>
+      <div class="section-copy">
+        <h2>Information KeyPulse Does Not Collect</h2>
+        <p>KeyPulse does not operate as a personal-data collection service. The reviewed
+          implementation does not collect or maintain the following categories for the developer:</p><ul><li>Names, email addresses, telephone numbers, postal addresses, or account profiles;</li><li>Passwords, authentication credentials, payment information, or financial details;</li><li>A persistent transcript or chronological history of keys pressed by the user;</li><li>Complete typed messages, documents, search terms, or form submissions;</li><li>A developer-maintained browsing history or database of visited URLs;</li><li>IP addresses, precise location, advertising identifiers, or demographic profiles;</li><li>Behavioral analytics, telemetry, session replay, or advertising conversion data;</li><li>Long-term productivity records based on temporary press counts or press rates.</li></ul><p>Because the extension does not maintain a backend for these categories, the developer
+          does not operate a remote keypress database or cloud archive of users&#x27; keyboard activity.</p>
       </div>
+    </article>
+    
 
+    <article class="policy-section">
+      <div class="section-meta">07</div>
+      <div class="section-copy">
+        <h2>Local Storage and Saved Preferences</h2>
+        <p>The extension manifest requests the storage permission. In version 1.3.1,
+          Chrome local extension storage is used to preserve a limited set of interface preferences
+          so that the HUD can return in a familiar configuration across browsing sessions.</p><p>The stored preferences are limited to:</p><ul><li>Whether the widget is currently configured to be visible or hidden;</li><li>Whether the visualizer is using compact mode or full-keyboard mode;</li><li>The horizontal and vertical position used to restore the floating HUD.</li></ul><div class="note"><strong>What local storage is not used for</strong>The extension does not use local storage to save typed text, a keypress history,
+          the temporary total-press counter, the temporary presses-per-minute value, webpage
+          content, or form-field contents.</div><p>These preferences remain in the browser&#x27;s local extension storage. The reviewed
+          implementation does not include a developer-controlled synchronization service that
+          receives this local preference data.</p><p>Users can remove these preferences by clearing extension data or uninstalling KeyPulse.</p>
+      </div>
+    </article>
+    
+
+    <article class="policy-section">
+      <div class="section-meta">08</div>
+      <div class="section-copy">
+        <h2>Website Access</h2>
+        <p>KeyPulse declares content-script access for ordinary HTTP and HTTPS webpages. This is
+          necessary because the visualizer is intended to appear directly on webpages and respond
+          to keyboard events that occur while the user interacts with those pages.</p><p>This access allows the extension to insert its HUD interface and attach the event
+          listeners required for the visualizer. It does not mean that KeyPulse maintains a
+          browsing-history service or sends page content to the developer.</p><p>The reviewed code does not use this access to capture screenshots, build a database of
+          webpage text, collect form submissions, inspect private messages for analytics, or send
+          webpage content to a remote server.</p><p>Some browser-controlled and internal pages restrict content scripts. On those pages,
+          the extension may be unable to display or toggle the HUD because the browser does not
+          allow the required script to run.</p>
+      </div>
+    </article>
+    
+
+    <article class="policy-section">
+      <div class="section-meta">09</div>
+      <div class="section-copy">
+        <h2>Network Requests and Remote Code</h2>
+        <p>The reviewed version of KeyPulse does not use remote code for its keyboard visualizer.
+          The executable functionality required to create the HUD, process supported keyboard
+          events, update visual states, calculate temporary statistics, and store interface
+          preferences is included in the installed extension package.</p><p>The implementation does not contain a developer-configured analytics pipeline or backend
+          service used to transmit keyboard activity. There is no server endpoint used to upload
+          key presses, typed text, temporary press counts, or presses-per-minute values.</p><p>The browser and extension marketplace may independently perform network operations for
+          installation, updates, malware checks, account services, or security. Those platform
+          activities are outside KeyPulse&#x27;s control and are governed by the relevant platform&#x27;s
+          own privacy practices.</p>
+      </div>
+    </article>
+    
+
+    <article class="policy-section">
+      <div class="section-meta">10</div>
+      <div class="section-copy">
+        <h2>Advertising, Analytics, Tracking, and Profiling</h2>
+        <p>KeyPulse does not display advertising and does not include advertising SDKs, tracking
+          pixels, session replay systems, browser-fingerprinting code, or behavioral analytics
+          for commercial profiling.</p><p>Keyboard activity processed for the visualizer is not used to infer purchasing intent,
+          health information, financial characteristics, employment performance, personal
+          interests, or other unrelated traits.</p><p>The extension is not designed to convert keyboard behavior into an advertising profile
+          and does not sell or rent keyboard activity or local HUD settings to advertisers, data
+          brokers, or analytics providers.</p>
+      </div>
+    </article>
+    
+
+    <article class="policy-section">
+      <div class="section-meta">11</div>
+      <div class="section-copy">
+        <h2>Data Sharing and Disclosure</h2>
+        <p>KeyPulse does not intentionally share keyboard events, typed content, temporary press
+          counts, press-rate statistics, or locally stored HUD preferences with third parties.</p><p>Because the extension does not maintain a developer-operated store of keyboard activity,
+          there is ordinarily no remote keyboard dataset available for commercial sharing or
+          disclosure.</p><p>Local extension settings remain within the browser environment unless the user or the
+          browser itself removes them.</p>
+      </div>
+    </article>
+    
+
+    <article class="policy-section">
+      <div class="section-meta">12</div>
+      <div class="section-copy">
+        <h2>Data Retention</h2>
+        <p>Individual keyboard events are processed as they occur and are not retained by KeyPulse
+          as a persistent chronological history.</p><p>The temporary total-press count and presses-per-minute rate remain only for the active
+          page session and reset when the page session is recreated.</p><p>The only information intentionally retained across sessions is the limited interface
+          configuration stored in Chrome local extension storage: widget visibility, visualizer
+          mode, and saved HUD position.</p><p>These settings remain until they are changed, cleared with extension data, or removed
+          when the extension is uninstalled.</p>
+      </div>
+    </article>
+    
+
+    <article class="policy-section">
+      <div class="section-meta">13</div>
+      <div class="section-copy">
+        <h2>Security and Privacy Design</h2>
+        <p>KeyPulse limits privacy risk by performing its primary keyboard visualization locally
+          and by avoiding a remote data pipeline for keyboard activity.</p><p>The extension ignores keydown events from standard password input fields. It also clears
+          active visual key states when the browser window loses focus or when the document becomes
+          hidden, helping prevent stale key highlights from remaining on screen after the user&#x27;s
+          context changes.</p><p>No software can eliminate every possible privacy or security risk, especially when its
+          declared function requires receiving browser keyboard events. KeyPulse therefore follows
+          a purpose-limited design: process the event for immediate visualization, avoid building
+          a persistent key history, avoid transmitting keyboard activity, and retain only the
+          minimum interface settings needed for usability.</p>
+      </div>
+    </article>
+    
+
+    <article class="policy-section">
+      <div class="section-meta">14</div>
+      <div class="section-copy">
+        <h2>Changes to This Privacy Policy</h2>
+        <p>This Privacy Policy may be revised if the extension&#x27;s implementation changes. Examples
+          that would require a meaningful policy update include adding new permissions, introducing
+          a backend service, changing how keyboard events are stored, adding analytics, expanding
+          site access, or retaining new categories of information.</p><p>Future versions should be reviewed against the actual source code and manifest rather
+          than assuming that the behavior described for version 1.3.1 remains unchanged.</p><p>Any updated policy should include a revised effective date and accurately explain new
+          data flows before those practices are represented as part of the extension.</p>
+      </div>
+    </article>
+    
+
+    <article class="policy-section">
+      <div class="section-meta">15</div>
+      <div class="section-copy">
+        <h2>Contact</h2>
+        <p>Questions about this Privacy Policy or the privacy behavior of KeyPulse Dual Mode HUD -
+          Keyboard Visualizer may be directed to the support contact published with the extension&#x27;s
+          official store listing.</p><p>Users do not need to provide passwords, private text, or other sensitive content when
+          contacting support about privacy or extension behavior.</p>
+      </div>
+    </article>
+</div>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-main">
+      <div class="footer-brand">
+        <a class="footer-lockup" href="../../" aria-label="Thanh Thuc home">
+          <img class="footer-logo" src="../../assets/thanh-thuc-logo.png" alt="Thanh Thuc logo">
+          <div><h3>Thanh Thuc</h3><span>Independent Developer</span></div>
+        </a>
+        <p>Independent developer building practical, thoughtful digital products with a focus on clarity, usefulness, privacy-conscious decisions, and purposeful interaction design.</p>
+      </div>
+      <div class="footer-nav">
+        <div class="footer-col"><strong>Explore</strong><a href="../../">Home</a><a href="../../app/">Apps</a><a href="../">Privacy</a></div>
+        <div class="footer-col"><strong>Contact</strong><a href="mailto:thanhthuc284917@gmail.com">Email</a><a href="mailto:thanhthuc284917@gmail.com?subject=Product%20Support">Support</a><a href="mailto:thanhthuc284917@gmail.com?subject=Privacy%20Inquiry">Privacy inquiry</a></div>
+      </div>
     </div>
-  </footer>
-
-
-  <script>
-    document.getElementById("year").textContent =
-      new Date().getFullYear();
-
-    const reducedMotion =
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-    const finePointer =
-      window.matchMedia("(pointer: fine)").matches;
-
-    /* Reveal */
-    const revealItems =
-      document.querySelectorAll(".reveal");
-
-    const observer =
-      new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("visible");
-              observer.unobserve(entry.target);
-            }
-          });
-        },
-        {
-          threshold: 0.12,
-          rootMargin: "0px 0px -40px 0px"
-        }
-      );
-
-    revealItems.forEach((item) => {
-      observer.observe(item);
-    });
-
-    if (finePointer && !reducedMotion) {
-      let mouseX = innerWidth / 2;
-      let mouseY = innerHeight / 2;
-
-      /* Lightweight trail */
-      const trail = [];
-      const trailCount = 8;
-
-      for (let i = 0; i < trailCount; i++) {
-        const dot = document.createElement("span");
-        dot.className = "trail-dot";
-        document.body.appendChild(dot);
-
-        trail.push({
-          el: dot,
-          x: mouseX,
-          y: mouseY
-        });
-      }
-
-      const animateTrail = () => {
-        let x = mouseX;
-        let y = mouseY;
-
-        trail.forEach((point, index) => {
-          point.x += (x - point.x) * 0.32;
-          point.y += (y - point.y) * 0.32;
-
-          const scale =
-            1 - index / trailCount * 0.68;
-
-          const opacity =
-            0.45 * (1 - index / trailCount);
-
-          point.el.style.opacity =
-            `${opacity}`;
-
-          point.el.style.transform =
-            `translate3d(${point.x}px, ${point.y}px, 0)
-             translate(-50%, -50%)
-             scale(${scale})`;
-
-          x = point.x;
-          y = point.y;
-        });
-
-        requestAnimationFrame(animateTrail);
-      };
-
-      animateTrail();
-
-      window.addEventListener(
-        "mousemove",
-        (event) => {
-          mouseX = event.clientX;
-          mouseY = event.clientY;
-        }
-      );
-
-      /* Product card spotlight */
-      document
-        .querySelectorAll(".product-card")
-        .forEach((card) => {
-          card.addEventListener(
-            "mousemove",
-            (event) => {
-              const rect =
-                card.getBoundingClientRect();
-
-              card.style.setProperty(
-                "--mx",
-                `${event.clientX - rect.left}px`
-              );
-
-              card.style.setProperty(
-                "--my",
-                `${event.clientY - rect.top}px`
-              );
-            }
-          );
-        });
-
-      /* Pooled click effect */
-      const ringPool = [];
-      const particlePool = [];
-
-      for (let i = 0; i < 3; i++) {
-        const ring = document.createElement("span");
-        ring.className = "click-ring";
-        ring.style.display = "none";
-        document.body.appendChild(ring);
-        ringPool.push(ring);
-      }
-
-      for (let i = 0; i < 20; i++) {
-        const particle = document.createElement("span");
-        particle.className = "click-particle";
-        particle.style.display = "none";
-        document.body.appendChild(particle);
-        particlePool.push(particle);
-      }
-
-      let ringIndex = 0;
-      let particleIndex = 0;
-
-      window.addEventListener(
-        "pointerdown",
-        (event) => {
-          const ring =
-            ringPool[ringIndex];
-
-          ringIndex =
-            (ringIndex + 1) % ringPool.length;
-
-          ring.style.display = "block";
-          ring.style.left = `${event.clientX}px`;
-          ring.style.top = `${event.clientY}px`;
-          ring.style.animation = "none";
-          void ring.offsetWidth;
-          ring.style.animation =
-            "clickRing .58s ease-out forwards";
-
-          setTimeout(
-            () => {
-              ring.style.display = "none";
-            },
-            620
-          );
-
-          const particleCount = 5;
-
-          for (
-            let i = 0;
-            i < particleCount;
-            i++
-          ) {
-            const particle =
-              particlePool[particleIndex];
-
-            particleIndex =
-              (particleIndex + 1) %
-              particlePool.length;
-
-            const angle =
-              Math.PI * 2 * i /
-              particleCount;
-
-            const distance =
-              20 + Math.random() * 14;
-
-            particle.style.display =
-              "block";
-
-            particle.style.left =
-              `${event.clientX}px`;
-
-            particle.style.top =
-              `${event.clientY}px`;
-
-            particle.style.setProperty(
-              "--dx",
-              `${Math.cos(angle) * distance}px`
-            );
-
-            particle.style.setProperty(
-              "--dy",
-              `${Math.sin(angle) * distance}px`
-            );
-
-            particle.style.animation =
-              "none";
-
-            void particle.offsetWidth;
-
-            particle.style.animation =
-              "clickParticle .54s ease-out forwards";
-
-            setTimeout(
-              () => {
-                particle.style.display =
-                  "none";
-              },
-              580
-            );
-          }
-        }
-      );
-    }
-  </script>
-
+    <div class="footer-bottom"><span>© <span id="year"></span> Thanh Thuc. All rights reserved.</span><span>Independent software &amp; digital product development.</span></div>
+  </div>
+</footer>
+<script>document.getElementById("year").textContent=new Date().getFullYear();</script>
 </body>
 </html>
