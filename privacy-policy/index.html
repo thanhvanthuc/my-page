@@ -19,6 +19,15 @@
 .principles-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:70px;align-items:start}.principles-copy h2{margin-bottom:18px;font-size:clamp(40px,5vw,60px);line-height:1.05;letter-spacing:-.055em}.principles-copy p{color:var(--muted);font-size:17px}.principles-list{display:grid;gap:14px}.principle{padding:22px 24px;border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.035)}.principle strong{display:block;margin-bottom:6px;font-size:16px}.principle p{color:var(--muted);font-size:14px}
 .contact-panel{display:grid;grid-template-columns:1fr auto;gap:30px;align-items:center;padding:36px;border:1px solid var(--line);border-radius:28px;background:radial-gradient(circle at 100% 0%,rgba(87,216,202,.08),transparent 32%),rgba(255,255,255,.035)}.contact-panel h2{margin-bottom:10px;font-size:clamp(34px,4vw,50px);line-height:1.05;letter-spacing:-.05em}.contact-panel p{max-width:720px;color:var(--muted);font-size:16px}.contact-button{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:0 20px;border:1px solid rgba(125,104,255,.3);border-radius:14px;background:rgba(125,104,255,.1);font-weight:800}
 @media(max-width:980px){.overview-grid{grid-template-columns:1fr}.principles-grid{grid-template-columns:1fr}.contact-panel{grid-template-columns:1fr}.hero-grid,.intro-grid,.footer-main{grid-template-columns:1fr}}@media(max-width:760px){.container{width:min(calc(100% - 28px),var(--max))}.nav-links a:not(.nav-cta){display:none}.brand-copy span{display:none}.hero{min-height:auto;padding:74px 0 80px}.policy-card{grid-template-columns:1fr}.policy-arrow{display:none}.section{padding:82px 0}.footer-nav{grid-template-columns:1fr}.footer-bottom{flex-direction:column}}
+
+.trail-dot,.click-ring,.click-particle{position:fixed;pointer-events:none;border-radius:50%;z-index:9999}
+.trail-dot{width:5px;height:5px;left:0;top:0;opacity:0;transform:translate(-50%,-50%);background:linear-gradient(135deg,#a18dff,var(--cyan));box-shadow:0 0 8px rgba(125,104,255,.34)}
+.click-ring{width:18px;height:18px;border:1px solid rgba(125,104,255,.9);box-shadow:0 0 8px rgba(125,104,255,.24);animation:clickRing .58s ease-out forwards}
+.click-particle{width:5px;height:5px;background:linear-gradient(135deg,#a18dff,var(--cyan));box-shadow:0 0 7px rgba(125,104,255,.22);animation:clickParticle .54s ease-out forwards}
+@keyframes clickRing{from{opacity:.95;transform:translate(-50%,-50%) scale(.5)}to{opacity:0;transform:translate(-50%,-50%) scale(3.6)}}
+@keyframes clickParticle{from{opacity:1;transform:translate(-50%,-50%) translate(0,0) scale(1)}to{opacity:0;transform:translate(-50%,-50%) translate(var(--dx),var(--dy)) scale(.25)}}
+@media (prefers-reduced-motion:reduce){.trail-dot,.click-ring,.click-particle{display:none!important}}
+
 </style>
 </head>
 <body>
@@ -38,5 +47,89 @@
 </main>
 <footer class="site-footer"><div class="container"><div class="footer-main"><div class="footer-brand"><a class="footer-lockup" href="../" aria-label="Thanh Thuc home"><img class="footer-logo" src="../assets/thanh-thuc-logo.png" alt="Thanh Thuc logo"><div><h3>Thanh Thuc</h3><span>Independent Developer</span></div></a><p>Independent developer building practical, thoughtful digital products with a focus on clarity, usefulness, privacy-conscious decisions, and purposeful interaction design.</p></div><div class="footer-nav"><div class="footer-col"><strong>Explore</strong><a href="../">Home</a><a href="../app/">Apps</a><a href="./">Privacy</a></div><div class="footer-col"><strong>Contact</strong><a href="mailto:thanhthuc284917@gmail.com">Email</a><a href="mailto:thanhthuc284917@gmail.com?subject=Product%20Support">Support</a><a href="mailto:thanhthuc284917@gmail.com?subject=Privacy%20Inquiry">Privacy inquiry</a></div></div></div><div class="footer-bottom"><span>© <span id="year"></span> Thanh Thuc. All rights reserved.</span><span>Independent software & digital product development.</span></div></div></footer>
 <script>document.getElementById("year").textContent=new Date().getFullYear();</script>
+
+<script>
+(() => {
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const finePointer = window.matchMedia("(pointer: fine)").matches;
+  if (!finePointer || reducedMotion) return;
+
+  let mouseX = innerWidth / 2, mouseY = innerHeight / 2;
+  const trail = [], trailCount = 8;
+
+  for (let i = 0; i < trailCount; i++) {
+    const dot = document.createElement("span");
+    dot.className = "trail-dot";
+    document.body.appendChild(dot);
+    trail.push({ el: dot, x: mouseX, y: mouseY });
+  }
+
+  const animateTrail = () => {
+    let x = mouseX, y = mouseY;
+    trail.forEach((point, index) => {
+      point.x += (x - point.x) * 0.32;
+      point.y += (y - point.y) * 0.32;
+      const scale = 1 - index / trailCount * 0.68;
+      const opacity = 0.45 * (1 - index / trailCount);
+      point.el.style.opacity = `${opacity}`;
+      point.el.style.transform = `translate3d(${point.x}px,${point.y}px,0) translate(-50%,-50%) scale(${scale})`;
+      x = point.x; y = point.y;
+    });
+    requestAnimationFrame(animateTrail);
+  };
+  animateTrail();
+
+  window.addEventListener("mousemove", e => {
+    mouseX = e.clientX; mouseY = e.clientY;
+  }, { passive: true });
+
+  const ringPool = [], particlePool = [];
+  for (let i = 0; i < 3; i++) {
+    const ring = document.createElement("span");
+    ring.className = "click-ring";
+    ring.style.display = "none";
+    document.body.appendChild(ring);
+    ringPool.push(ring);
+  }
+  for (let i = 0; i < 20; i++) {
+    const p = document.createElement("span");
+    p.className = "click-particle";
+    p.style.display = "none";
+    document.body.appendChild(p);
+    particlePool.push(p);
+  }
+
+  let ringIndex = 0, particleIndex = 0;
+  window.addEventListener("pointerdown", e => {
+    const ring = ringPool[ringIndex];
+    ringIndex = (ringIndex + 1) % ringPool.length;
+    ring.style.display = "block";
+    ring.style.left = `${e.clientX}px`;
+    ring.style.top = `${e.clientY}px`;
+    ring.style.animation = "none";
+    void ring.offsetWidth;
+    ring.style.animation = "clickRing .58s ease-out forwards";
+    setTimeout(() => ring.style.display = "none", 620);
+
+    const particleCount = 5;
+    for (let i = 0; i < particleCount; i++) {
+      const p = particlePool[particleIndex];
+      particleIndex = (particleIndex + 1) % particlePool.length;
+      const angle = Math.PI * 2 * i / particleCount;
+      const distance = 20 + Math.random() * 14;
+      p.style.display = "block";
+      p.style.left = `${e.clientX}px`;
+      p.style.top = `${e.clientY}px`;
+      p.style.setProperty("--dx", `${Math.cos(angle) * distance}px`);
+      p.style.setProperty("--dy", `${Math.sin(angle) * distance}px`);
+      p.style.animation = "none";
+      void p.offsetWidth;
+      p.style.animation = "clickParticle .54s ease-out forwards";
+      setTimeout(() => p.style.display = "none", 580);
+    }
+  });
+})();
+</script>
+
 </body>
 </html>
