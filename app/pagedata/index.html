@@ -1,17 +1,13 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta
-    name="description"
-    content="PageData is a local-first Chrome Side Panel extension for inspecting, filtering, copying and exporting page metadata, SEO, content, links, media and technical data."
-  />
-  <meta name="theme-color" content="#07111f" />
-
-  <title>PageData — Inspect, Copy & Export Page Data</title>
-
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="PageData is a local-first Chrome Side Panel extension for inspecting, filtering, copying and exporting page metadata, SEO, content, links, media and technical data." name="description"/>
+<meta content="#07111f" name="theme-color"/>
+<title>PageData — Inspect, Copy &amp; Export Page Data</title>
+<style>
     :root {
       --bg: #07111f;
       --bg-deep: #050b14;
@@ -517,95 +513,7 @@
       position: relative;
       overflow: hidden;
     }
-
-    .media-shell.is-missing .media-image {
-      display: none;
-    }
-
-    .shot-fallback {
-      display: none;
-      min-height: 100%;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 24px;
-      padding: 28px;
-      border-radius: inherit;
-      color: #dce9fb;
-      background:
-        radial-gradient(circle at 100% 0%, rgba(78, 136, 255, 0.15), transparent 34%),
-        linear-gradient(155deg, #0e1c2f, #091321);
-    }
-
-    .media-shell.is-missing .shot-fallback {
-      display: flex;
-    }
-
-    .shot-fallback .shot-label {
-      display: inline-flex;
-      width: fit-content;
-      padding: 7px 10px;
-      border: 1px solid rgba(255, 255, 255, 0.09);
-      border-radius: 999px;
-      color: #aac9ff;
-      background: rgba(255, 255, 255, 0.045);
-      font-size: 10px;
-      font-weight: 850;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-    }
-
-    .shot-fallback strong {
-      display: block;
-      margin-bottom: 6px;
-      font-size: 24px;
-      letter-spacing: -0.035em;
-    }
-
-    .shot-fallback p {
-      max-width: 500px;
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .mock-panel {
-      display: grid;
-      gap: 11px;
-      padding-top: 12px;
-    }
-
-    .mock-row {
-      display: grid;
-      grid-template-columns: 84px 1fr auto;
-      gap: 12px;
-      align-items: center;
-      padding: 12px 13px;
-      border: 1px solid rgba(255, 255, 255, 0.07);
-      border-radius: 12px;
-      background: rgba(255, 255, 255, 0.034);
-    }
-
-    .mock-row span {
-      color: #7f94af;
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: 0.09em;
-      text-transform: uppercase;
-    }
-
-    .mock-row code {
-      overflow: hidden;
-      color: #e8f1ff;
-      font-size: 11px;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    .mock-row b {
-      color: #77e0db;
-      font-size: 12px;
-    }
-
-    .floating-data-card {
+.floating-data-card {
       position: absolute;
       z-index: 4;
       padding: 14px 15px;
@@ -897,12 +805,7 @@
 
     .media-frame .media-shell,
     .media-frame .media-image,
-    .media-frame .shot-fallback {
-      width: 100%;
-      min-height: inherit;
-    }
-
-    .media-frame .media-image {
+.media-frame .media-image {
       object-fit: cover;
     }
 
@@ -996,7 +899,6 @@
     }
 
     .format-stage .media-shell,
-    .format-stage .shot-fallback,
     .format-stage .media-image {
       min-height: 484px;
       border-radius: 18px;
@@ -1006,7 +908,7 @@
 
     .technical-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 14px;
       margin-top: 34px;
     }
@@ -1096,6 +998,11 @@
       grid-template-columns: 0.82fr 1.18fr;
       gap: 64px;
       align-items: start;
+    }
+
+
+    .privacy-actions {
+      margin-top: 26px;
     }
 
     .privacy-list {
@@ -1475,7 +1382,6 @@
       }
 
       .format-stage .media-shell,
-      .format-stage .shot-fallback,
       .format-stage .media-image {
         min-height: 404px;
       }
@@ -1538,659 +1444,497 @@
     }
   </style>
 </head>
-
 <body>
-  <header class="site-header">
-    <div class="container navbar">
-      <a class="brand" href="../../" aria-label="Thanh Thuc home">
-        <img class="brand-logo" src="../../assets/thanh-thuc-logo.png" alt="Thanh Thuc logo" />
-        <span class="brand-copy">
-          <strong>Thanh Thuc</strong>
-          <span>Independent Developer</span>
-        </span>
-      </a>
-
-      <nav class="nav-links" aria-label="Primary navigation">
-        <a href="../../">Home</a>
-        <a href="../" aria-current="page">Apps</a>
-        <a href="../../privacy-policy/">Privacy</a>
-        <a class="nav-cta" href="mailto:thanhthuc284917@gmail.com">Contact</a>
-      </nav>
-    </div>
-  </header>
-
-  <main>
-    <!-- HERO -->
-    <section class="hero">
-      <div class="container hero-grid">
-        <div class="hero-copy-wrap reveal">
-          <div class="product-kicker">Chrome Side Panel · Local-first</div>
-
-          <div class="hero-brand">
-            <strong>PageData</strong>
-            <span>Copy Page Data · v1.0.4</span>
-          </div>
-
-          <h1>
+<header class="site-header">
+<div class="container navbar">
+<a aria-label="Thanh Thuc home" class="brand" href="../../">
+<img alt="Thanh Thuc logo" class="brand-logo" src="../../assets/thanh-thuc-logo.png"/>
+<span class="brand-copy">
+<strong>Thanh Thuc</strong>
+<span>Independent Developer</span>
+</span>
+</a>
+<nav aria-label="Primary navigation" class="nav-links">
+<a href="../../">Home</a>
+<a aria-current="page" href="../">Apps</a>
+<a href="https://thanhvanthuc.github.io/my-page/privacy-policy/pagedata">Privacy</a>
+<a class="nav-cta" href="mailto:thanhthuc284917@gmail.com">Contact</a>
+</nav>
+</div>
+</header>
+<main>
+<!-- HERO -->
+<section class="hero">
+<div class="container hero-grid">
+<div class="hero-copy-wrap reveal">
+<div class="product-kicker">Chrome Side Panel · Local-first</div>
+<div class="hero-brand">
+<strong>PageData</strong>
+<span>Copy Page Data · v1.0.4</span>
+</div>
+<h1>
             Turn a webpage into
             <span class="gradient-text">usable data.</span>
-          </h1>
-
-          <p class="hero-copy">
+</h1>
+<p class="hero-copy">
             PageData inspects the current webpage from a focused Chrome Side Panel and organizes the useful parts for you — metadata, SEO signals, content structure, links, media, technical details, and copy-ready output in multiple formats.
           </p>
-
-          <div class="hero-actions">
-            <a class="button button-primary" href="#capabilities">
+<div class="hero-actions">
+<a class="button button-primary" href="#capabilities">
               Explore PageData
               <span>→</span>
-            </a>
-            <a class="button button-secondary" href="#privacy">How privacy works</a>
-          </div>
-
-          <p class="hero-note">
+</a>
+<a class="button button-secondary" href="#privacy">How privacy works</a>
+</div>
+<p class="hero-note">
             Built for Chrome 114+ · No backend · No analytics · Inspected data stays in the browser.
           </p>
-        </div>
+</div>
+<div class="hero-visual reveal">
+<div class="browser-stage">
+<div class="media-shell">
+<img alt="PageData Side Panel showing a complete page inspection overview inside Chrome." class="media-image" src="assets/pagedata-hero.png"/>
 
-        <div class="hero-visual reveal">
-          <div class="browser-stage">
-            <div class="media-shell" data-screenshot>
-              <img
-                class="media-image"
-                src="assets/pagedata-hero.png"
-                alt="PageData Side Panel showing a complete page inspection overview inside Chrome."
-              />
-              <div class="shot-fallback" aria-hidden="true">
-                <div>
-                  <span class="shot-label">Screenshot slot · pagedata-hero.png</span>
-                </div>
-                <div>
-                  <strong>PageData Side Panel</strong>
-                  <p>Hero capture planned from the real extension with a rich page loaded so Overview, SEO and page statistics are immediately understandable.</p>
-                  <div class="mock-panel">
-                    <div class="mock-row"><span>Title</span><code>Structured page data, ready to use</code><b>✓</b></div>
-                    <div class="mock-row"><span>URL</span><code>https://example.com/research/article</code><b>⧉</b></div>
-                    <div class="mock-row"><span>H1</span><code>Inspect the page without opening DevTools</code><b>1</b></div>
-                    <div class="mock-row"><span>Links</span><code>126 total · 88 internal · 31 external</code><b>→</b></div>
-                    <div class="mock-row"><span>Media</span><code>24 images · 2 iframes · 4 files</code><b>→</b></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="floating-data-card card-a">
-            <strong>5 copy formats</strong>
-            <span>Key: Value · Plain · Markdown · JSON · CSV</span>
-          </div>
-
-          <div class="floating-data-card card-b">
-            <strong>6 focused views</strong>
-            <span>Overview · SEO · Content · Links · Media · Technical</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- VALUE STRIP -->
-    <section class="value-strip" aria-label="PageData highlights">
-      <div class="container value-grid">
-        <div class="value-item">
-          <strong>6 inspection views</strong>
-          <span>Separate page data by purpose instead of dumping everything into one list.</span>
-        </div>
-        <div class="value-item">
-          <strong>5 copy formats</strong>
-          <span>Move the same data into notes, spreadsheets, code, docs, or AI workflows.</span>
-        </div>
-        <div class="value-item">
-          <strong>Multi-select + export</strong>
-          <span>Copy one field, selected fields, link sets, or the complete JSON snapshot.</span>
-        </div>
-        <div class="value-item">
-          <strong>Local-first inspection</strong>
-          <span>Page scanning and formatting happen locally in Chrome with no backend service.</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- CAPABILITY MAP -->
-    <section class="section" id="capabilities">
-      <div class="container">
-        <div class="section-heading center reveal">
-          <div class="eyebrow">One panel, six useful views</div>
-          <h2>See the page as structured information, not just pixels.</h2>
-          <p>
+</div>
+</div>
+<div class="floating-data-card card-a">
+<strong>5 copy formats</strong>
+<span>Key: Value · Plain · Markdown · JSON · CSV</span>
+</div>
+<div class="floating-data-card card-b">
+<strong>6 focused views</strong>
+<span>Overview · SEO · Content · Links · Media · Technical</span>
+</div>
+</div>
+</div>
+</section>
+<!-- VALUE STRIP -->
+<section aria-label="PageData highlights" class="value-strip">
+<div class="container value-grid">
+<div class="value-item">
+<strong>6 inspection views</strong>
+<span>Separate page data by purpose instead of dumping everything into one list.</span>
+</div>
+<div class="value-item">
+<strong>5 copy formats</strong>
+<span>Move the same data into notes, spreadsheets, code, docs, or AI workflows.</span>
+</div>
+<div class="value-item">
+<strong>Multi-select + export</strong>
+<span>Copy one field, selected fields, link sets, or the complete JSON snapshot.</span>
+</div>
+<div class="value-item">
+<strong>Local-first inspection</strong>
+<span>Page scanning and formatting happen locally in Chrome with no backend service.</span>
+</div>
+</div>
+</section>
+<!-- CAPABILITY MAP -->
+<section class="section" id="capabilities">
+<div class="container">
+<div class="section-heading center reveal">
+<div class="eyebrow">One panel, six useful views</div>
+<h2>See the page as structured information, not just pixels.</h2>
+<p>
             PageData groups different kinds of page information into focused views so you can move quickly between a high-level overview and the exact details you need.
           </p>
-        </div>
-
-        <div class="capability-grid">
-          <article class="capability-card reveal">
-            <div class="capability-top"><span class="capability-icon">01</span><span class="capability-count">OVERVIEW</span></div>
-            <h3>Page essentials</h3>
-            <p>Title, full URL, domain, path, language, charset, capture time, word count, link count, image count, DOM size, and quick page-level context.</p>
-          </article>
-
-          <article class="capability-card reveal">
-            <div class="capability-top"><span class="capability-icon">SEO</span><span class="capability-count">METADATA</span></div>
-            <h3>SEO & social metadata</h3>
-            <p>Inspect title, description, canonical, robots, headings, Open Graph, Twitter/X card data, hreflang entries, and JSON-LD detected in the document.</p>
-          </article>
-
-          <article class="capability-card reveal">
-            <div class="capability-top"><span class="capability-icon">TXT</span><span class="capability-count">CONTENT</span></div>
-            <h3>Content structure</h3>
-            <p>Measure words, characters, estimated reading time, paragraphs, lists, tables, forms, inputs, buttons, main content text, and visible page text.</p>
-          </article>
-
-          <article class="capability-card reveal">
-            <div class="capability-top"><span class="capability-icon">↗</span><span class="capability-count">LINKS</span></div>
-            <h3>Link extraction</h3>
-            <p>Filter internal, external and other links; remove duplicate URLs; inspect anchor text, rel flags, targets, downloads, and copy selected link data.</p>
-          </article>
-
-          <article class="capability-card reveal">
-            <div class="capability-top"><span class="capability-icon">IMG</span><span class="capability-count">MEDIA</span></div>
-            <h3>Images, embeds & files</h3>
-            <p>Browse image URLs, dimensions and alt states alongside videos, audio, iframes and common downloadable file links found on the page.</p>
-          </article>
-
-          <article class="capability-card reveal">
-            <div class="capability-top"><span class="capability-icon">{ }</span><span class="capability-count">TECHNICAL</span></div>
-            <h3>Document & resources</h3>
-            <p>Review document details, navigation timing, resource-type counts, scripts, stylesheets, preload/prefetch hints and the page’s full meta-tag collection.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- WORKFLOW -->
-    <section class="section section-soft" id="workflow">
-      <div class="container workflow-layout">
-        <div class="workflow-copy reveal">
-          <div class="eyebrow">Built around the actual workflow</div>
-          <h2>Inspect. Filter. Select. Use.</h2>
-          <p>
+</div>
+<div class="capability-grid">
+<article class="capability-card reveal">
+<div class="capability-top"><span class="capability-icon">01</span><span class="capability-count">OVERVIEW</span></div>
+<h3>Page essentials</h3>
+<p>Title, full URL, domain, path, language, charset, capture time, word count, link count, image count, DOM size, and quick page-level context.</p>
+</article>
+<article class="capability-card reveal">
+<div class="capability-top"><span class="capability-icon">SEO</span><span class="capability-count">METADATA</span></div>
+<h3>SEO &amp; social metadata</h3>
+<p>Inspect title, description, canonical, robots, headings, Open Graph, Twitter/X card data, hreflang entries, and JSON-LD detected in the document.</p>
+</article>
+<article class="capability-card reveal">
+<div class="capability-top"><span class="capability-icon">TXT</span><span class="capability-count">CONTENT</span></div>
+<h3>Content structure</h3>
+<p>Measure words, characters, estimated reading time, paragraphs, lists, tables, forms, inputs, buttons, main content text, and visible page text.</p>
+</article>
+<article class="capability-card reveal">
+<div class="capability-top"><span class="capability-icon">↗</span><span class="capability-count">LINKS</span></div>
+<h3>Link extraction</h3>
+<p>Filter internal, external and other links; remove duplicate URLs; inspect anchor text, rel flags, targets, downloads, and copy selected link data.</p>
+</article>
+<article class="capability-card reveal">
+<div class="capability-top"><span class="capability-icon">IMG</span><span class="capability-count">MEDIA</span></div>
+<h3>Images, embeds &amp; files</h3>
+<p>Browse image URLs, dimensions and alt states alongside videos, audio, iframes and common downloadable file links found on the page.</p>
+</article>
+<article class="capability-card reveal">
+<div class="capability-top"><span class="capability-icon">{ }</span><span class="capability-count">TECHNICAL</span></div>
+<h3>Document &amp; resources</h3>
+<p>Review document details, navigation timing, resource-type counts, scripts, stylesheets, preload/prefetch hints and the page’s full meta-tag collection.</p>
+</article>
+</div>
+</div>
+</section>
+<!-- WORKFLOW -->
+<section class="section section-soft" id="workflow">
+<div class="container workflow-layout">
+<div class="workflow-copy reveal">
+<div class="eyebrow">Built around the actual workflow</div>
+<h2>Inspect. Filter. Select. Use.</h2>
+<p>
             PageData is not designed to become another dashboard you have to manage. It stays beside the page, surfaces the current snapshot, and helps you move that data somewhere useful with as little friction as possible.
           </p>
-        </div>
-
-        <div class="workflow-steps">
-          <article class="workflow-step reveal">
-            <div class="workflow-index">01</div>
-            <div>
-              <h3>Open PageData beside the current tab.</h3>
-              <p>The extension uses Chrome Side Panel, so the webpage stays visible while its structured data appears next to it. Reloads, URL changes and rapid tab switches are handled by the scan lifecycle rather than leaving stale snapshots behind.</p>
-              <div class="workflow-tags"><span class="workflow-tag">Side Panel</span><span class="workflow-tag">Current tab</span><span class="workflow-tag">Fresh snapshot</span></div>
-            </div>
-          </article>
-
-          <article class="workflow-step reveal">
-            <div class="workflow-index">02</div>
-            <div>
-              <h3>Go directly to the data category you need.</h3>
-              <p>Use Overview for the big picture, SEO for metadata, Content for document structure, Links for URL extraction, Media for assets, or Technical for document and resource details.</p>
-              <div class="workflow-tags"><span class="workflow-tag">Overview</span><span class="workflow-tag">SEO</span><span class="workflow-tag">Content</span><span class="workflow-tag">Links</span><span class="workflow-tag">Media</span><span class="workflow-tag">Technical</span></div>
-            </div>
-          </article>
-
-          <article class="workflow-step reveal">
-            <div class="workflow-index">03</div>
-            <div>
-              <h3>Search, filter and narrow the snapshot.</h3>
-              <p>Search within page data, switch link filters, turn unique URL mode on, and select only the fields or links relevant to the task instead of copying an oversized dump.</p>
-              <div class="workflow-tags"><span class="workflow-tag">Search</span><span class="workflow-tag">Filters</span><span class="workflow-tag">Unique URL</span><span class="workflow-tag">Selection</span></div>
-            </div>
-          </article>
-
-          <article class="workflow-step reveal">
-            <div class="workflow-index">04</div>
-            <div>
-              <h3>Copy in the format your next tool expects.</h3>
-              <p>Choose Key: Value, plain text, Markdown, JSON or CSV. Copy a single field, multiple selected values, a filtered link set, or export the full inspection snapshot as JSON.</p>
-              <div class="workflow-tags"><span class="workflow-tag">Key: Value</span><span class="workflow-tag">Plain</span><span class="workflow-tag">Markdown</span><span class="workflow-tag">JSON</span><span class="workflow-tag">CSV</span></div>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- OVERVIEW + SEO -->
-    <section class="section" id="seo">
-      <div class="container split-section">
-        <div class="split-copy reveal">
-          <div class="eyebrow">Overview + SEO</div>
-          <h2>Start with the page identity, then go deeper.</h2>
-          <p>
+</div>
+<div class="workflow-steps">
+<article class="workflow-step reveal">
+<div class="workflow-index">01</div>
+<div>
+<h3>Open PageData beside the current tab.</h3>
+<p>The extension uses Chrome Side Panel, so the webpage stays visible while its structured data appears next to it. Reloads, URL changes and rapid tab switches are handled by the scan lifecycle rather than leaving stale snapshots behind.</p>
+<div class="workflow-tags"><span class="workflow-tag">Side Panel</span><span class="workflow-tag">Current tab</span><span class="workflow-tag">Fresh snapshot</span></div>
+</div>
+</article>
+<article class="workflow-step reveal">
+<div class="workflow-index">02</div>
+<div>
+<h3>Go directly to the data category you need.</h3>
+<p>Use Overview for the big picture, SEO for metadata, Content for document structure, Links for URL extraction, Media for assets, or Technical for document and resource details.</p>
+<div class="workflow-tags"><span class="workflow-tag">Overview</span><span class="workflow-tag">SEO</span><span class="workflow-tag">Content</span><span class="workflow-tag">Links</span><span class="workflow-tag">Media</span><span class="workflow-tag">Technical</span></div>
+</div>
+</article>
+<article class="workflow-step reveal">
+<div class="workflow-index">03</div>
+<div>
+<h3>Search, filter and narrow the snapshot.</h3>
+<p>Search within page data, switch link filters, turn unique URL mode on, and select only the fields or links relevant to the task instead of copying an oversized dump.</p>
+<div class="workflow-tags"><span class="workflow-tag">Search</span><span class="workflow-tag">Filters</span><span class="workflow-tag">Unique URL</span><span class="workflow-tag">Selection</span></div>
+</div>
+</article>
+<article class="workflow-step reveal">
+<div class="workflow-index">04</div>
+<div>
+<h3>Copy in the format your next tool expects.</h3>
+<p>Choose Key: Value, plain text, Markdown, JSON or CSV. Copy a single field, multiple selected values, a filtered link set, or export the full inspection snapshot as JSON.</p>
+<div class="workflow-tags"><span class="workflow-tag">Key: Value</span><span class="workflow-tag">Plain</span><span class="workflow-tag">Markdown</span><span class="workflow-tag">JSON</span><span class="workflow-tag">CSV</span></div>
+</div>
+</article>
+</div>
+</div>
+</section>
+<!-- OVERVIEW + SEO -->
+<section class="section" id="seo">
+<div class="container split-section">
+<div class="split-copy reveal">
+<div class="eyebrow">Overview + SEO</div>
+<h2>Start with the page identity, then go deeper.</h2>
+<p>
             The Overview keeps the most useful page facts close. The SEO view expands that snapshot into metadata and document signals without forcing you to inspect source code manually.
           </p>
+<div class="detail-list">
+<div class="detail-item"><span class="detail-mark">01</span><div><strong>Page identity</strong><p>Title, URL, domain, path, language, charset and capture context stay easy to copy individually.</p></div></div>
+<div class="detail-item"><span class="detail-mark">02</span><div><strong>Search metadata</strong><p>Inspect title, meta description, canonical and robots values in one place.</p></div></div>
+<div class="detail-item"><span class="detail-mark">03</span><div><strong>Heading structure</strong><p>See H1 through H6 entries and quickly identify the page’s outline.</p></div></div>
+<div class="detail-item"><span class="detail-mark">04</span><div><strong>Social &amp; structured data</strong><p>Review Open Graph, Twitter/X metadata, hreflang and JSON-LD detected in the document.</p></div></div>
+</div>
+</div>
+<figure class="reveal">
+<div class="media-frame">
+<div class="media-shell">
+<img alt="PageData SEO view with canonical, robots, heading structure, Open Graph and structured data." class="media-image" loading="lazy" src="assets/pagedata-seo.png"/>
 
-          <div class="detail-list">
-            <div class="detail-item"><span class="detail-mark">01</span><div><strong>Page identity</strong><p>Title, URL, domain, path, language, charset and capture context stay easy to copy individually.</p></div></div>
-            <div class="detail-item"><span class="detail-mark">02</span><div><strong>Search metadata</strong><p>Inspect title, meta description, canonical and robots values in one place.</p></div></div>
-            <div class="detail-item"><span class="detail-mark">03</span><div><strong>Heading structure</strong><p>See H1 through H6 entries and quickly identify the page’s outline.</p></div></div>
-            <div class="detail-item"><span class="detail-mark">04</span><div><strong>Social & structured data</strong><p>Review Open Graph, Twitter/X metadata, hreflang and JSON-LD detected in the document.</p></div></div>
-          </div>
-        </div>
-
-        <figure class="reveal">
-          <div class="media-frame">
-            <div class="media-shell" data-screenshot>
-              <img class="media-image" src="assets/pagedata-seo.png" alt="PageData SEO view with canonical, robots, heading structure, Open Graph and structured data." loading="lazy" />
-              <div class="shot-fallback" aria-hidden="true">
-                <span class="shot-label">Screenshot slot · pagedata-seo.png</span>
-                <div>
-                  <strong>SEO inspection</strong>
-                  <p>The final screenshot will use the real SEO tab with a page that contains canonical, robots, multiple heading levels, Open Graph, Twitter/X metadata, hreflang and JSON-LD.</p>
-                  <div class="mock-panel">
-                    <div class="mock-row"><span>Canonical</span><code>https://example.com/article</code><b>✓</b></div>
-                    <div class="mock-row"><span>Robots</span><code>index, follow</code><b>✓</b></div>
-                    <div class="mock-row"><span>H1</span><code>Page data without digging through source</code><b>1</b></div>
-                    <div class="mock-row"><span>JSON-LD</span><code>Article · BreadcrumbList · Organization</code><b>3</b></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <figcaption class="media-caption">Planned capture: a rich SEO tab with metadata, heading structure and structured data visible together.</figcaption>
-        </figure>
-      </div>
-    </section>
-
-    <!-- CONTENT -->
-    <section class="section section-light" id="content">
-      <div class="container split-section reverse">
-        <div class="split-copy reveal">
-          <div class="eyebrow">Content structure</div>
-          <h2>Measure the document and pull out the text that matters.</h2>
-          <p>
+</div>
+</div>
+<figcaption class="media-caption">SEO view with metadata, heading structure and structured data visible together.</figcaption>
+</figure>
+</div>
+</section>
+<!-- CONTENT -->
+<section class="section section-light" id="content">
+<div class="container split-section reverse">
+<div class="split-copy reveal">
+<div class="eyebrow">Content structure</div>
+<h2>Measure the document and pull out the text that matters.</h2>
+<p>
             PageData treats content as more than a word count. It exposes the structure surrounding the text so research, QA and content review can start from a useful snapshot instead of manual counting.
           </p>
+<div class="detail-list">
+<div class="detail-item"><span class="detail-mark">01</span><div><strong>Words, characters &amp; reading time</strong><p>Get lightweight size and reading estimates without copying the page into another tool first.</p></div></div>
+<div class="detail-item"><span class="detail-mark">02</span><div><strong>Structural counts</strong><p>Paragraphs, lists, tables, forms, inputs and buttons help describe how the page is built.</p></div></div>
+<div class="detail-item"><span class="detail-mark">03</span><div><strong>Main content text</strong><p>Extract the primary content area when PageData can identify it from the document.</p></div></div>
+<div class="detail-item"><span class="detail-mark">04</span><div><strong>Visible page text</strong><p>Copy the broader visible text when the task needs more than the main article or content region.</p></div></div>
+</div>
+</div>
+<figure class="reveal">
+<div class="media-frame">
+<div class="media-shell">
+<img alt="PageData Content view showing word count, reading time, structural counts and extracted text." class="media-image" loading="lazy" src="assets/pagedata-content.png"/>
 
-          <div class="detail-list">
-            <div class="detail-item"><span class="detail-mark">01</span><div><strong>Words, characters & reading time</strong><p>Get lightweight size and reading estimates without copying the page into another tool first.</p></div></div>
-            <div class="detail-item"><span class="detail-mark">02</span><div><strong>Structural counts</strong><p>Paragraphs, lists, tables, forms, inputs and buttons help describe how the page is built.</p></div></div>
-            <div class="detail-item"><span class="detail-mark">03</span><div><strong>Main content text</strong><p>Extract the primary content area when PageData can identify it from the document.</p></div></div>
-            <div class="detail-item"><span class="detail-mark">04</span><div><strong>Visible page text</strong><p>Copy the broader visible text when the task needs more than the main article or content region.</p></div></div>
-          </div>
-        </div>
-
-        <figure class="reveal">
-          <div class="media-frame">
-            <div class="media-shell" data-screenshot>
-              <img class="media-image" src="assets/pagedata-content.png" alt="PageData Content view showing word count, reading time, structural counts and extracted text." loading="lazy" />
-              <div class="shot-fallback" aria-hidden="true">
-                <span class="shot-label">Screenshot slot · pagedata-content.png</span>
-                <div>
-                  <strong>Content snapshot</strong>
-                  <p>The planned capture will show document statistics plus extracted main and visible text in the real extension.</p>
-                  <div class="mock-panel">
-                    <div class="mock-row"><span>Words</span><code>2,846</code><b>~15m</b></div>
-                    <div class="mock-row"><span>Paragraphs</span><code>38</code><b>¶</b></div>
-                    <div class="mock-row"><span>Tables</span><code>3 detected</code><b>▦</b></div>
-                    <div class="mock-row"><span>Forms</span><code>1 form · 6 inputs · 3 buttons</code><b>→</b></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <figcaption class="media-caption">Planned capture: PageData Content view on a long-form page with meaningful structural data.</figcaption>
-        </figure>
-      </div>
-    </section>
-
-    <!-- LINKS -->
-    <section class="section section-soft" id="links">
-      <div class="container">
-        <div class="section-heading reveal">
-          <div class="eyebrow">Link extraction</div>
-          <h2>A link list you can actually work with.</h2>
-          <p>
+</div>
+</div>
+<figcaption class="media-caption">Content view on a long-form page with meaningful structural data.</figcaption>
+</figure>
+</div>
+</section>
+<!-- LINKS -->
+<section class="section section-soft" id="links">
+<div class="container">
+<div class="section-heading reveal">
+<div class="eyebrow">Link extraction</div>
+<h2>A link list you can actually work with.</h2>
+<p>
             PageData separates link discovery from link cleanup. Filter the page’s anchors by relationship, remove duplicate URLs when needed, inspect attributes, and copy only the subset that belongs in your next step.
           </p>
-        </div>
+</div>
+<div class="split-section">
+<div class="split-copy reveal">
+<div class="detail-list">
+<div class="detail-item"><span class="detail-mark">01</span><div><strong>All / Internal / External / Other</strong><p>Move between link groups without manually comparing domains.</p></div></div>
+<div class="detail-item"><span class="detail-mark">02</span><div><strong>Unique URL mode</strong><p>Collapse repeated destinations when a page contains the same URL in navigation, body content and footer areas.</p></div></div>
+<div class="detail-item"><span class="detail-mark">03</span><div><strong>Anchor + destination</strong><p>Keep the text users see next to the URL it points to instead of losing context.</p></div></div>
+<div class="detail-item"><span class="detail-mark">04</span><div><strong>Rel, target &amp; download flags</strong><p>Inspect nofollow, sponsored, ugc, target blank and download behavior alongside each link.</p></div></div>
+</div>
+</div>
+<figure class="reveal">
+<div class="media-frame">
+<div class="media-shell">
+<img alt="PageData Links view with internal, external and other filters plus unique URL mode." class="media-image" loading="lazy" src="assets/pagedata-links.png"/>
 
-        <div class="split-section">
-          <div class="split-copy reveal">
-            <div class="detail-list">
-              <div class="detail-item"><span class="detail-mark">01</span><div><strong>All / Internal / External / Other</strong><p>Move between link groups without manually comparing domains.</p></div></div>
-              <div class="detail-item"><span class="detail-mark">02</span><div><strong>Unique URL mode</strong><p>Collapse repeated destinations when a page contains the same URL in navigation, body content and footer areas.</p></div></div>
-              <div class="detail-item"><span class="detail-mark">03</span><div><strong>Anchor + destination</strong><p>Keep the text users see next to the URL it points to instead of losing context.</p></div></div>
-              <div class="detail-item"><span class="detail-mark">04</span><div><strong>Rel, target & download flags</strong><p>Inspect nofollow, sponsored, ugc, target blank and download behavior alongside each link.</p></div></div>
-            </div>
-          </div>
-
-          <figure class="reveal">
-            <div class="media-frame">
-              <div class="media-shell" data-screenshot>
-                <img class="media-image" src="assets/pagedata-links.png" alt="PageData Links view with internal, external and other filters plus unique URL mode." loading="lazy" />
-                <div class="shot-fallback" aria-hidden="true">
-                  <span class="shot-label">Screenshot slot · pagedata-links.png</span>
-                  <div>
-                    <strong>Filtered link inventory</strong>
-                    <p>The final capture will intentionally include internal, external and special-scheme links so every filter state has meaningful counts.</p>
-                    <div class="mock-panel">
-                      <div class="mock-row"><span>All</span><code>126 links</code><b>126</b></div>
-                      <div class="mock-row"><span>Internal</span><code>Navigation, content and related pages</code><b>88</b></div>
-                      <div class="mock-row"><span>External</span><code>References and outbound resources</code><b>31</b></div>
-                      <div class="mock-row"><span>Other</span><code>mailto:, tel:, anchors and special links</code><b>7</b></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <figcaption class="media-caption">Planned capture: real Links tab with mixed destinations, rel attributes and Unique URL enabled.</figcaption>
-          </figure>
-        </div>
-
-        <div class="link-feature-grid">
-          <div class="link-feature reveal"><strong>Copy URLs</strong><span>Take only destinations when anchor text is not needed.</span></div>
-          <div class="link-feature reveal"><strong>Copy anchor text</strong><span>Extract the visible labels independently of their destinations.</span></div>
-          <div class="link-feature reveal"><strong>Copy text + URL</strong><span>Preserve the relationship between the anchor and its link.</span></div>
-          <div class="link-feature reveal"><strong>Copy selected links</strong><span>Build a smaller dataset instead of exporting every anchor on the page.</span></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- MEDIA -->
-    <section class="section" id="media">
-      <div class="container split-section reverse">
-        <div class="split-copy reveal">
-          <div class="eyebrow">Media & files</div>
-          <h2>See what the page loads and what each image says about itself.</h2>
-          <p>
+</div>
+</div>
+<figcaption class="media-caption">Links view with mixed destinations, rel attributes and Unique URL enabled.</figcaption>
+</figure>
+</div>
+<div class="link-feature-grid">
+<div class="link-feature reveal"><strong>Copy URLs</strong><span>Take only destinations when anchor text is not needed.</span></div>
+<div class="link-feature reveal"><strong>Copy anchor text</strong><span>Extract the visible labels independently of their destinations.</span></div>
+<div class="link-feature reveal"><strong>Copy text + URL</strong><span>Preserve the relationship between the anchor and its link.</span></div>
+<div class="link-feature reveal"><strong>Copy selected links</strong><span>Build a smaller dataset instead of exporting every anchor on the page.</span></div>
+</div>
+</div>
+</section>
+<!-- MEDIA -->
+<section class="section" id="media">
+<div class="container split-section reverse">
+<div class="split-copy reveal">
+<div class="eyebrow">Media &amp; files</div>
+<h2>See what the page loads and what each image says about itself.</h2>
+<p>
             The Media view turns image discovery into a compact asset inventory and keeps other embedded or downloadable resources close enough to inspect without opening DevTools or source code.
           </p>
+<div class="detail-list">
+<div class="detail-item"><span class="detail-mark">01</span><div><strong>Image preview + URL</strong><p>Browse discovered images visually while keeping their source URL available for copying.</p></div></div>
+<div class="detail-item"><span class="detail-mark">02</span><div><strong>Dimensions</strong><p>See available image width and height information beside the asset.</p></div></div>
+<div class="detail-item"><span class="detail-mark">03</span><div><strong>Alt states</strong><p>Distinguish useful alt text, empty alt attributes and missing alt attributes.</p></div></div>
+<div class="detail-item"><span class="detail-mark">04</span><div><strong>Other media &amp; files</strong><p>Surface videos, audio, iframes and common downloadable files such as PDF, DOC, XLSX and ZIP links.</p></div></div>
+</div>
+</div>
+<figure class="reveal">
+<div class="media-frame">
+<div class="media-shell">
+<img alt="PageData Media view showing image previews, dimensions, alt states and other media resources." class="media-image" loading="lazy" src="assets/pagedata-media.png"/>
 
-          <div class="detail-list">
-            <div class="detail-item"><span class="detail-mark">01</span><div><strong>Image preview + URL</strong><p>Browse discovered images visually while keeping their source URL available for copying.</p></div></div>
-            <div class="detail-item"><span class="detail-mark">02</span><div><strong>Dimensions</strong><p>See available image width and height information beside the asset.</p></div></div>
-            <div class="detail-item"><span class="detail-mark">03</span><div><strong>Alt states</strong><p>Distinguish useful alt text, empty alt attributes and missing alt attributes.</p></div></div>
-            <div class="detail-item"><span class="detail-mark">04</span><div><strong>Other media & files</strong><p>Surface videos, audio, iframes and common downloadable files such as PDF, DOC, XLSX and ZIP links.</p></div></div>
-          </div>
-        </div>
-
-        <figure class="reveal">
-          <div class="media-frame">
-            <div class="media-shell" data-screenshot>
-              <img class="media-image" src="assets/pagedata-media.png" alt="PageData Media view showing image previews, dimensions, alt states and other media resources." loading="lazy" />
-              <div class="shot-fallback" aria-hidden="true">
-                <span class="shot-label">Screenshot slot · pagedata-media.png</span>
-                <div>
-                  <strong>Media inventory</strong>
-                  <p>The final image will use a page with varied image sizes, meaningful alt text, deliberately empty alt and missing alt so the Media view demonstrates real QA value.</p>
-                  <div class="mock-panel">
-                    <div class="mock-row"><span>Images</span><code>24 discovered</code><b>24</b></div>
-                    <div class="mock-row"><span>Missing alt</span><code>3 images without alt attribute</code><b>⚠</b></div>
-                    <div class="mock-row"><span>Empty alt</span><code>2 intentionally empty alt values</code><b>2</b></div>
-                    <div class="mock-row"><span>Files</span><code>2 PDF · 1 XLSX · 1 ZIP</code><b>4</b></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <figcaption class="media-caption">Planned capture: image-rich page with dimensions, alt-state variety and downloadable resources.</figcaption>
-        </figure>
-      </div>
-    </section>
-
-    <!-- COPY FORMATS -->
-    <section class="section section-soft" id="copy">
-      <div class="container copy-layout">
-        <div class="split-copy reveal">
-          <div class="eyebrow">Copy it your way</div>
-          <h2>The inspection is only useful if the data can leave the panel cleanly.</h2>
-          <p>
+</div>
+</div>
+<figcaption class="media-caption">Media view on an image-rich page with dimensions, alt-state variety and downloadable resources.</figcaption>
+</figure>
+</div>
+</section>
+<!-- COPY FORMATS -->
+<section class="section section-soft" id="copy">
+<div class="container copy-layout">
+<div class="split-copy reveal">
+<div class="eyebrow">Copy it your way</div>
+<h2>The inspection is only useful if the data can leave the panel cleanly.</h2>
+<p>
             PageData lets the same selected fields become human-readable notes, Markdown, structured JSON or spreadsheet-friendly CSV. You choose the destination format instead of reformatting the data after copying it.
           </p>
+<div class="format-list">
+<div class="format-row"><strong>Key: Value</strong><code>Title: Example page</code></div>
+<div class="format-row"><strong>Plain text</strong><code>Example page</code></div>
+<div class="format-row"><strong>Markdown</strong><code>- Title: Example page</code></div>
+<div class="format-row"><strong>JSON</strong><code>{ "title": "Example page" }</code></div>
+<div class="format-row"><strong>CSV</strong><code>Title,Example page</code></div>
+</div>
+<div class="detail-list">
+<div class="detail-item"><span class="detail-mark">✓</span><div><strong>Copy one field</strong><p>Everyday values remain one click away.</p></div></div>
+<div class="detail-item"><span class="detail-mark">✓</span><div><strong>Copy selected fields</strong><p>Build a focused bundle from different parts of the current view.</p></div></div>
+<div class="detail-item"><span class="detail-mark">✓</span><div><strong>Export the full snapshot</strong><p>Save the complete current inspection as JSON when you need everything.</p></div></div>
+</div>
+</div>
+<div class="format-stage reveal">
+<div class="media-shell">
+<img alt="PageData showing selected fields and multiple copy format options." class="media-image" loading="lazy" src="assets/pagedata-copy-formats.png"/>
 
-          <div class="format-list">
-            <div class="format-row"><strong>Key: Value</strong><code>Title: Example page</code></div>
-            <div class="format-row"><strong>Plain text</strong><code>Example page</code></div>
-            <div class="format-row"><strong>Markdown</strong><code>- Title: Example page</code></div>
-            <div class="format-row"><strong>JSON</strong><code>{ "title": "Example page" }</code></div>
-            <div class="format-row"><strong>CSV</strong><code>Title,Example page</code></div>
-          </div>
-
-          <div class="detail-list">
-            <div class="detail-item"><span class="detail-mark">✓</span><div><strong>Copy one field</strong><p>Everyday values remain one click away.</p></div></div>
-            <div class="detail-item"><span class="detail-mark">✓</span><div><strong>Copy selected fields</strong><p>Build a focused bundle from different parts of the current view.</p></div></div>
-            <div class="detail-item"><span class="detail-mark">✓</span><div><strong>Export the full snapshot</strong><p>Save the complete current inspection as JSON when you need everything.</p></div></div>
-          </div>
-        </div>
-
-        <div class="format-stage reveal">
-          <div class="media-shell" data-screenshot>
-            <img class="media-image" src="assets/pagedata-copy-formats.png" alt="PageData showing selected fields and multiple copy format options." loading="lazy" />
-            <div class="shot-fallback" aria-hidden="true">
-              <span class="shot-label">Screenshot slot · pagedata-copy-formats.png</span>
-              <div>
-                <strong>Selection + formatting</strong>
-                <p>The planned screenshot will show several selected fields, the compact bottom selection bar and the copy format control in the real extension.</p>
-                <div class="mock-panel">
-                  <div class="mock-row"><span>Selected</span><code>Title · URL · Description · Canonical · H1</code><b>5</b></div>
-                  <div class="mock-row"><span>Format</span><code>JSON</code><b>{ }</b></div>
-                  <div class="mock-row"><span>Action</span><code>Copy selected</code><b>⧉</b></div>
-                  <div class="mock-row"><span>Export</span><code>Full page snapshot</code><b>↓</b></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- TECHNICAL -->
-    <section class="section section-light" id="technical">
-      <div class="container">
-        <div class="section-heading reveal">
-          <div class="eyebrow">Technical view</div>
-          <h2>Enough document detail to answer common questions without becoming DevTools.</h2>
-          <p>
+</div>
+</div>
+</div>
+</section>
+<!-- TECHNICAL -->
+<section class="section section-light" id="technical">
+<div class="container">
+<div class="section-heading reveal">
+<div class="eyebrow">Technical view</div>
+<h2>Enough document detail to answer common questions without becoming DevTools.</h2>
+<p>
             PageData is intentionally not a replacement for Chrome DevTools. The Technical view focuses on information that is frequently useful during inspection, QA and research, while keeping the workflow lightweight.
           </p>
-        </div>
+</div>
+<div class="split-section">
+<div class="split-copy reveal">
+<div class="technical-grid">
+<div class="technical-card"><span>DOCUMENT</span><strong>Document details</strong><p>Doctype, viewport, language, charset and other document-level values.</p></div>
+<div class="technical-card"><span>TIMING</span><strong>Navigation timing</strong><p>A lightweight view of timing information available from the current navigation.</p></div>
+<div class="technical-card"><span>RESOURCES</span><strong>Resource counts</strong><p>See high-level counts by resource type rather than manually scanning network entries.</p></div>
+<div class="technical-card"><span>SCRIPTS</span><strong>JavaScript files</strong><p>Collect script resource URLs found by the current page inspection.</p></div>
+<div class="technical-card"><span>STYLES</span><strong>Stylesheets</strong><p>Inspect stylesheet resources referenced by the document.</p></div>
+<div class="technical-card"><span>HINTS</span><strong>Preload &amp; prefetch</strong><p>See resource hints that the page declares for loading behavior.</p></div>
+<div class="technical-card"><span>META</span><strong>Meta tags</strong><p>Review the broader meta collection beyond the most common SEO fields.</p></div>
+<div class="technical-card"><span>DOM</span><strong>DOM context</strong><p>Use page-level element counts as a quick signal of document size and structure.</p></div>
+</div>
+</div>
+<figure class="reveal">
+<div class="media-frame">
+<div class="media-shell">
+<img alt="PageData Technical view showing document details, resources, scripts, stylesheets and meta tags." class="media-image" loading="lazy" src="assets/pagedata-technical.png"/>
 
-        <div class="split-section">
-          <div class="split-copy reveal">
-            <div class="technical-grid">
-              <div class="technical-card"><span>DOCUMENT</span><strong>Document details</strong><p>Doctype, viewport, language, charset and other document-level values.</p></div>
-              <div class="technical-card"><span>TIMING</span><strong>Navigation timing</strong><p>A lightweight view of timing information available from the current navigation.</p></div>
-              <div class="technical-card"><span>RESOURCES</span><strong>Resource counts</strong><p>See high-level counts by resource type rather than manually scanning network entries.</p></div>
-              <div class="technical-card"><span>SCRIPTS</span><strong>JavaScript files</strong><p>Collect script resource URLs found by the current page inspection.</p></div>
-              <div class="technical-card"><span>STYLES</span><strong>Stylesheets</strong><p>Inspect stylesheet resources referenced by the document.</p></div>
-              <div class="technical-card"><span>HINTS</span><strong>Preload & prefetch</strong><p>See resource hints that the page declares for loading behavior.</p></div>
-              <div class="technical-card"><span>META</span><strong>Meta tags</strong><p>Review the broader meta collection beyond the most common SEO fields.</p></div>
-              <div class="technical-card"><span>DOM</span><strong>DOM context</strong><p>Use page-level element counts as a quick signal of document size and structure.</p></div>
-            </div>
-          </div>
-
-          <figure class="reveal">
-            <div class="media-frame">
-              <div class="media-shell" data-screenshot>
-                <img class="media-image" src="assets/pagedata-technical.png" alt="PageData Technical view showing document details, resources, scripts, stylesheets and meta tags." loading="lazy" />
-                <div class="shot-fallback" aria-hidden="true">
-                  <span class="shot-label">Screenshot slot · pagedata-technical.png</span>
-                  <div>
-                    <strong>Technical inspection</strong>
-                    <p>The final capture will use a page with several scripts, stylesheets, preloads and meta tags so the Technical tab has meaningful density without becoming visually noisy.</p>
-                    <div class="mock-panel">
-                      <div class="mock-row"><span>Scripts</span><code>9 external resources</code><b>JS</b></div>
-                      <div class="mock-row"><span>Styles</span><code>5 stylesheets</code><b>CSS</b></div>
-                      <div class="mock-row"><span>Preload</span><code>font · image · script</code><b>3</b></div>
-                      <div class="mock-row"><span>Meta</span><code>18 meta tags</code><b>18</b></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <figcaption class="media-caption">Planned capture: Technical view populated with real document and resource data.</figcaption>
-          </figure>
-        </div>
-      </div>
-    </section>
-
-    <!-- USE CASES -->
-    <section class="section" id="use-cases">
-      <div class="container">
-        <div class="section-heading center reveal">
-          <div class="eyebrow">Where PageData fits</div>
-          <h2>Useful whenever the page contains information you need somewhere else.</h2>
-          <p>
+</div>
+</div>
+<figcaption class="media-caption">Technical view populated with real document and resource data.</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<!-- USE CASES -->
+<section class="section" id="use-cases">
+<div class="container">
+<div class="section-heading center reveal">
+<div class="eyebrow">Where PageData fits</div>
+<h2>Useful whenever the page contains information you need somewhere else.</h2>
+<p>
             PageData stays deliberately general-purpose. The same inspection engine can support different workflows because the output is structured, filterable and easy to copy.
           </p>
-        </div>
-
-        <div class="use-case-grid">
-          <article class="use-case-card reveal"><span class="use-case-number">01 / 06</span><h3>SEO inspection</h3><p>Check page titles, descriptions, canonicals, robots, headings, social metadata, hreflang and structured data without opening the source.</p></article>
-          <article class="use-case-card reveal"><span class="use-case-number">02 / 06</span><h3>Content research</h3><p>Capture page identity, content size, document outline and extractable text before moving the useful parts into notes, docs or AI workflows.</p></article>
-          <article class="use-case-card reveal"><span class="use-case-number">03 / 06</span><h3>Link collection</h3><p>Turn a page full of anchors into a filtered internal, external or unique URL dataset with anchor context and rel attributes intact.</p></article>
-          <article class="use-case-card reveal"><span class="use-case-number">04 / 06</span><h3>Page QA</h3><p>Review heading structure, image alt states, forms, resource hints and page-level counts while the original page remains visible beside the panel.</p></article>
-          <article class="use-case-card reveal"><span class="use-case-number">05 / 06</span><h3>Asset discovery</h3><p>Locate image sources, embedded media and common downloadable files without manually hunting through markup or network requests.</p></article>
-          <article class="use-case-card reveal"><span class="use-case-number">06 / 06</span><h3>Developer inspection</h3><p>Get a fast overview of document metadata, resource references and technical details before deciding whether deeper DevTools investigation is necessary.</p></article>
-        </div>
-      </div>
-    </section>
-
-    <!-- PRIVACY -->
-    <section class="section section-soft" id="privacy">
-      <div class="container privacy-grid">
-        <div class="privacy-copy reveal">
-          <div class="eyebrow">Local-first by design</div>
-          <h2>The page snapshot is processed inside your browser.</h2>
-          <p>
+</div>
+<div class="use-case-grid">
+<article class="use-case-card reveal"><span class="use-case-number">01 / 06</span><h3>SEO inspection</h3><p>Check page titles, descriptions, canonicals, robots, headings, social metadata, hreflang and structured data without opening the source.</p></article>
+<article class="use-case-card reveal"><span class="use-case-number">02 / 06</span><h3>Content research</h3><p>Capture page identity, content size, document outline and extractable text before moving the useful parts into notes, docs or AI workflows.</p></article>
+<article class="use-case-card reveal"><span class="use-case-number">03 / 06</span><h3>Link collection</h3><p>Turn a page full of anchors into a filtered internal, external or unique URL dataset with anchor context and rel attributes intact.</p></article>
+<article class="use-case-card reveal"><span class="use-case-number">04 / 06</span><h3>Page QA</h3><p>Review heading structure, image alt states, forms, resource hints and page-level counts while the original page remains visible beside the panel.</p></article>
+<article class="use-case-card reveal"><span class="use-case-number">05 / 06</span><h3>Asset discovery</h3><p>Locate image sources, embedded media and common downloadable files without manually hunting through markup or network requests.</p></article>
+<article class="use-case-card reveal"><span class="use-case-number">06 / 06</span><h3>Developer inspection</h3><p>Get a fast overview of document metadata, resource references and technical details before deciding whether deeper DevTools investigation is necessary.</p></article>
+</div>
+</div>
+</section>
+<!-- PRIVACY -->
+<section class="section section-soft" id="privacy">
+<div class="container privacy-grid">
+<div class="privacy-copy reveal">
+<div class="eyebrow">Local-first by design</div>
+<h2>The page snapshot is processed inside your browser.</h2>
+<p>
             PageData needs to read the webpage you ask it to inspect, but the current build does not send that inspected data to a backend service. Scanning, grouping and copy formatting happen locally in Chrome.
           </p>
-
-          <div class="permission-note">
+<div class="permission-note">
             PageData requests access to normal <code>http://</code> and <code>https://</code> pages so it can inspect the current document when the Side Panel needs data. Chrome-protected browser pages remain inaccessible to extensions and PageData shows an explanatory state instead of trying to bypass that restriction.
           </div>
-        </div>
-
-        <div class="privacy-list">
-          <article class="privacy-item reveal">
-            <div class="privacy-item-head"><strong>No inspected page data sent to a server</strong><span class="privacy-badge">LOCAL</span></div>
-            <p>The extension reads the current DOM to build the inspection snapshot, then displays and formats that information locally.</p>
-          </article>
-          <article class="privacy-item reveal">
-            <div class="privacy-item-head"><strong>No analytics or advertising SDK</strong><span class="privacy-badge">NONE</span></div>
-            <p>The current build includes no analytics service, advertising SDK, remote script or backend integration.</p>
-          </article>
-          <article class="privacy-item reveal">
-            <div class="privacy-item-head"><strong>Only UI preferences are stored locally</strong><span class="privacy-badge">LOCAL</span></div>
-            <p><code>chrome.storage.local</code> is used for preferences such as the selected theme and copy format.</p>
-          </article>
-          <article class="privacy-item reveal">
-            <div class="privacy-item-head"><strong>Protected Chrome pages stay protected</strong><span class="privacy-badge">CHROME</span></div>
-            <p>Pages such as <code>chrome://...</code> and protected Chrome Web Store surfaces cannot be scripted by extensions, and PageData respects that boundary.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- LIMITS -->
-    <section class="section section-light" id="browser-behavior">
-      <div class="container">
-        <div class="section-heading reveal">
-          <div class="eyebrow">Designed for normal webpages</div>
-          <h2>Clear behavior when Chrome does not allow inspection.</h2>
-          <p>
+<div class="hero-actions privacy-actions"><a class="button button-primary" href="https://thanhvanthuc.github.io/my-page/privacy-policy/pagedata">Read Privacy Policy <span>→</span></a></div></div>
+<div class="privacy-list">
+<article class="privacy-item reveal">
+<div class="privacy-item-head"><strong>No inspected page data sent to a server</strong><span class="privacy-badge">LOCAL</span></div>
+<p>The extension reads the current DOM to build the inspection snapshot, then displays and formats that information locally.</p>
+</article>
+<article class="privacy-item reveal">
+<div class="privacy-item-head"><strong>No analytics or advertising SDK</strong><span class="privacy-badge">NONE</span></div>
+<p>The current build includes no analytics service, advertising SDK, remote script or backend integration.</p>
+</article>
+<article class="privacy-item reveal">
+<div class="privacy-item-head"><strong>Only UI preferences are stored locally</strong><span class="privacy-badge">LOCAL</span></div>
+<p><code>chrome.storage.local</code> is used for preferences such as the selected theme and copy format.</p>
+</article>
+<article class="privacy-item reveal">
+<div class="privacy-item-head"><strong>Protected Chrome pages stay protected</strong><span class="privacy-badge">CHROME</span></div>
+<p>Pages such as <code>chrome://...</code> and protected Chrome Web Store surfaces cannot be scripted by extensions, and PageData respects that boundary.</p>
+</article>
+</div>
+</div>
+</section>
+<!-- LIMITS -->
+<section class="section section-light" id="browser-behavior">
+<div class="container">
+<div class="section-heading reveal">
+<div class="eyebrow">Designed for normal webpages</div>
+<h2>Clear behavior when Chrome does not allow inspection.</h2>
+<p>
             A useful inspector should also explain where it cannot operate. PageData distinguishes normal webpages from protected browser surfaces instead of presenting a misleading empty scan.
           </p>
-        </div>
-
-        <div class="limits-grid">
-          <article class="limit-card reveal">
-            <h3>Normal websites</h3>
-            <p>PageData is designed to inspect standard HTTP and HTTPS pages. The Side Panel refreshes the snapshot as the active page changes and avoids stale results during navigation.</p>
-            <code>https://example.com/page</code>
-          </article>
-          <article class="limit-card reveal">
-            <h3>Protected browser pages</h3>
-            <p>Chrome does not let extensions inject scripts into browser-internal pages or certain protected store surfaces. PageData detects those cases and shows a clear unavailable state.</p>
-            <code>chrome://... · Chrome Web Store</code>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="cta" id="support">
-      <div class="container">
-        <div class="cta-box reveal">
-          <div class="eyebrow">PageData</div>
-          <h2>Keep the webpage open. Take the useful data with you.</h2>
-          <p>
+</div>
+<div class="limits-grid">
+<article class="limit-card reveal">
+<h3>Normal websites</h3>
+<p>PageData is designed to inspect standard HTTP and HTTPS pages. The Side Panel refreshes the snapshot as the active page changes and avoids stale results during navigation.</p>
+<code>https://example.com/page</code>
+</article>
+<article class="limit-card reveal">
+<h3>Protected browser pages</h3>
+<p>Chrome does not let extensions inject scripts into browser-internal pages or certain protected store surfaces. PageData detects those cases and shows a clear unavailable state.</p>
+<code>chrome://... · Chrome Web Store</code>
+</article>
+</div>
+</div>
+</section>
+<!-- CTA -->
+<section class="cta" id="support">
+<div class="container">
+<div class="cta-box reveal">
+<div class="eyebrow">PageData</div>
+<h2>Keep the webpage open. Take the useful data with you.</h2>
+<p>
             PageData turns the current page into a structured, copy-ready inspection without forcing you to dig through source code for everyday metadata, links, media and document details. For support, feedback or bug reports, contact the developer directly.
           </p>
-          <div class="hero-actions">
-            <a class="button button-primary" href="mailto:thanhthuc284917@gmail.com?subject=PageData%20Support">Email Support</a>
-            <a class="button button-secondary" href="mailto:thanhthuc284917@gmail.com?subject=PageData%20Feedback">Send Feedback</a>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-main">
-        <div class="footer-brand">
-          <a class="footer-lockup" href="../../" aria-label="Thanh Thuc home">
-            <img class="footer-logo" src="../../assets/thanh-thuc-logo.png" alt="Thanh Thuc logo" />
-            <div>
-              <h3>Thanh Thuc</h3>
-              <span>Independent Developer</span>
-            </div>
-          </a>
-          <p>
+<div class="hero-actions">
+<a class="button button-primary" href="mailto:thanhthuc284917@gmail.com?subject=PageData%20Support">Email Support</a>
+<a class="button button-secondary" href="mailto:thanhthuc284917@gmail.com?subject=PageData%20Feedback">Send Feedback</a>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer class="site-footer">
+<div class="container">
+<div class="footer-main">
+<div class="footer-brand">
+<a aria-label="Thanh Thuc home" class="footer-lockup" href="../../">
+<img alt="Thanh Thuc logo" class="footer-logo" src="../../assets/thanh-thuc-logo.png"/>
+<div>
+<h3>Thanh Thuc</h3>
+<span>Independent Developer</span>
+</div>
+</a>
+<p>
             Independent developer building practical, thoughtful digital products with a focus on clarity, usefulness, privacy-conscious decisions, and purposeful interaction design.
           </p>
-        </div>
-
-        <div class="footer-nav">
-          <div class="footer-col">
-            <strong>Explore</strong>
-            <a href="../../">Home</a>
-            <a href="../">Apps</a>
-            <a href="../../privacy-policy/">Privacy</a>
-          </div>
-          <div class="footer-col">
-            <strong>Contact</strong>
-            <a href="mailto:thanhthuc284917@gmail.com">Email</a>
-            <a href="mailto:thanhthuc284917@gmail.com?subject=PageData%20Support">PageData support</a>
-            <a href="mailto:thanhthuc284917@gmail.com?subject=General%20Inquiry">General inquiry</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="footer-bottom">
-        <span>© <span id="year"></span> Thanh Thuc. All rights reserved.</span>
-        <span>Independent software &amp; digital product development.</span>
-      </div>
-    </div>
-  </footer>
-
-  <script>
+</div>
+<div class="footer-nav">
+<div class="footer-col">
+<strong>Explore</strong>
+<a href="../../">Home</a>
+<a href="../">Apps</a>
+<a href="https://thanhvanthuc.github.io/my-page/privacy-policy/pagedata">Privacy</a>
+</div>
+<div class="footer-col">
+<strong>Contact</strong>
+<a href="mailto:thanhthuc284917@gmail.com">Email</a>
+<a href="mailto:thanhthuc284917@gmail.com?subject=PageData%20Support">PageData support</a>
+<a href="mailto:thanhthuc284917@gmail.com?subject=General%20Inquiry">General inquiry</a>
+</div>
+</div>
+</div>
+<div class="footer-bottom">
+<span>© <span id="year"></span> Thanh Thuc. All rights reserved.</span>
+<span>Independent software &amp; digital product development.</span>
+</div>
+</div>
+</footer>
+<script>
     (() => {
       document.getElementById("year").textContent = new Date().getFullYear();
-
-      const screenshotImages = document.querySelectorAll("[data-screenshot] .media-image");
-      screenshotImages.forEach((image) => {
-        const shell = image.closest("[data-screenshot]");
-        const markMissing = () => shell.classList.add("is-missing");
-        const markLoaded = () => shell.classList.remove("is-missing");
-
-        image.addEventListener("error", markMissing);
-        image.addEventListener("load", markLoaded);
-
-        if (image.complete) {
-          if (image.naturalWidth > 0) markLoaded();
-          else markMissing();
-        }
-      });
 
       const revealItems = document.querySelectorAll(".reveal");
       const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
