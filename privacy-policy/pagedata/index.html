@@ -1,1 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — PageData</title>
+<meta name="description" content="Privacy Policy for PageData version 1.0.4, covering local webpage inspection, DOM-derived page data, copy and export actions, local preferences, browser permissions, and data handling.">
+<meta name="theme-color" content="#070b13">
+<style>
+:root{--bg:#070b13;--bg2:#0b111d;--text:#f7f9fd;--muted:#9ea9bc;--muted2:#7d889b;--line:rgba(255,255,255,.085);--purple:#7d68ff;--purple2:#a18dff;--cyan:#57d8ca;--max:1180px}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{min-height:100vh;color:var(--text);font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.68;background:radial-gradient(circle at 10% 0%,rgba(125,104,255,.16),transparent 28%),radial-gradient(circle at 90% 12%,rgba(87,216,202,.07),transparent 24%),linear-gradient(180deg,#0a0f1a 0%,var(--bg) 100%)}a{color:inherit;text-decoration:none}img{display:block;max-width:100%}.container{width:min(calc(100% - 40px),var(--max));margin:0 auto}
+.site-header{position:sticky;top:0;z-index:100;border-bottom:1px solid rgba(255,255,255,.07);background:rgba(7,11,19,.76);backdrop-filter:blur(18px)}.navbar{min-height:78px;display:flex;align-items:center;justify-content:space-between;gap:28px}.brand{display:inline-flex;align-items:center;gap:12px}.brand-logo{width:44px;height:44px;border-radius:14px;border:1px solid rgba(255,255,255,.1);box-shadow:0 12px 30px rgba(125,104,255,.2)}.brand-copy{display:flex;flex-direction:column;gap:2px}.brand-copy strong{font-size:18px;line-height:1.15;letter-spacing:-.03em}.brand-copy span{color:var(--muted2);font-size:10px;letter-spacing:.13em;text-transform:uppercase}.nav-links{display:flex;align-items:center;gap:24px}.nav-links a{color:var(--muted);font-size:14px}.nav-links a:hover,.nav-links a[aria-current=page]{color:white}.nav-cta{padding:10px 16px;border:1px solid var(--line);border-radius:12px;color:white!important;background:rgba(255,255,255,.05)}
+.hero{padding:94px 0 78px;border-bottom:1px solid rgba(255,255,255,.05)}.hero-inner{max-width:920px}.doc-label{margin-bottom:18px;color:var(--cyan);font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase}h1{max-width:900px;font-size:clamp(52px,7vw,88px);line-height:.98;letter-spacing:-.065em}.lead{max-width:780px;margin-top:26px;color:var(--muted);font-size:18px}.hero-meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}.meta-pill{padding:8px 11px;border:1px solid var(--line);border-radius:999px;color:#d8d2ff;background:rgba(125,104,255,.07);font-size:12px}
+.summary{padding:34px 0 92px}.summary-card{padding:26px 28px;border:1px solid var(--line);border-radius:24px;background:rgba(255,255,255,.04)}.summary-card strong{display:block;margin-bottom:8px;color:#d8d2ff;font-size:14px}.summary-card p{max-width:900px;color:var(--muted);font-size:15px}
+.policy-wrap{position:relative;padding:8px 0 118px;overflow:hidden}
+.policy-wrap:before{content:"";position:absolute;left:50%;top:0;width:min(760px,78vw);height:520px;transform:translateX(-50%);pointer-events:none;background:radial-gradient(circle,rgba(125,104,255,.08),transparent 68%);filter:blur(14px);opacity:.7}
+.policy-shell{position:relative;width:min(calc(100% - 40px),var(--max));margin:0 auto}
+.policy-topline{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:42px;padding-bottom:18px;border-bottom:1px solid var(--line)}
+.policy-topline a{display:inline-flex;align-items:center;gap:8px;color:#d8d2ff;font-size:13px;font-weight:750}
+.policy-topline span{color:var(--muted2);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+.policy-content{min-width:0;width:100%;margin:0}
+.policy-section{position:relative;padding:42px 0 46px;border-bottom:1px solid var(--line);opacity:0;transform:translateY(24px);transition:opacity .65s ease,transform .65s ease}
+.policy-section.is-visible{opacity:1;transform:none}
+.policy-section:last-child{border-bottom:0}
+.section-kicker{display:inline-flex;align-items:center;gap:10px;margin-bottom:16px;color:var(--purple2);font-size:11px;font-weight:850;letter-spacing:.14em;text-transform:uppercase}
+.section-kicker:before{content:"";width:28px;height:1px;background:linear-gradient(90deg,var(--purple2),var(--cyan))}
+.section-copy h2{max-width:none;margin-bottom:18px;font-size:clamp(31px,4vw,46px);line-height:1.08;letter-spacing:-.045em}
+.section-copy p,.section-copy ul{max-width:none;color:var(--muted);font-size:15.5px}
+.section-copy p+p{margin-top:15px}
+.section-copy ul{margin-top:15px;padding-left:22px}
+.section-copy li+li{margin-top:8px}
+.note{max-width:none;margin-top:24px;padding:20px 22px;border:1px solid rgba(87,216,202,.14);border-radius:18px;background:linear-gradient(180deg,rgba(87,216,202,.065),rgba(87,216,202,.035));color:#b9c6c8;font-size:13.5px}
+.note strong{display:block;margin-bottom:6px;color:#d8e6e4}
+.policy-progress{position:fixed;left:0;top:78px;z-index:90;width:100%;height:2px;pointer-events:none;background:rgba(255,255,255,.025)}
+.policy-progress-bar{width:0;height:100%;background:linear-gradient(90deg,var(--purple2),var(--cyan));transition:width .12s linear}
+@media(max-width:760px){.policy-shell{width:min(calc(100% - 28px),var(--max))}.policy-content{width:100%}.policy-topline{align-items:flex-start;flex-direction:column;margin-bottom:28px}.policy-section{padding:34px 0 38px}.section-copy h2{font-size:clamp(28px,9vw,40px)}}
+@media(prefers-reduced-motion:reduce){.policy-section{opacity:1;transform:none;transition:none}.policy-progress-bar{transition:none}}
 
+.site-footer{padding:48px 0 28px;border-top:1px solid rgba(255,255,255,.07);background:#060a12}.footer-main{display:grid;grid-template-columns:1.2fr .8fr;gap:70px;padding-bottom:34px}.footer-lockup{display:inline-flex;align-items:center;gap:15px;margin-bottom:16px}.footer-logo{width:56px;height:56px;border-radius:17px;border:1px solid rgba(255,255,255,.1);box-shadow:0 14px 34px rgba(125,104,255,.16)}.footer-lockup h3{font-size:24px}.footer-lockup span{color:var(--muted2);font-size:11px;letter-spacing:.12em;text-transform:uppercase}.footer-brand p{max-width:560px;color:var(--muted);font-size:14px}.footer-nav{display:grid;grid-template-columns:1fr 1fr;gap:34px}.footer-col strong{display:block;margin-bottom:12px;color:#d8d2ff;font-size:13px;letter-spacing:.1em;text-transform:uppercase}.footer-col a{display:block;width:fit-content;margin-bottom:8px;color:var(--muted);font-size:14px}.footer-bottom{padding-top:24px;display:flex;justify-content:space-between;gap:20px;border-top:1px solid rgba(255,255,255,.07);color:var(--muted2);font-size:13px}
+@media(max-width:980px){.footer-main{grid-template-columns:1fr}}@media(max-width:760px){.container{width:min(calc(100% - 28px),var(--max))}.nav-links a:not(.nav-cta){display:none}.brand-copy span{display:none}.hero{padding:74px 0 62px}.footer-nav{grid-template-columns:1fr}.footer-bottom{flex-direction:column}}
+
+@media (min-width:981px){
+  .hero-inner{
+    max-width:none;
+    padding-left:0;
+    padding-right:0;
+  }
+  .summary>.container{
+    padding-left:0;
+    padding-right:0;
+  }
+  .summary-card{
+    width:100%;
+    max-width:none;
+  }
+}
+
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="container navbar">
+    <a class="brand" href="../../" aria-label="Thanh Thuc home">
+      <img class="brand-logo" src="../../assets/thanh-thuc-logo.png" alt="Thanh Thuc logo">
+      <span class="brand-copy"><strong>Thanh Thuc</strong><span>Independent Developer</span></span>
+    </a>
+    <nav class="nav-links" aria-label="Primary navigation">
+      <a href="../../">Home</a>
+      <a href="../../app/">Apps</a>
+      <a href="../" aria-current="page">Privacy</a>
+      <a class="nav-cta" href="mailto:thanhthuc284917@gmail.com">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="container hero-inner">
+    <div class="doc-label">PageData</div>
+    <h1>Privacy Policy</h1>
+    <p class="lead">This Privacy Policy describes how PageData inspects the current webpage,
+        builds a structured page snapshot, displays metadata, SEO, content, links, media and
+        technical information, handles copy and export actions, stores limited interface
+        preferences, and uses the browser permissions required for those functions. The policy
+        is written specifically for version 1.0.4 of the Chrome extension.</p>
+    <div class="hero-meta"><span class="meta-pill">Effective date: August 20, 2026</span><span class="meta-pill">Version covered: 1.0.4</span></div>
+  </div>
+</section>
+
+<section class="summary">
+  <div class="container">
+    <div class="summary-card">
+      <strong>Privacy summary</strong>
+      <p>PageData inspects the active HTTP or HTTPS webpage locally in the browser so it can
+        organize useful page information into Overview, SEO, Content, Links, Media and Technical
+        views. Inspected page data is not sent to a developer-operated server. The extension does
+        not include analytics, advertising SDKs, remote scripts or a backend service in version
+        1.0.4. Only the selected theme and copy-format preference are stored with
+        <code>chrome.storage.local</code>. Page snapshots are not stored as an inspection history;
+        copying or exporting data happens only when the user explicitly requests those actions.</p>
+    </div>
+  </div>
+</section>
+
+<div class="policy-progress" aria-hidden="true"><div class="policy-progress-bar"></div></div>
+
+<section class="policy-wrap">
+  <div class="policy-shell">
+    <div class="policy-topline">
+      <a href="../">← Back to Privacy Center</a>
+      <span>PageData · Privacy Policy · v1.0.4</span>
+    </div>
+
+    <div class="policy-content">
+
+      <article class="policy-section">
+        <div class="section-kicker">01 · Scope</div>
+        <div class="section-copy">
+          <h2>Scope and Purpose of This Policy</h2>
+          <p>This Privacy Policy applies to PageData version 1.0.4 for Chrome. It explains how the extension reads information from the webpage the user chooses to inspect, transforms that information into a local structured snapshot, presents it in the Side Panel, handles user-initiated copy and export actions, stores limited interface preferences, and uses its declared browser permissions.</p>
+          <p>PageData is designed as a focused webpage inspection and extraction utility. Its purpose is to make useful page information easier to review and reuse without requiring the user to manually inspect source code for common metadata, headings, links, media and document-level details.</p>
+          <p>The extension is not designed as a browsing-history service, cloud crawler, advertising platform, behavioral analytics product, credential collector, account system, or remote webpage archive.</p>
+          <p>This policy does not govern the privacy practices of Chrome, the Chrome Web Store, websites visited by the user, the user&apos;s operating system, or other browser extensions and applications.</p>
+        </div>
+      </article>
+
+      <article class="policy-section">
+        <div class="section-kicker">02 · Operation</div>
+        <div class="section-copy">
+          <h2>How PageData Operates</h2>
+          <p>PageData opens as a Chrome Side Panel. When inspection is available, the extension uses Chrome&apos;s scripting capability to run its packaged inspection function in the active webpage and return a structured result to the Side Panel.</p>
+          <p>The returned snapshot is rendered locally into six focused views: Overview, SEO, Content, Links, Media and Technical. Search, filtering, selection, formatting and most copy-related transformations operate on that in-memory snapshot inside the extension interface.</p>
+          <p>PageData may refresh the active-page snapshot when the relevant active tab or page changes while the Side Panel is in use. It does not need a developer-operated account, remote database or cloud API to inspect the page or format the result.</p>
+          <p>The extension includes safeguards for page transitions and browser-restricted surfaces so that expected navigation states or protected Chrome pages are handled without attempting to bypass browser restrictions.</p>
+        </div>
+      </article>
+
+      <article class="policy-section">
+        <div class="section-kicker">03 · Page snapshot</div>
+        <div class="section-copy">
+          <h2>Information Read From the Current Webpage</h2>
+          <p>To provide its inspection features, PageData reads information available in the Document Object Model (DOM) and related browser-exposed page information for the active webpage being inspected.</p>
+          <p>Depending on what exists on the page, the snapshot can include page identity and document details such as the title, current URL, domain, path, origin, protocol, declared language, character set, viewport information, referrer, base URL, favicon, theme color, doctype and capture time.</p>
+          <p>PageData also derives page-level counts and summaries such as visible-text word count, character count, reading-time estimate, heading count, paragraph count, list count, table count, form count, input/control count, button count and DOM-node count.</p>
+          <div class="note"><strong>Snapshot boundary</strong>The inspected snapshot is used to populate the current Side Panel. PageData version 1.0.4 does not write that snapshot to <code>chrome.storage.local</code> as a persistent history of inspected pages.</div>
+        </div>
+      </article>
+
+      <article class="policy-section">
+        <div class="section-kicker">04 · SEO and metadata</div>
+        <div class="section-copy">
+          <h2>Metadata, SEO Signals, and Structured Data</h2>
+          <p>The SEO view reads common document metadata so the user can review it in one place. This can include the document title, meta description, canonical URL, robots directives, Googlebot directives, author, keywords and generator values when those fields are present.</p>
+          <p>PageData can inspect heading structure from H1 through H6, including heading text and identifiers, and can expose Open Graph properties, Twitter/X card metadata, hreflang links and JSON-LD blocks found in the page.</p>
+          <p>For JSON-LD, PageData reads the contents of <code>&lt;script type=&quot;application/ld+json&quot;&gt;</code> elements so it can identify structured-data blocks and their declared types. The extension may report whether a block could be parsed as JSON, but it does not submit that structured data to an external validation service.</p>
+          <p>Lightweight status labels such as missing, found, short, long, multiple H1s or noindex are calculated locally from the inspected values for convenience. They are interface guidance, not a remote SEO audit.</p>
+        </div>
+      </article>
+
+      <article class="policy-section">
+        <div class="section-kicker">05 · Content</div>
+        <div class="section-copy">
+          <h2>Visible Text, Main Content, Tables, and Forms</h2>
+          <p>PageData reads visible page text using the webpage DOM so it can provide content statistics and user-requested copy actions. It also identifies a main-content candidate from elements such as <code>main</code>, <code>article</code>, or <code>[role=&quot;main&quot;]</code> when available.</p>
+          <p>The Content view can display visible text, main text, heading structure and high-level document counts. Table summaries may include row counts, column counts and captions.</p>
+          <p>For forms, PageData version 1.0.4 records structural information such as form action, method, identifier, name and the number of controls contained in the form. It also counts page inputs, selects and textareas at a page level.</p>
+          <div class="note"><strong>Form values</strong>The reviewed implementation does not read or store the current values typed into form controls as part of the PageData form summary. The form inspection is structural rather than a form-content capture feature.</div>
+        </div>
+      </article>
+
+      <article class="policy-section">
+        <div class="section-kicker">06 · Links</div>
+        <div class="section-copy">
+          <h2>Link Inspection and Filtering</h2>
+          <p>The Links view reads anchor elements from the inspected webpage so users can review destinations without manually collecting them one by one.</p>
+          <p>For a link, PageData may process the visible anchor text, resolved destination URL, original href value, relationship attributes and interaction-related properties such as whether the link is internal, external or another link type, whether it declares <code>nofollow</code>, <code>sponsored</code> or <code>ugc</code>, whether it opens in a new tab, and whether it is marked for download.</p>
+          <p>The Side Panel can filter links by category and can optionally deduplicate the displayed list by URL. These filtering operations happen locally on the current snapshot.</p>
+          <p>Choosing Copy shown or Copy selected writes the requested link information to the clipboard only after a user action.</p>
+        </div>
+      </article>
+
+      <article class="policy-section">
+        <div class="section-kicker">07 · Media and files</div>
+        <div class="section-copy">
+          <h2>Images, Embedded Media, and File Links</h2>
+          <p>The Media view inspects page elements and relevant links to summarize media and file resources referenced by the current document.</p>
+          <p>For images, PageData may process image URLs, filenames, declared and natural dimensions, loading information, whether an alt attribute exists, and the alt text when provided by the page. This allows the interface to distinguish images with alt text, empty alt attributes and missing alt attributes.</p>
+          <p>The extension can also list referenced video, audio and iframe sources, together with limited element details such as dimensions or iframe title when available. Downloadable file links may be identified from their URLs and file extensions.</p>
+          <p>Media URLs shown in the Side Panel remain references to resources used by the webpage. PageData does not upload those media resources to a developer-operated server.</p>
+        </div>
+      </article>
+
+      <article class="policy-section">
+        <div class="section-kicker">08 · Technical data</div>
+        <div class="section-copy">
+          <h2>Document, Resource, and Performance Information</h2>
+          <p>The Technical view collects commonly useful document and resource information exposed by the page and browser. This can include document URL and origin, protocol, doctype, viewport declaration and size, referrer, base URL, favicon and theme color.</p>
+          <p>PageData can list referenced external JavaScript files and linked stylesheets, together with selected attributes such as script type, async or defer state and stylesheet media declarations. It can also inspect preload and prefetch resource hints declared by the page.</p>
+          <p>The extension reads meta tags present in the document and can summarize browser Performance API resource entries by resource type. When navigation timing is available, PageData may display navigation type, negotiated protocol, DOM-content-loaded timing, load-event timing and transfer/body-size values exposed by the browser.</p>
+          <p>These technical details are intended for quick inspection and context. PageData does not claim to replace Chrome DevTools, a network proxy, or a remote performance-monitoring service.</p>
+        </div>
+      </article>
+
+      <article class="policy-section">
+        <div class="section-kicker">09 · Search and selection</div>
+        <div class="section-copy">
+          <h2>Search, Filters, and Selected Fields</h2>
+          <p>PageData lets users search the current inspection result, switch between data views, filter link categories, deduplicate displayed links and select individual fields or rows for copying.</p>
+          <p>Search text entered into the PageData interface is used locally to match already-inspected data in the Side Panel. It is not sent to a developer-operated search service.</p>
+          <p>The set of currently selected fields exists as interface state for the current PageData session. Selection is used to determine what should be copied when the user chooses Copy selected.</p>
+          <p>Changing tabs, filters or selection state does not create a developer-maintained user profile or remote activity record.</p>
+        </div>
+      </article>
+
+      <article class="policy-section">
+        <div class="section-kicker">10 · Clipboard</div>
+        <div class="section-copy">
+          <h2>Copy Actions and Clipboard Handling</h2>
+          <p>PageData provides explicit copy controls for individual fields, sections, visible links, selected fields and page-level output. When the user activates one of these controls, the extension formats the requested data and writes the resulting text to the system clipboard using the browser clipboard interface.</p>
+          <p>Available output formats in version 1.0.4 include Key: Value, Plain text, Markdown, JSON and CSV. Formatting is performed locally inside the extension.</p>
+          <p>PageData does not continuously monitor clipboard contents and does not use copied output as a source of analytics or advertising data.</p>
+          <p>After copying, the extension may display a brief local confirmation such as Copied or a selected-item count. That notification does not represent a network transmission.</p>
+        </div>
+      </article>
+
+      <article class="policy-section">
+        <div class="section-kicker">11 · Export</div>
+        <div class="section-copy">
+          <h2>User-Initiated JSON Export</h2>
+          <p>PageData can export the current inspected snapshot as a JSON file when the user explicitly chooses the Export action.</p>
+          <p>In version 1.0.4, the export is created locally in the browser from the in-memory PageData snapshot using a browser Blob and object URL. The resulting file is offered through the normal browser download mechanism.</p>
+          <p>The export action does not upload the snapshot to a PageData server. Once a user saves or shares an exported file outside the extension, handling of that file is controlled by the user, the operating system and any destination application or service chosen by the user.</p>
+          <div class="note"><strong>User control</strong>Export is an explicit action. PageData does not automatically create a library of exported page snapshots in the background.</div>
+        </div>
+      </article>
+
+      <article class="policy-section">
+        <div class="section-kicker">12 · Local storage</div>
+        <div class="section-copy">
+          <h2>Locally Stored Interface Preferences</h2>
+          <p>PageData uses <code>chrome.storage.local</code> for a small set of interface preferences so the Side Panel can restore the user&apos;s chosen experience between sessions.</p>
+          <p>Version 1.0.4 stores:</p>
+          <ul>
+            <li>the selected PageData theme preference; and</li>
+            <li>the selected copy-format preference.</li>
+          </ul>
+          <p>The reviewed implementation does not use <code>chrome.storage.local</code> to save the full inspected page snapshot, a list of inspected URLs, extracted page text, link inventories, media inventories or exported JSON content.</p>
+          <div class="note"><strong>What local storage is for</strong>Local storage is used for UI preferences, not as an inspection-history database.</div>
+        </div>
+      </article>
+
+      <article class="policy-section">
+        <div class="section-kicker">13 · Website access</div>
+        <div class="section-copy">
+          <h2>HTTP and HTTPS Page Access</h2>
+          <p>PageData declares host access for ordinary <code>http://</code> and <code>https://</code> webpages because its core function requires reading the DOM of the webpage the user is inspecting.</p>
+          <p>When the Side Panel needs a snapshot, the extension uses its packaged inspection function in the active supported page. That function reads the page information described in this policy and returns the result to the PageData Side Panel.</p>
+          <p>This access is not used to build a developer-operated browsing-history database. PageData version 1.0.4 does not transmit inspected URLs or extracted DOM data to a developer backend.</p>
+          <p>PageData does not declare access for unrelated non-web protocols merely to bypass Chrome&apos;s normal page protections.</p>
+        </div>
+      </article>
+
+      <article class="policy-section">
+        <div class="section-kicker">14 · Permissions</div>
+        <div class="section-copy">
+          <h2>Chrome Permissions and Protected Pages</h2>
+          <p>PageData version 1.0.4 declares the <code>sidePanel</code>, <code>scripting</code> and <code>storage</code> permissions, together with host permissions for HTTP and HTTPS webpages.</p>
+          <ul>
+            <li><strong>sidePanel</strong> is used to provide the persistent PageData inspection interface beside the active webpage.</li>
+            <li><strong>scripting</strong> is used to execute the packaged inspection function in a supported active webpage when PageData needs page data.</li>
+            <li><strong>storage</strong> is used for the limited local theme and copy-format preferences described above.</li>
+            <li><strong>HTTP/HTTPS host access</strong> allows PageData to inspect ordinary webpages where the browser permits extension scripting.</li>
+          </ul>
+          <p>Chrome restricts extension scripting on protected surfaces such as many <code>chrome://</code> pages and Chrome Web Store pages. PageData respects those restrictions and presents an unavailable or protected-page state instead of attempting to bypass Chrome&apos;s security boundary.</p>
+        </div>
+      </article>
+
+      <article class="policy-section">
+        <div class="section-kicker">15 · Network behavior</div>
+        <div class="section-copy">
+          <h2>Network Requests, Remote Code, and Backend Services</h2>
+          <p>The reviewed PageData 1.0.4 package does not include a developer-operated backend service, analytics service, advertising SDK, or remote executable script used for its inspection features.</p>
+          <p>Scanning, classification, filtering, formatting, copying and JSON-export preparation are performed locally by code included with the extension package.</p>
+          <p>The reviewed implementation does not contain a developer-configured endpoint for uploading inspected page titles, URLs, visible text, metadata, headings, links, media details, technical resource lists or exported snapshots.</p>
+          <p>The inspected webpage itself, Chrome, the Chrome Web Store and other browser components may independently make network requests for their own purposes. Those requests are controlled by the relevant website or platform and are outside PageData&apos;s own data practices.</p>
+        </div>
+      </article>
+
+      <article class="policy-section">
+        <div class="section-kicker">16 · Data not collected</div>
+        <div class="section-copy">
+          <h2>Advertising, Tracking, Sharing, and Information Not Intentionally Collected</h2>
+          <p>PageData version 1.0.4 does not display advertising and does not include an advertising SDK, behavioral analytics SDK, session-replay service, tracking pixel or developer-operated profiling system.</p>
+          <p>The extension is not designed to intentionally collect or maintain for the developer:</p>
+          <ul>
+            <li>names, email addresses, telephone numbers, postal addresses or PageData user accounts;</li>
+            <li>passwords, authentication credentials, payment details or financial information;</li>
+            <li>cookies or browser authentication tokens;</li>
+            <li>current values typed into webpage form controls as part of its form summary;</li>
+            <li>a persistent developer-maintained history of inspected pages or visited URLs;</li>
+            <li>a cloud archive of visible page text, metadata, link lists, media lists or technical snapshots;</li>
+            <li>advertising identifiers, demographic profiles or behavioral marketing segments.</li>
+          </ul>
+          <p>Because the reviewed build does not send inspected page snapshots to a PageData backend, the developer does not maintain a remote PageData dataset of those snapshots for sale, advertising, analytics or data-broker sharing.</p>
+        </div>
+      </article>
+
+      <article class="policy-section">
+        <div class="section-kicker">17 · Retention and security</div>
+        <div class="section-copy">
+          <h2>Retention, Removal, and Privacy-Oriented Design</h2>
+          <p>The active inspection snapshot is held as PageData Side Panel state so the current data can be displayed, searched, selected, copied and exported. It is not written by version 1.0.4 to local extension storage as a persistent inspection history.</p>
+          <p>Theme and copy-format preferences can remain in <code>chrome.storage.local</code> so they can be restored in a later session. Users can remove extension-local data through Chrome&apos;s extension controls or by uninstalling PageData, subject to Chrome&apos;s own storage and deletion behavior.</p>
+          <p>PageData reduces unnecessary data exposure by keeping inspection and formatting local, avoiding a developer-operated inspection backend, limiting persistent storage to interface preferences, and honoring browser-protected pages.</p>
+          <p>No software can eliminate every privacy or security risk. Users should review data before intentionally copying it to the clipboard, exporting it to a file, or sharing it with another application or service, because those user-directed destinations are outside PageData&apos;s control.</p>
+        </div>
+      </article>
+
+      <article class="policy-section">
+        <div class="section-kicker">18 · Changes and contact</div>
+        <div class="section-copy">
+          <h2>Policy Changes and Contact</h2>
+          <p>This Privacy Policy may be revised when PageData&apos;s implementation or data practices change. Examples that may require a meaningful update include adding new permissions, introducing a backend service, transmitting inspected page data, storing inspection history, adding analytics, changing the categories of page information read, or materially changing export or local-storage behavior.</p>
+          <p>Future versions should be reviewed against the actual PageData implementation rather than assuming that behavior described for version 1.0.4 remains unchanged indefinitely. Material revisions should include an updated effective date and version coverage where appropriate.</p>
+          <p>Questions about this Privacy Policy or the privacy behavior of PageData may be sent to <a href="mailto:thanhthuc284917@gmail.com" style="color:#d8d2ff;font-weight:750">thanhthuc284917@gmail.com</a>.</p>
+          <p>When contacting support about privacy or extension behavior, users do not need to provide passwords, authentication tokens, private form values or other sensitive content. A description of the issue, the relevant PageData version and a non-sensitive example are generally sufficient.</p>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-main">
+      <div class="footer-brand">
+        <a class="footer-lockup" href="../../" aria-label="Thanh Thuc home">
+          <img class="footer-logo" src="../../assets/thanh-thuc-logo.png" alt="Thanh Thuc logo">
+          <div><h3>Thanh Thuc</h3><span>Independent Developer</span></div>
+        </a>
+        <p>Independent developer building practical, thoughtful digital products with a focus on clarity, usefulness, privacy-conscious decisions, and purposeful interaction design.</p>
+      </div>
+      <div class="footer-nav">
+        <div class="footer-col"><strong>Explore</strong><a href="../../">Home</a><a href="../../app/">Apps</a><a href="../">Privacy</a></div>
+        <div class="footer-col"><strong>Contact</strong><a href="mailto:thanhthuc284917@gmail.com">Email</a><a href="mailto:thanhthuc284917@gmail.com?subject=Product%20Support">Support</a><a href="mailto:thanhthuc284917@gmail.com?subject=Privacy%20Inquiry">Privacy inquiry</a></div>
+      </div>
+    </div>
+    <div class="footer-bottom"><span>© <span id="year"></span> Thanh Thuc. All rights reserved.</span><span>Independent software &amp; digital product development.</span></div>
+  </div>
+</footer>
+<script>document.getElementById("year").textContent=new Date().getFullYear();</script>
+
+<script>
+(() => {
+  const sections = document.querySelectorAll(".policy-section");
+  const progressBar = document.querySelector(".policy-progress-bar");
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (reducedMotion) {
+    sections.forEach(section => section.classList.add("is-visible"));
+  } else {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.08,
+      rootMargin: "0px 0px -8% 0px"
+    });
+
+    sections.forEach(section => observer.observe(section));
+  }
+
+  const updateProgress = () => {
+    if (!progressBar) return;
+
+    const documentElement = document.documentElement;
+    const scrollable = documentElement.scrollHeight - window.innerHeight;
+    const progress = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
+
+    progressBar.style.width = `${Math.min(100, Math.max(0, progress))}%`;
+  };
+
+  updateProgress();
+  window.addEventListener("scroll", updateProgress, { passive: true });
+  window.addEventListener("resize", updateProgress, { passive: true });
+})();
+</script>
+
+</body>
+</html>
