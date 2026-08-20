@@ -2451,6 +2451,284 @@
         grid-template-columns: 1fr;
       }
     }
+
+
+    /* v7: Links map geometry + smooth GPU-only motion */
+    .link-map {
+      min-height: 300px;
+      isolation: isolate;
+      contain: layout paint;
+    }
+
+    .link-map::before,
+    .link-map::after {
+      display: none !important;
+    }
+
+    .link-connectors {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+      overflow: visible;
+    }
+
+    .link-wire {
+      fill: none;
+      stroke: url(#linkWireGradient);
+      stroke-width: 1.35;
+      vector-effect: non-scaling-stroke;
+      stroke-linecap: round;
+      opacity: .78;
+    }
+
+    .link-hub {
+      width: 118px;
+      height: 118px;
+      left: 50%;
+      top: 50%;
+      transform: translate3d(-50%, -50%, 0);
+      border-color: rgba(94, 153, 255, .42);
+      background: radial-gradient(circle at 50% 35%, rgba(52, 102, 182, .44), rgba(24, 55, 101, .52));
+      box-shadow: 0 0 0 18px rgba(78,136,255,.03), 0 18px 44px rgba(0,0,0,.22);
+      z-index: 3;
+    }
+
+    .link-hub-core {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transform: translateZ(0);
+      will-change: transform;
+      animation: none;
+    }
+
+    .link-hub strong {
+      display: block;
+      margin: 0;
+      font-size: 29px;
+      line-height: 1;
+      letter-spacing: -.04em;
+    }
+
+    .link-hub span {
+      display: block;
+      margin: 0;
+      color: #8ca7c9;
+      font-size: 9px;
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: .18em;
+      white-space: nowrap;
+    }
+
+    .link-node {
+      width: 126px;
+      min-width: 126px;
+      min-height: 72px;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      box-shadow: none;
+      animation: none !important;
+      z-index: 3;
+    }
+
+    .link-node.one   { left: 7.5%;  top: 15%; }
+    .link-node.two   { right: 7.5%; top: 15%; }
+    .link-node.three { left: 10%;   bottom: 14%; }
+    .link-node.four  { right: 10%;  bottom: 14%; }
+
+    .link-node-body {
+      width: 100%;
+      min-height: 72px;
+      padding: 11px 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      border: 1px solid rgba(255,255,255,.095);
+      border-radius: 999px;
+      background: rgba(16,31,50,.94);
+      box-shadow: 0 14px 34px rgba(0,0,0,.17);
+      transform: translate3d(0,0,0);
+      will-change: transform;
+      backface-visibility: hidden;
+      animation-play-state: paused;
+    }
+
+    .link-node-body strong {
+      display: block;
+      font-size: 16px;
+      line-height: 1.05;
+    }
+
+    .link-node-body span {
+      color: #7f97b4;
+      font-size: 10px;
+      line-height: 1.2;
+      white-space: nowrap;
+    }
+
+    .link-map.motion-active .link-hub-core {
+      animation: linkHubBreath 5.8s ease-in-out infinite;
+    }
+    .link-map.motion-active .link-node.one .link-node-body {
+      animation: linkDriftA 6.8s ease-in-out infinite;
+    }
+    .link-map.motion-active .link-node.two .link-node-body {
+      animation: linkDriftB 7.4s ease-in-out -1.7s infinite;
+    }
+    .link-map.motion-active .link-node.three .link-node-body {
+      animation: linkDriftC 7.1s ease-in-out -3.2s infinite;
+    }
+    .link-map.motion-active .link-node.four .link-node-body {
+      animation: linkDriftD 7.8s ease-in-out -2.4s infinite;
+    }
+
+    @keyframes linkHubBreath {
+      0%, 100% { transform: translate3d(0,0,0) scale(1); }
+      50% { transform: translate3d(0,-1px,0) scale(1.018); }
+    }
+    @keyframes linkDriftA {
+      0%, 100% { transform: translate3d(0,0,0); }
+      35% { transform: translate3d(3px,-4px,0); }
+      68% { transform: translate3d(-2px,2px,0); }
+    }
+    @keyframes linkDriftB {
+      0%, 100% { transform: translate3d(0,0,0); }
+      38% { transform: translate3d(-3px,-3px,0); }
+      72% { transform: translate3d(2px,3px,0); }
+    }
+    @keyframes linkDriftC {
+      0%, 100% { transform: translate3d(0,0,0); }
+      42% { transform: translate3d(3px,3px,0); }
+      74% { transform: translate3d(-2px,-2px,0); }
+    }
+    @keyframes linkDriftD {
+      0%, 100% { transform: translate3d(0,0,0); }
+      34% { transform: translate3d(-3px,4px,0); }
+      69% { transform: translate3d(2px,-2px,0); }
+    }
+
+    /* v7: Technical terminal keeps the scan aesthetic without layout/repaint-heavy animation. */
+    .tech-terminal {
+      position: relative;
+      overflow: hidden;
+      contain: paint;
+      isolation: isolate;
+      transform: translateZ(0);
+    }
+
+    .tech-terminal::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+      height: auto;
+      background:
+        linear-gradient(
+          to bottom,
+          transparent 0%,
+          transparent 48.6%,
+          rgba(104, 220, 210, .38) 49.8%,
+          rgba(104, 220, 210, .72) 50%,
+          rgba(104, 220, 210, .22) 50.4%,
+          transparent 51.6%,
+          transparent 100%
+        );
+      opacity: .72;
+      transform: translate3d(0,-100%,0);
+      will-change: transform;
+      animation: techScanGpu 7.8s linear infinite;
+      animation-play-state: paused;
+    }
+
+    .tech-terminal.motion-active::after {
+      animation-play-state: running;
+    }
+
+    @keyframes techScanGpu {
+      0%   { transform: translate3d(0,-100%,0); }
+      72%  { transform: translate3d(0,100%,0); }
+      100% { transform: translate3d(0,100%,0); }
+    }
+
+    /* v7: Technical cards balance the terminal above and screenshot below. */
+    #technical .technical-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+      max-width: none !important;
+      gap: 16px;
+    }
+
+    #technical .technical-card {
+      min-height: 148px;
+    }
+
+    @media (max-width: 1100px) {
+      #technical .technical-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .link-map {
+        min-height: 320px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      #technical .technical-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .link-map {
+        min-height: 430px;
+      }
+
+      .link-connectors {
+        display: none;
+      }
+
+      .link-hub {
+        width: 104px;
+        height: 104px;
+      }
+
+      .link-node.one,
+      .link-node.two,
+      .link-node.three,
+      .link-node.four {
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+      }
+      .link-node.one { top: 5%; }
+      .link-node.two { top: 24%; }
+      .link-node.three { bottom: 24%; }
+      .link-node.four { bottom: 5%; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .link-hub-core,
+      .link-node-body {
+        animation: none !important;
+        transform: none;
+      }
+      .tech-terminal::after {
+        animation: none !important;
+        opacity: 0 !important;
+      }
+    }
+
 </style>
 </head>
 <body>
@@ -2705,11 +2983,24 @@
         </p>
       </div>
       <div class="link-map reveal" aria-label="Conceptual map of PageData link groups">
-        <div class="link-hub"><div><strong>Links</strong><span>page map</span></div></div>
-        <div class="link-node one"><div><strong>Internal</strong><span>same site</span></div></div>
-        <div class="link-node two"><div><strong>External</strong><span>other sites</span></div></div>
-        <div class="link-node three"><div><strong>Other</strong><span>mailto / tel / files</span></div></div>
-        <div class="link-node four"><div><strong>Unique</strong><span>deduplicate URLs</span></div></div>
+        <svg class="link-connectors" viewBox="0 0 1000 360" preserveAspectRatio="none" aria-hidden="true">
+          <defs>
+            <linearGradient id="linkWireGradient" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#4f8cff" stop-opacity=".18"/>
+              <stop offset=".5" stop-color="#6ba4ff" stop-opacity=".64"/>
+              <stop offset="1" stop-color="#66d8d1" stop-opacity=".22"/>
+            </linearGradient>
+          </defs>
+          <path class="link-wire" d="M500 180 C410 165 316 120 185 92"/>
+          <path class="link-wire" d="M500 180 C590 165 684 120 815 92"/>
+          <path class="link-wire" d="M500 180 C408 202 320 242 200 270"/>
+          <path class="link-wire" d="M500 180 C592 202 680 242 800 270"/>
+        </svg>
+        <div class="link-hub"><div class="link-hub-core"><strong>Links</strong><span>Page map</span></div></div>
+        <div class="link-node one"><div class="link-node-body"><strong>Internal</strong><span>same site</span></div></div>
+        <div class="link-node two"><div class="link-node-body"><strong>External</strong><span>other sites</span></div></div>
+        <div class="link-node three"><div class="link-node-body"><strong>Other</strong><span>mailto / tel / files</span></div></div>
+        <div class="link-node four"><div class="link-node-body"><strong>Unique</strong><span>deduplicate URLs</span></div></div>
       </div>
     </div>
     <div class="link-action-strip reveal" aria-label="Link actions">
@@ -2984,6 +3275,21 @@
       );
 
       revealItems.forEach((item) => observer.observe(item));
+
+      const motionTargets = document.querySelectorAll(".link-map, .tech-terminal");
+      const motionObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            entry.target.classList.toggle("motion-active", entry.isIntersecting);
+          });
+        },
+        {
+          threshold: 0.12,
+          rootMargin: "90px 0px 90px 0px"
+        }
+      );
+
+      motionTargets.forEach((item) => motionObserver.observe(item));
     })();
   </script>
 </body>
