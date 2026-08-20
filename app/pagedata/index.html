@@ -1781,13 +1781,11 @@
 <div class="split-copy reveal">
 <div class="technical-grid">
 <div class="technical-card"><span>DOCUMENT</span><strong>Document details</strong><p>Doctype, viewport, language, charset and other document-level values.</p></div>
-<div class="technical-card"><span>TIMING</span><strong>Navigation timing</strong><p>A lightweight view of timing information available from the current navigation.</p></div>
 <div class="technical-card"><span>RESOURCES</span><strong>Resource counts</strong><p>See high-level counts by resource type rather than manually scanning network entries.</p></div>
 <div class="technical-card"><span>SCRIPTS</span><strong>JavaScript files</strong><p>Collect script resource URLs found by the current page inspection.</p></div>
 <div class="technical-card"><span>STYLES</span><strong>Stylesheets</strong><p>Inspect stylesheet resources referenced by the document.</p></div>
 <div class="technical-card"><span>HINTS</span><strong>Preload &amp; prefetch</strong><p>See resource hints that the page declares for loading behavior.</p></div>
 <div class="technical-card"><span>META</span><strong>Meta tags</strong><p>Review the broader meta collection beyond the most common SEO fields.</p></div>
-<div class="technical-card"><span>DOM</span><strong>DOM context</strong><p>Use page-level element counts as a quick signal of document size and structure.</p></div>
 </div>
 </div>
 <figure class="reveal">
@@ -1847,6 +1845,10 @@
 <article class="privacy-item reveal">
 <div class="privacy-item-head"><strong>Only UI preferences are stored locally</strong><span class="privacy-badge">LOCAL</span></div>
 <p><code>chrome.storage.local</code> is used for preferences such as the selected theme and copy format.</p>
+</article>
+<article class="privacy-item reveal">
+<div class="privacy-item-head"><strong>No page inspection history is stored</strong><span class="privacy-badge">SESSION</span></div>
+<p>The active inspection snapshot stays in the Side Panel session and is not written to <code>chrome.storage.local</code>. A file is created only when you explicitly choose to export the current snapshot.</p>
 </article>
 <article class="privacy-item reveal">
 <div class="privacy-item-head"><strong>Protected Chrome pages stay protected</strong><span class="privacy-badge">CHROME</span></div>
