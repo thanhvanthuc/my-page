@@ -1,387 +1,2277 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Privacy Policy — KeyPulse Studio</title>
-<meta name="description" content="Privacy Policy for KeyPulse Studio, version 1.4.0, covering keyboard-event processing, local preferences, live session metrics, animation settings, Arcade scores, permissions, and data handling.">
-<meta name="theme-color" content="#070b13">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="PageData is a local-first Chrome Side Panel extension for inspecting, filtering, copying and exporting page metadata, SEO, content, links, media and technical data." name="description"/>
+<meta content="#07111f" name="theme-color"/>
+<title>PageData — Inspect, Copy &amp; Export Page Data</title>
 <style>
-:root{--bg:#070b13;--bg2:#0b111d;--text:#f7f9fd;--muted:#9ea9bc;--muted2:#7d889b;--line:rgba(255,255,255,.085);--purple:#7d68ff;--purple2:#a18dff;--cyan:#57d8ca;--max:1180px}
-*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{min-height:100vh;color:var(--text);font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.68;background:radial-gradient(circle at 10% 0%,rgba(125,104,255,.16),transparent 28%),radial-gradient(circle at 90% 12%,rgba(87,216,202,.07),transparent 24%),linear-gradient(180deg,#0a0f1a 0%,var(--bg) 100%)}a{color:inherit;text-decoration:none}img{display:block;max-width:100%}.container{width:min(calc(100% - 40px),var(--max));margin:0 auto}
-.site-header{position:sticky;top:0;z-index:100;border-bottom:1px solid rgba(255,255,255,.07);background:rgba(7,11,19,.76);backdrop-filter:blur(18px)}.navbar{min-height:78px;display:flex;align-items:center;justify-content:space-between;gap:28px}.brand{display:inline-flex;align-items:center;gap:12px}.brand-logo{width:44px;height:44px;border-radius:14px;border:1px solid rgba(255,255,255,.1);box-shadow:0 12px 30px rgba(125,104,255,.2)}.brand-copy{display:flex;flex-direction:column;gap:2px}.brand-copy strong{font-size:18px;line-height:1.15;letter-spacing:-.03em}.brand-copy span{color:var(--muted2);font-size:10px;letter-spacing:.13em;text-transform:uppercase}.nav-links{display:flex;align-items:center;gap:24px}.nav-links a{color:var(--muted);font-size:14px}.nav-links a:hover,.nav-links a[aria-current=page]{color:white}.nav-cta{padding:10px 16px;border:1px solid var(--line);border-radius:12px;color:white!important;background:rgba(255,255,255,.05)}
-.hero{padding:94px 0 78px;border-bottom:1px solid rgba(255,255,255,.05)}.hero-inner{max-width:920px}.doc-label{margin-bottom:18px;color:var(--cyan);font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase}h1{max-width:900px;font-size:clamp(52px,7vw,88px);line-height:.98;letter-spacing:-.065em}.lead{max-width:780px;margin-top:26px;color:var(--muted);font-size:18px}.hero-meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}.meta-pill{padding:8px 11px;border:1px solid var(--line);border-radius:999px;color:#d8d2ff;background:rgba(125,104,255,.07);font-size:12px}
-.summary{padding:34px 0 92px}.summary-card{padding:26px 28px;border:1px solid var(--line);border-radius:24px;background:rgba(255,255,255,.04)}.summary-card strong{display:block;margin-bottom:8px;color:#d8d2ff;font-size:14px}.summary-card p{max-width:900px;color:var(--muted);font-size:15px}
-.policy-wrap{position:relative;padding:8px 0 118px;overflow:hidden}
-.policy-wrap:before{content:"";position:absolute;left:50%;top:0;width:min(760px,78vw);height:520px;transform:translateX(-50%);pointer-events:none;background:radial-gradient(circle,rgba(125,104,255,.08),transparent 68%);filter:blur(14px);opacity:.7}
-.policy-shell{position:relative;width:min(calc(100% - 40px),var(--max));margin:0 auto}
-.policy-topline{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:42px;padding-bottom:18px;border-bottom:1px solid var(--line)}
-.policy-topline a{display:inline-flex;align-items:center;gap:8px;color:#d8d2ff;font-size:13px;font-weight:750}
-.policy-topline span{color:var(--muted2);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
-.policy-content{min-width:0;width:100%;margin:0}
-.policy-section{position:relative;padding:42px 0 46px;border-bottom:1px solid var(--line);opacity:0;transform:translateY(24px);transition:opacity .65s ease,transform .65s ease}
-.policy-section.is-visible{opacity:1;transform:none}
-.policy-section:last-child{border-bottom:0}
-.section-kicker{display:inline-flex;align-items:center;gap:10px;margin-bottom:16px;color:var(--purple2);font-size:11px;font-weight:850;letter-spacing:.14em;text-transform:uppercase}
-.section-kicker:before{content:"";width:28px;height:1px;background:linear-gradient(90deg,var(--purple2),var(--cyan))}
-.section-copy h2{max-width:none;margin-bottom:18px;font-size:clamp(31px,4vw,46px);line-height:1.08;letter-spacing:-.045em}
-.section-copy p,.section-copy ul{max-width:none;color:var(--muted);font-size:15.5px}
-.section-copy p+p{margin-top:15px}
-.section-copy ul{margin-top:15px;padding-left:22px}
-.section-copy li+li{margin-top:8px}
-.note{max-width:none;margin-top:24px;padding:20px 22px;border:1px solid rgba(87,216,202,.14);border-radius:18px;background:linear-gradient(180deg,rgba(87,216,202,.065),rgba(87,216,202,.035));color:#b9c6c8;font-size:13.5px}
-.note strong{display:block;margin-bottom:6px;color:#d8e6e4}
-.policy-progress{position:fixed;left:0;top:78px;z-index:90;width:100%;height:2px;pointer-events:none;background:rgba(255,255,255,.025)}
-.policy-progress-bar{width:0;height:100%;background:linear-gradient(90deg,var(--purple2),var(--cyan));transition:width .12s linear}
-@media(max-width:760px){.policy-shell{width:min(calc(100% - 28px),var(--max))}.policy-content{width:100%}.policy-topline{align-items:flex-start;flex-direction:column;margin-bottom:28px}.policy-section{padding:34px 0 38px}.section-copy h2{font-size:clamp(28px,9vw,40px)}}
-@media(prefers-reduced-motion:reduce){.policy-section{opacity:1;transform:none;transition:none}.policy-progress-bar{transition:none}}
+    :root {
+      --bg: #07111f;
+      --bg-deep: #050b14;
+      --bg-soft: #0b1727;
+      --surface: #0f1c2e;
+      --surface-2: #122238;
+      --surface-3: #172a43;
+      --light: #f4f8fc;
+      --light-2: #edf4fa;
+      --ink: #142033;
+      --ink-soft: #5d6b7e;
+      --text: #f5f9ff;
+      --muted: #9dafc4;
+      --muted-2: #74869e;
+      --blue: #4e88ff;
+      --blue-2: #72a6ff;
+      --cyan: #45d7d2;
+      --green: #54d69b;
+      --amber: #f3c66f;
+      --red: #ff7b82;
+      --line: rgba(255, 255, 255, 0.095);
+      --line-strong: rgba(114, 166, 255, 0.26);
+      --shadow: 0 32px 90px rgba(0, 0, 0, 0.34);
+      --shadow-soft: 0 22px 64px rgba(24, 47, 76, 0.13);
+      --radius-xl: 34px;
+      --radius-lg: 26px;
+      --radius-md: 18px;
+      --radius-sm: 13px;
+      --max: 1180px;
+    }
 
-.site-footer{padding:48px 0 28px;border-top:1px solid rgba(255,255,255,.07);background:#060a12}.footer-main{display:grid;grid-template-columns:1.2fr .8fr;gap:70px;padding-bottom:34px}.footer-lockup{display:inline-flex;align-items:center;gap:15px;margin-bottom:16px}.footer-logo{width:56px;height:56px;border-radius:17px;border:1px solid rgba(255,255,255,.1);box-shadow:0 14px 34px rgba(125,104,255,.16)}.footer-lockup h3{font-size:24px}.footer-lockup span{color:var(--muted2);font-size:11px;letter-spacing:.12em;text-transform:uppercase}.footer-brand p{max-width:560px;color:var(--muted);font-size:14px}.footer-nav{display:grid;grid-template-columns:1fr 1fr;gap:34px}.footer-col strong{display:block;margin-bottom:12px;color:#d8d2ff;font-size:13px;letter-spacing:.1em;text-transform:uppercase}.footer-col a{display:block;width:fit-content;margin-bottom:8px;color:var(--muted);font-size:14px}.footer-bottom{padding-top:24px;display:flex;justify-content:space-between;gap:20px;border-top:1px solid rgba(255,255,255,.07);color:var(--muted2);font-size:13px}
-@media(max-width:980px){.footer-main{grid-template-columns:1fr}}@media(max-width:760px){.container{width:min(calc(100% - 28px),var(--max))}.nav-links a:not(.nav-cta){display:none}.brand-copy span{display:none}.hero{padding:74px 0 62px}.footer-nav{grid-template-columns:1fr}.footer-bottom{flex-direction:column}}
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-@media (min-width:981px){
-  .hero-inner{
-    max-width:none;
-    padding-left:0;
-    padding-right:0;
-  }
-  .summary>.container{
-    padding-left:0;
-    padding-right:0;
-  }
-  .summary-card{
-    width:100%;
-    max-width:none;
-  }
-}
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 96px;
+    }
 
-</style>
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+      color: var(--text);
+      font-family:
+        Inter,
+        ui-sans-serif,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+      line-height: 1.65;
+      background:
+        radial-gradient(circle at 10% -8%, rgba(78, 136, 255, 0.22), transparent 28%),
+        radial-gradient(circle at 92% 12%, rgba(69, 215, 210, 0.09), transparent 22%),
+        var(--bg);
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -20;
+      pointer-events: none;
+      opacity: 0.2;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.026) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.026) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: linear-gradient(to bottom, black 0%, transparent 82%);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    code {
+      font-family:
+        "SFMono-Regular",
+        Consolas,
+        "Liberation Mono",
+        Menlo,
+        monospace;
+    }
+
+    .container {
+      width: min(calc(100% - 40px), var(--max));
+      margin: 0 auto;
+    }
+
+    .section {
+      position: relative;
+      padding: 112px 0;
+    }
+
+    .section-soft {
+      background:
+        radial-gradient(circle at 100% 0%, rgba(78, 136, 255, 0.07), transparent 30%),
+        var(--bg-soft);
+      border-top: 1px solid rgba(255, 255, 255, 0.045);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.045);
+    }
+
+    .section-light {
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 8% 0%, rgba(78, 136, 255, 0.1), transparent 30%),
+        radial-gradient(circle at 95% 100%, rgba(69, 215, 210, 0.11), transparent 26%),
+        var(--light);
+    }
+
+    .section-heading {
+      max-width: 820px;
+      margin-bottom: 54px;
+    }
+
+    .section-heading.center {
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 17px;
+      color: #a9c8ff;
+      font-size: 12px;
+      font-weight: 850;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 24px;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--blue), var(--cyan));
+    }
+
+    .section-light .eyebrow {
+      color: #315da8;
+    }
+
+    .section-heading h2,
+    .split-copy h2,
+    .privacy-copy h2,
+    .workflow-copy h2 {
+      margin-bottom: 17px;
+      font-size: clamp(40px, 5.2vw, 64px);
+      line-height: 1.025;
+      letter-spacing: -0.056em;
+    }
+
+    .section-heading p,
+    .split-copy > p,
+    .privacy-copy > p,
+    .workflow-copy > p {
+      max-width: 720px;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .section-light .section-heading p,
+    .section-light .split-copy > p,
+    .section-light .workflow-copy > p {
+      color: var(--ink-soft);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition:
+        opacity 0.62s ease,
+        transform 0.62s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* Header */
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+      background: rgba(5, 11, 20, 0.76);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    .navbar {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .brand-logo {
+      width: 44px;
+      height: 44px;
+      flex: 0 0 44px;
+      object-fit: cover;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 12px 30px rgba(78, 136, 255, 0.18);
+    }
+
+    .brand-copy {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+
+    .brand-copy strong {
+      color: white;
+      font-size: 18px;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+    }
+
+    .brand-copy span {
+      color: var(--muted-2);
+      font-size: 10px;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .nav-links a {
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a[aria-current="page"] {
+      color: white;
+    }
+
+    .nav-cta {
+      padding: 10px 16px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      color: white !important;
+      background: rgba(255, 255, 255, 0.055);
+    }
+
+    /* Hero */
+
+    .hero {
+      position: relative;
+      min-height: 790px;
+      display: flex;
+      align-items: center;
+      padding: 92px 0 98px;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      z-index: -3;
+      width: 650px;
+      height: 650px;
+      left: -220px;
+      top: -260px;
+      border-radius: 50%;
+      background: rgba(78, 136, 255, 0.25);
+      filter: blur(118px);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      z-index: -3;
+      width: 480px;
+      height: 480px;
+      right: -180px;
+      bottom: -120px;
+      border-radius: 50%;
+      background: rgba(69, 215, 210, 0.11);
+      filter: blur(105px);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 70px;
+      align-items: center;
+    }
+
+    .product-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 22px;
+      padding: 8px 12px;
+      border: 1px solid rgba(114, 166, 255, 0.23);
+      border-radius: 999px;
+      color: #c7dcff;
+      background: rgba(78, 136, 255, 0.08);
+      font-size: 12px;
+      font-weight: 820;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .product-kicker::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 14px rgba(84, 214, 155, 0.65);
+    }
+
+    .hero-brand {
+      display: flex;
+      align-items: baseline;
+      gap: 11px;
+      margin-bottom: 20px;
+    }
+
+    .hero-brand strong {
+      font-size: 20px;
+      letter-spacing: -0.03em;
+    }
+
+    .hero-brand span {
+      color: var(--muted-2);
+      font-size: 12px;
+      font-weight: 760;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      max-width: 650px;
+      margin-bottom: 25px;
+      font-size: clamp(54px, 7vw, 84px);
+      line-height: 0.97;
+      letter-spacing: -0.067em;
+    }
+
+    .gradient-text {
+      background: linear-gradient(90deg, #ffffff 0%, #a9caff 48%, #69e2dc 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-copy {
+      max-width: 620px;
+      margin-bottom: 32px;
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .button {
+      min-height: 52px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 0 21px;
+      border: 0;
+      border-radius: 14px;
+      font: inherit;
+      font-weight: 820;
+      cursor: pointer;
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-3px);
+    }
+
+    .button-primary {
+      color: white;
+      background: linear-gradient(135deg, #3c78f2, #5a94ff);
+      box-shadow: 0 16px 42px rgba(50, 111, 228, 0.32);
+    }
+
+    .button-secondary {
+      color: white;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.052);
+    }
+
+    .section-light .button-secondary,
+    .cta-box .button-secondary {
+      color: var(--ink);
+      border-color: rgba(20, 32, 51, 0.12);
+      background: rgba(20, 32, 51, 0.05);
+    }
+
+    .hero-note {
+      margin-top: 18px;
+      color: var(--muted-2);
+      font-size: 13px;
+    }
+
+    .hero-visual {
+      position: relative;
+      min-height: 580px;
+      display: grid;
+      place-items: center;
+    }
+
+    .hero-visual::before {
+      content: "";
+      position: absolute;
+      width: 82%;
+      height: 82%;
+      border-radius: 50%;
+      background: rgba(78, 136, 255, 0.1);
+      filter: blur(60px);
+    }
+
+    .browser-stage {
+      position: relative;
+      width: min(100%, 670px);
+      min-height: 540px;
+      padding: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.11);
+      border-radius: 30px;
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.025)),
+        #0a1422;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      transform: rotate(0.7deg);
+    }
+
+    .browser-stage::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(90deg, transparent, rgba(114, 166, 255, 0.06), transparent);
+      transform: translateX(-120%);
+      animation: scanLine 7s ease-in-out infinite;
+    }
+
+    @keyframes scanLine {
+      0%, 24% { transform: translateX(-120%); }
+      62%, 100% { transform: translateX(120%); }
+    }
+
+    .media-image {
+      width: 100%;
+      height: auto;
+      border-radius: 19px;
+    }
+
+    .media-shell {
+      position: relative;
+      overflow: hidden;
+    }
+.floating-data-card {
+      position: absolute;
+      z-index: 4;
+      padding: 14px 15px;
+      border: 1px solid rgba(255, 255, 255, 0.11);
+      border-radius: 15px;
+      background: rgba(9, 19, 33, 0.93);
+      box-shadow: 0 18px 42px rgba(0, 0, 0, 0.32);
+      backdrop-filter: blur(14px);
+    }
+
+    .floating-data-card strong {
+      display: block;
+      margin-bottom: 3px;
+      font-size: 12px;
+    }
+
+    .floating-data-card span {
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .floating-data-card.card-a {
+      left: -8px;
+      bottom: 58px;
+    }
+
+    .floating-data-card.card-b {
+      right: -10px;
+      top: 58px;
+    }
+
+    /* Value strip */
+
+    .value-strip {
+      border-top: 1px solid rgba(255, 255, 255, 0.07);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+      background: rgba(255, 255, 255, 0.022);
+    }
+
+    .value-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .value-item {
+      min-height: 118px;
+      padding: 25px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-right: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .value-item:last-child {
+      border-right: 0;
+    }
+
+    .value-item strong {
+      margin-bottom: 4px;
+      font-size: 18px;
+      letter-spacing: -0.025em;
+    }
+
+    .value-item span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* Capability map */
+
+    .capability-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .capability-card {
+      min-height: 254px;
+      padding: 27px;
+      border: 1px solid var(--line);
+      border-radius: 23px;
+      background:
+        radial-gradient(circle at 100% 0%, rgba(78, 136, 255, 0.08), transparent 34%),
+        rgba(255, 255, 255, 0.038);
+      transition:
+        transform 0.22s ease,
+        border-color 0.22s ease,
+        background 0.22s ease;
+    }
+
+    .capability-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(114, 166, 255, 0.3);
+      background-color: rgba(255, 255, 255, 0.055);
+    }
+
+    .capability-top {
+      min-height: 58px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .capability-icon {
+      min-width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(114, 166, 255, 0.17);
+      border-radius: 14px;
+      color: #b7d1ff;
+      background: rgba(78, 136, 255, 0.08);
+      font-family: "SFMono-Regular", Consolas, monospace;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .capability-count {
+      color: #607893;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+    }
+
+    .capability-card h3 {
+      margin-bottom: 9px;
+      font-size: 23px;
+      letter-spacing: -0.035em;
+    }
+
+    .capability-card p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* Workflow */
+
+    .workflow-layout {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 68px;
+      align-items: start;
+    }
+
+    .workflow-copy {
+      position: sticky;
+      top: 120px;
+    }
+
+    .workflow-steps {
+      display: grid;
+      gap: 15px;
+    }
+
+    .workflow-step {
+      display: grid;
+      grid-template-columns: 60px 1fr;
+      gap: 18px;
+      padding: 25px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.038);
+    }
+
+    .workflow-index {
+      width: 60px;
+      height: 60px;
+      display: grid;
+      place-items: center;
+      border-radius: 17px;
+      color: #bcd5ff;
+      background: rgba(78, 136, 255, 0.09);
+      font: 800 12px/1 "SFMono-Regular", Consolas, monospace;
+      letter-spacing: 0.08em;
+    }
+
+    .workflow-step h3 {
+      margin-bottom: 6px;
+      font-size: 22px;
+      letter-spacing: -0.03em;
+    }
+
+    .workflow-step p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .workflow-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 13px;
+    }
+
+    .workflow-tag {
+      padding: 5px 8px;
+      border: 1px solid rgba(255, 255, 255, 0.075);
+      border-radius: 999px;
+      color: #8ea4be;
+      background: rgba(255, 255, 255, 0.028);
+      font-size: 10px;
+      font-weight: 750;
+    }
+
+    /* Feature split sections */
+
+    .split-section {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 62px;
+      align-items: center;
+    }
+
+    .split-section.reverse {
+      grid-template-columns: 1.2fr 0.8fr;
+    }
+
+    .split-section.reverse .split-copy {
+      order: 2;
+    }
+
+    .detail-list {
+      display: grid;
+      gap: 13px;
+      margin-top: 28px;
+    }
+
+    .detail-item {
+      display: grid;
+      grid-template-columns: 38px 1fr;
+      gap: 12px;
+      align-items: start;
+    }
+
+    .detail-mark {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 11px;
+      color: #b9d3ff;
+      background: rgba(78, 136, 255, 0.1);
+      font: 850 11px/1 "SFMono-Regular", Consolas, monospace;
+    }
+
+    .section-light .detail-mark {
+      color: #2d5da9;
+      background: rgba(78, 136, 255, 0.1);
+    }
+
+    .detail-item strong {
+      display: block;
+      margin-bottom: 2px;
+      font-size: 15px;
+    }
+
+    .detail-item p {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .section-light .detail-item p {
+      color: var(--ink-soft);
+    }
+
+    .media-frame {
+      position: relative;
+      min-height: 500px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.11);
+      border-radius: 28px;
+      background:
+        radial-gradient(circle at 20% 10%, rgba(78, 136, 255, 0.16), transparent 30%),
+        radial-gradient(circle at 88% 90%, rgba(69, 215, 210, 0.07), transparent 28%),
+        #091523;
+      box-shadow: 0 28px 72px rgba(0, 0, 0, 0.24);
+    }
+
+    .section-light .media-frame {
+      border-color: rgba(20, 32, 51, 0.1);
+      background:
+        radial-gradient(circle at 20% 10%, rgba(78, 136, 255, 0.13), transparent 30%),
+        radial-gradient(circle at 88% 90%, rgba(69, 215, 210, 0.11), transparent 28%),
+        white;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .media-frame .media-shell,
+    .media-frame .media-image,
+.media-frame .media-image {
+      object-fit: cover;
+    }
+
+    .media-caption {
+      margin-top: 12px;
+      color: var(--muted-2);
+      font-size: 12px;
+    }
+
+    .section-light .media-caption {
+      color: #718095;
+    }
+
+    /* Link deep dive */
+
+    .link-feature-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 13px;
+      margin-top: 32px;
+    }
+
+    .link-feature {
+      min-height: 126px;
+      padding: 19px;
+      border: 1px solid var(--line);
+      border-radius: 17px;
+      background: rgba(255, 255, 255, 0.038);
+    }
+
+    .link-feature strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 14px;
+    }
+
+    .link-feature span {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    /* Copy formats */
+
+    .copy-layout {
+      display: grid;
+      grid-template-columns: 0.86fr 1.14fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .copy-copy h2 {
+      max-width: 520px;
+      font-size: clamp(38px, 4.35vw, 54px);
+      line-height: 1.01;
+    }
+
+    .copy-copy > p {
+      max-width: 560px;
+    }
+
+    .format-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 22px;
+    }
+
+    .format-row {
+      display: inline-flex;
+      align-items: center;
+      min-height: 38px;
+      padding: 9px 12px;
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .format-row strong {
+      color: #d4e4ff;
+      font-size: 11px;
+      white-space: nowrap;
+    }
+
+    .copy-actions-compact {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 16px;
+      margin-top: 18px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .copy-actions-compact span {
+      position: relative;
+      padding-left: 15px;
+      color: var(--muted);
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .copy-actions-compact span::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--cyan);
+      transform: translateY(-50%);
+      box-shadow: 0 0 10px rgba(69, 215, 210, 0.28);
+    }
+
+    .format-stage {
+      position: relative;
+      min-height: 460px;
+      padding: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255, 255, 255, 0.11);
+      border-radius: 28px;
+      background:
+        radial-gradient(circle at 100% 0%, rgba(78, 136, 255, 0.13), transparent 34%),
+        #091522;
+      box-shadow: var(--shadow);
+    }
+
+    .format-stage .media-shell {
+      width: 100%;
+      overflow: hidden;
+      border-radius: 18px;
+    }
+
+    .format-stage .media-image {
+      width: 100%;
+      max-height: 520px;
+      min-height: 0;
+      object-fit: contain;
+      border-radius: 18px;
+    }
+
+    /* Technical matrix */
+
+    .technical-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 34px;
+    }
+
+    .technical-card {
+      min-height: 164px;
+      padding: 21px;
+      border: 1px solid rgba(20, 32, 51, 0.1);
+      border-radius: 19px;
+      background: rgba(255, 255, 255, 0.72);
+    }
+
+    .technical-card span {
+      display: inline-block;
+      margin-bottom: 20px;
+      color: #5377ad;
+      font: 800 10px/1 "SFMono-Regular", Consolas, monospace;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .technical-card strong {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 18px;
+      letter-spacing: -0.025em;
+    }
+
+    .technical-card p {
+      color: var(--ink-soft);
+      font-size: 12px;
+    }
+
+    /* Use cases */
+
+    .use-case-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .use-case-card {
+      position: relative;
+      min-height: 270px;
+      padding: 28px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 23px;
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .use-case-card::after {
+      content: "";
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      right: -80px;
+      bottom: -80px;
+      border-radius: 50%;
+      background: rgba(78, 136, 255, 0.07);
+      filter: blur(5px);
+    }
+
+    .use-case-number {
+      display: inline-block;
+      margin-bottom: 50px;
+      color: #6f94c6;
+      font: 850 11px/1 "SFMono-Regular", Consolas, monospace;
+      letter-spacing: 0.1em;
+    }
+
+    .use-case-card h3 {
+      margin-bottom: 9px;
+      font-size: 22px;
+      letter-spacing: -0.03em;
+    }
+
+    .use-case-card p {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* Local-first / permissions */
+
+    .privacy-grid {
+      display: grid;
+      grid-template-columns: 0.82fr 1.18fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+
+    .privacy-actions {
+      margin-top: 26px;
+    }
+
+    .privacy-list {
+      display: grid;
+      gap: 13px;
+    }
+
+    .privacy-item {
+      padding: 23px 24px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.038);
+    }
+
+    .privacy-item-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 7px;
+    }
+
+    .privacy-item strong {
+      font-size: 16px;
+    }
+
+    .privacy-badge {
+      padding: 5px 8px;
+      border-radius: 999px;
+      color: #9ee9c2;
+      background: rgba(84, 214, 155, 0.09);
+      font-size: 10px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .privacy-item p {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .permission-note {
+      margin-top: 22px;
+      padding: 17px 18px;
+      border-left: 3px solid var(--blue);
+      border-radius: 0 13px 13px 0;
+      color: var(--muted);
+      background: rgba(78, 136, 255, 0.055);
+      font-size: 13px;
+    }
+
+    /* Limits / browser behavior */
+
+    .limits-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .limit-card {
+      padding: 28px;
+      border: 1px solid rgba(20, 32, 51, 0.1);
+      border-radius: 22px;
+      background: white;
+      box-shadow: 0 16px 42px rgba(35, 58, 88, 0.07);
+    }
+
+    .limit-card h3 {
+      margin-bottom: 10px;
+      font-size: 23px;
+      letter-spacing: -0.03em;
+    }
+
+    .limit-card p {
+      color: var(--ink-soft);
+      font-size: 14px;
+    }
+
+    .limit-card code {
+      display: inline-block;
+      margin-top: 14px;
+      padding: 6px 8px;
+      border-radius: 8px;
+      color: #315da8;
+      background: rgba(78, 136, 255, 0.08);
+      font-size: 11px;
+    }
+
+    /* CTA */
+
+    .cta {
+      padding: 112px 0;
+      color: var(--ink);
+      background: var(--light);
+    }
+
+    .cta-box {
+      position: relative;
+      overflow: hidden;
+      padding: 72px;
+      border-radius: var(--radius-xl);
+      background:
+        radial-gradient(circle at 0% 0%, rgba(78, 136, 255, 0.17), transparent 34%),
+        radial-gradient(circle at 100% 100%, rgba(69, 215, 210, 0.15), transparent 30%),
+        white;
+      box-shadow: 0 28px 72px rgba(33, 55, 82, 0.11);
+    }
+
+    .cta-box h2 {
+      max-width: 800px;
+      margin-bottom: 18px;
+      font-size: clamp(44px, 6vw, 72px);
+      line-height: 1;
+      letter-spacing: -0.058em;
+    }
+
+    .cta-box p {
+      max-width: 650px;
+      margin-bottom: 28px;
+      color: var(--ink-soft);
+      font-size: 17px;
+    }
+
+    /* Footer */
+
+    .site-footer {
+      padding: 48px 0 28px;
+      border-top: 1px solid rgba(255, 255, 255, 0.07);
+      background: var(--bg-deep);
+      color: var(--text);
+    }
+
+    .footer-main {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 70px;
+      padding-bottom: 34px;
+    }
+
+    .footer-lockup {
+      display: inline-flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 16px;
+    }
+
+    .footer-logo {
+      width: 56px;
+      height: 56px;
+      flex: 0 0 56px;
+      object-fit: cover;
+      border-radius: 17px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 14px 34px rgba(78, 136, 255, 0.14);
+    }
+
+    .footer-lockup h3 {
+      margin-bottom: 2px;
+      font-size: 24px;
+      letter-spacing: -0.035em;
+    }
+
+    .footer-lockup span {
+      color: var(--muted-2);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .footer-brand p {
+      max-width: 560px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .footer-nav {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 34px;
+    }
+
+    .footer-col strong {
+      display: block;
+      margin-bottom: 12px;
+      color: #c4d8fb;
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .footer-col a {
+      display: block;
+      width: fit-content;
+      margin-bottom: 8px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .footer-col a:hover {
+      color: white;
+    }
+
+    .footer-bottom {
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.07);
+      color: var(--muted-2);
+      font-size: 13px;
+    }
+
+    /* Responsive */
+
+    @media (max-width: 1040px) {
+      .hero-grid,
+      .split-section,
+      .split-section.reverse,
+      .copy-layout,
+      .privacy-grid,
+      .workflow-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-copy-wrap {
+        text-align: center;
+      }
+
+      .hero-copy,
+      .hero h1 {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-actions,
+      .hero-brand {
+        justify-content: center;
+      }
+
+      .hero-note {
+        text-align: center;
+      }
+
+      .hero-visual {
+        min-height: auto;
+      }
+
+      .split-section.reverse .split-copy {
+        order: initial;
+      }
+
+      .workflow-copy {
+        position: static;
+      }
+
+      .capability-grid,
+      .use-case-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .technical-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .link-feature-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 820px) {
+      .value-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .value-item:nth-child(2) {
+        border-right: 0;
+      }
+
+      .value-item:nth-child(-n + 2) {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+      }
+
+      .limits-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .container {
+        width: min(calc(100% - 28px), var(--max));
+      }
+
+      .nav-links a:not(.nav-cta) {
+        display: none;
+      }
+
+      .brand-logo {
+        width: 40px;
+        height: 40px;
+        flex-basis: 40px;
+      }
+
+      .brand-copy strong {
+        font-size: 16px;
+      }
+
+      .brand-copy span {
+        font-size: 9px;
+      }
+
+      .hero {
+        min-height: auto;
+        padding: 70px 0 76px;
+      }
+
+      .hero h1 {
+        font-size: clamp(48px, 14vw, 70px);
+      }
+
+      .hero-brand {
+        flex-direction: column;
+        align-items: center;
+        gap: 3px;
+      }
+
+      .browser-stage {
+        min-height: 460px;
+        padding: 10px;
+        transform: none;
+      }
+
+      .floating-data-card {
+        display: none;
+      }
+
+      .section,
+      .cta {
+        padding: 80px 0;
+      }
+
+      .value-grid,
+      .capability-grid,
+      .use-case-grid,
+      .technical-grid,
+      .link-feature-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .value-item,
+      .value-item:nth-child(2) {
+        border-right: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+      }
+
+      .value-item:last-child {
+        border-bottom: 0;
+      }
+
+      .workflow-step {
+        grid-template-columns: 48px 1fr;
+        padding: 20px;
+      }
+
+      .workflow-index {
+        width: 48px;
+        height: 48px;
+        border-radius: 14px;
+      }
+
+      .media-frame {
+        min-height: 380px;
+      }
+
+      .format-stage {
+        min-height: 390px;
+        padding: 12px;
+      }
+
+      .format-stage .media-image {
+        max-height: 460px;
+      }
+
+      .copy-copy h2 {
+        max-width: 620px;
+      }
+
+      .cta-box {
+        padding: 48px 24px;
+      }
+
+      .hero-actions,
+      .cta .hero-actions {
+        flex-direction: column;
+      }
+
+      .button {
+        width: 100%;
+      }
+
+      .footer-main {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-nav {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .brand-copy span {
+        display: none;
+      }
+
+      .product-kicker {
+        font-size: 10px;
+      }
+
+      .privacy-item-head {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 8px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+
+    /* ===== Screenshot presentation v5 =====
+       Screenshots are 1600×900 product captures. The page should showcase them
+       at near-full content width instead of squeezing them into narrow columns. */
+
+    .hero .container,
+    #seo .container,
+    #content .container,
+    #links .container,
+    #media .container,
+    #copy .container,
+    #technical .container {
+      width: min(calc(100% - 48px), 1440px);
+    }
+
+    /* HERO: keep the story + product context, but make the product image dominant. */
+    .hero-grid {
+      grid-template-columns: minmax(360px, .68fr) minmax(0, 1.32fr);
+      gap: 48px;
+      align-items: center;
+    }
+
+    .hero-copy-wrap {
+      max-width: 540px;
+    }
+
+    .hero-visual {
+      width: 100%;
+      min-width: 0;
+      min-height: 0;
+      padding: 26px 0;
+    }
+
+    .browser-stage {
+      width: 100%;
+      min-height: 0;
+      aspect-ratio: 16 / 9;
+      padding: 0;
+      overflow: hidden;
+      border-radius: 30px;
+      background: #081421;
+      transform: none;
+      box-shadow: 0 34px 90px rgba(0, 0, 0, .34);
+    }
+
+    .browser-stage .media-shell,
+    .browser-stage .media-image {
+      width: 100%;
+      height: 100%;
+    }
+
+    .browser-stage .media-image {
+      display: block;
+      object-fit: contain;
+      border-radius: 29px;
+    }
+
+    /* FEATURE SHOWCASES: text first, then a genuinely large 16:9 screenshot. */
+    #seo .split-section,
+    #content .split-section,
+    #content .split-section.reverse,
+    #links .split-section,
+    #media .split-section,
+    #media .split-section.reverse,
+    #technical .split-section,
+    #copy .copy-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 34px;
+      align-items: start;
+    }
+
+    #content .split-section.reverse .split-copy,
+    #media .split-section.reverse .split-copy {
+      order: initial;
+    }
+
+    #seo .split-copy,
+    #content .split-copy,
+    #links .split-copy,
+    #media .split-copy,
+    #copy .copy-copy,
+    #technical .split-copy {
+      width: min(100%, 860px);
+      max-width: 860px;
+    }
+
+    #seo figure,
+    #content figure,
+    #links figure,
+    #media figure,
+    #technical figure,
+    #copy .format-stage {
+      width: 100%;
+      max-width: none;
+      min-width: 0;
+      margin: 0;
+    }
+
+    /* The screenshot itself defines the height. No fake canvas underneath it. */
+    .media-frame,
+    .format-stage {
+      width: 100%;
+      min-height: 0;
+      aspect-ratio: 16 / 9;
+      padding: 0;
+      overflow: hidden;
+      border-radius: 30px;
+    }
+
+    .media-frame .media-shell,
+    .format-stage .media-shell {
+      width: 100%;
+      height: 100%;
+      border-radius: inherit;
+    }
+
+    .media-frame .media-image,
+    .format-stage .media-image {
+      display: block;
+      width: 100%;
+      height: 100%;
+      max-height: none;
+      object-fit: contain;
+      border-radius: 29px;
+    }
+
+    .media-caption {
+      margin-top: 12px;
+      padding-left: 2px;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    /* Copy is intentionally concise so the real interaction screenshot owns the section. */
+    #copy .copy-copy h2 {
+      max-width: 640px;
+      font-size: clamp(40px, 4.8vw, 62px);
+    }
+
+    #copy .copy-copy > p {
+      max-width: 720px;
+    }
+
+    #copy .format-list {
+      max-width: 760px;
+    }
+
+    /* Keep Technical at the requested 3 rows × 2 columns, then show its screenshot full width. */
+    #technical .technical-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 0;
+      width: min(100%, 860px);
+    }
+
+    #technical .technical-card {
+      min-height: 0;
+      padding: 20px;
+    }
+
+    #technical .technical-card span {
+      margin-bottom: 14px;
+    }
+
+    /* Let large captures breathe without making every section unnecessarily tall. */
+    #seo.section,
+    #content.section,
+    #links.section,
+    #media.section,
+    #copy.section,
+    #technical.section {
+      padding-top: 96px;
+      padding-bottom: 96px;
+    }
+
+    @media (max-width: 1180px) {
+      .hero .container,
+      #seo .container,
+      #content .container,
+      #links .container,
+      #media .container,
+      #copy .container,
+      #technical .container {
+        width: min(calc(100% - 36px), 1080px);
+      }
+
+      .hero-grid {
+        grid-template-columns: .78fr 1.22fr;
+        gap: 36px;
+      }
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-copy-wrap {
+        max-width: 760px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .hero-copy,
+      .hero h1 {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-actions {
+        justify-content: center;
+      }
+
+      .hero-visual {
+        width: 100%;
+        max-width: 980px;
+        margin: 0 auto;
+        padding-top: 8px;
+      }
+
+      #technical .technical-grid {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .hero .container,
+      #seo .container,
+      #content .container,
+      #links .container,
+      #media .container,
+      #copy .container,
+      #technical .container {
+        width: min(calc(100% - 28px), 680px);
+      }
+
+      .browser-stage,
+      .media-frame,
+      .format-stage {
+        aspect-ratio: 16 / 9;
+        min-height: 0;
+        border-radius: 20px;
+      }
+
+      .browser-stage .media-image,
+      .media-frame .media-image,
+      .format-stage .media-image {
+        border-radius: 19px;
+      }
+
+      #technical .technical-grid {
+        grid-template-columns: 1fr;
+      }
+
+      #seo.section,
+      #content.section,
+      #links.section,
+      #media.section,
+      #copy.section,
+      #technical.section {
+        padding-top: 76px;
+        padding-bottom: 76px;
+      }
+    }
+
+  </style>
 </head>
 <body>
 <header class="site-header">
-  <div class="container navbar">
-    <a class="brand" href="../../" aria-label="Thanh Thuc home">
-      <img class="brand-logo" src="../../assets/thanh-thuc-logo.png" alt="Thanh Thuc logo">
-      <span class="brand-copy"><strong>Thanh Thuc</strong><span>Independent Developer</span></span>
-    </a>
-    <nav class="nav-links" aria-label="Primary navigation">
-      <a href="../../">Home</a>
-      <a href="../../app/">Apps</a>
-      <a href="../" aria-current="page">Privacy</a>
-      <a class="nav-cta" href="mailto:thanhthuc284917@gmail.com">Contact</a>
-    </nav>
-  </div>
+<div class="container navbar">
+<a aria-label="Thanh Thuc home" class="brand" href="../../">
+<img alt="Thanh Thuc logo" class="brand-logo" src="../../assets/thanh-thuc-logo.png"/>
+<span class="brand-copy">
+<strong>Thanh Thuc</strong>
+<span>Independent Developer</span>
+</span>
+</a>
+<nav aria-label="Primary navigation" class="nav-links">
+<a href="../../">Home</a>
+<a aria-current="page" href="../">Apps</a>
+<a href="https://thanhvanthuc.github.io/my-page/privacy-policy/pagedata">Privacy</a>
+<a class="nav-cta" href="mailto:thanhthuc284917@gmail.com">Contact</a>
+</nav>
+</div>
 </header>
-
 <main>
+<!-- HERO -->
 <section class="hero">
-  <div class="container hero-inner">
-    <div class="doc-label">KeyPulse Studio</div>
-    <h1>Privacy Policy</h1>
-    <p class="lead">This Privacy Policy describes how KeyPulse Studio handles physical keyboard events,
-        real-time visual feedback, live session statistics, animation preferences, Keyboard Arcade
-        activity, webpage access, and locally stored extension settings. The policy is written
-        specifically for version 1.4.0 of the extension.</p>
-    <div class="hero-meta"><span class="meta-pill">Effective date: July 21, 2026</span><span class="meta-pill">Version covered: 1.4.0</span></div>
-  </div>
+<div class="container hero-grid">
+<div class="hero-copy-wrap reveal">
+<div class="product-kicker">Chrome Side Panel · Local-first</div>
+<div class="hero-brand">
+<strong>PageData</strong>
+<span>Copy Page Data · v1.0.4</span>
+</div>
+<h1>
+            Turn a webpage into
+            <span class="gradient-text">usable data.</span>
+</h1>
+<p class="hero-copy">
+            PageData inspects the current webpage from a focused Chrome Side Panel and organizes the useful parts for you — metadata, SEO signals, content structure, links, media, technical details, and copy-ready output in multiple formats.
+          </p>
+<div class="hero-actions">
+<a class="button button-primary" href="#capabilities">
+              Explore PageData
+              <span>→</span>
+</a>
+<a class="button button-secondary" href="#privacy">How privacy works</a>
+</div>
+<p class="hero-note">
+            Built for Chrome 114+ · No backend · No analytics · Inspected data stays in the browser.
+          </p>
+</div>
+<div class="hero-visual reveal">
+<div class="browser-stage">
+<div class="media-shell">
+<img alt="PageData Side Panel showing a complete page inspection overview inside Chrome." class="media-image" src="assets/pagedata-hero.png"/>
+
+</div>
+</div>
+<div class="floating-data-card card-a">
+<strong>5 copy formats</strong>
+<span>Key: Value · Plain · Markdown · JSON · CSV</span>
+</div>
+<div class="floating-data-card card-b">
+<strong>6 focused views</strong>
+<span>Overview · SEO · Content · Links · Media · Technical</span>
+</div>
+</div>
+</div>
 </section>
-
-<section class="summary">
-  <div class="container">
-    <div class="summary-card">
-      <strong>Privacy summary</strong>
-      <p>KeyPulse Studio processes supported physical keyboard events locally so it can update
-        the Compact and Studio visualizers, calculate temporary live session metrics, run keyboard
-        Arcade challenges, and display selected visual effects. It does not maintain a persistent
-        history of typed keys, does not send typed content to a developer-operated server, and does
-        not use advertising or behavioral analytics. Limited preferences and Arcade best scores may
-        be stored locally in the browser so the extension can restore the user&apos;s chosen experience.</p>
-    </div>
-  </div>
+<!-- VALUE STRIP -->
+<section aria-label="PageData highlights" class="value-strip">
+<div class="container value-grid">
+<div class="value-item">
+<strong>6 inspection views</strong>
+<span>Separate page data by purpose instead of dumping everything into one list.</span>
+</div>
+<div class="value-item">
+<strong>5 copy formats</strong>
+<span>Move the same data into notes, spreadsheets, code, docs, or AI workflows.</span>
+</div>
+<div class="value-item">
+<strong>Multi-select + export</strong>
+<span>Copy one field, selected fields, link sets, or the complete JSON snapshot.</span>
+</div>
+<div class="value-item">
+<strong>Local-first inspection</strong>
+<span>Page scanning and formatting happen locally in Chrome with no backend service.</span>
+</div>
+</div>
 </section>
+<!-- CAPABILITY MAP -->
+<section class="section" id="capabilities">
+<div class="container">
+<div class="section-heading center reveal">
+<div class="eyebrow">One panel, six useful views</div>
+<h2>See the page as structured information, not just pixels.</h2>
+<p>
+            PageData groups different kinds of page information into focused views so you can move quickly between a high-level overview and the exact details you need.
+          </p>
+</div>
+<div class="capability-grid">
+<article class="capability-card reveal">
+<div class="capability-top"><span class="capability-icon">01</span><span class="capability-count">OVERVIEW</span></div>
+<h3>Page essentials</h3>
+<p>Title, full URL, domain, path, language, charset, capture time, word count, link count, image count, DOM size, and quick page-level context.</p>
+</article>
+<article class="capability-card reveal">
+<div class="capability-top"><span class="capability-icon">SEO</span><span class="capability-count">METADATA</span></div>
+<h3>SEO &amp; social metadata</h3>
+<p>Inspect title, description, canonical, robots, headings, Open Graph, Twitter/X card data, hreflang entries, and JSON-LD detected in the document.</p>
+</article>
+<article class="capability-card reveal">
+<div class="capability-top"><span class="capability-icon">TXT</span><span class="capability-count">CONTENT</span></div>
+<h3>Content structure</h3>
+<p>Measure words, characters, estimated reading time, paragraphs, lists, tables, forms, inputs, buttons, main content text, and visible page text.</p>
+</article>
+<article class="capability-card reveal">
+<div class="capability-top"><span class="capability-icon">↗</span><span class="capability-count">LINKS</span></div>
+<h3>Link extraction</h3>
+<p>Filter internal, external and other links; remove duplicate URLs; inspect anchor text, rel flags, targets, downloads, and copy selected link data.</p>
+</article>
+<article class="capability-card reveal">
+<div class="capability-top"><span class="capability-icon">IMG</span><span class="capability-count">MEDIA</span></div>
+<h3>Images, embeds &amp; files</h3>
+<p>Browse image URLs, dimensions and alt states alongside videos, audio, iframes and common downloadable file links found on the page.</p>
+</article>
+<article class="capability-card reveal">
+<div class="capability-top"><span class="capability-icon">{ }</span><span class="capability-count">TECHNICAL</span></div>
+<h3>Document &amp; resources</h3>
+<p>Review document details, navigation timing, resource-type counts, scripts, stylesheets, preload/prefetch hints and the page’s full meta-tag collection.</p>
+</article>
+</div>
+</div>
+</section>
+<!-- WORKFLOW -->
+<section class="section section-soft" id="workflow">
+<div class="container workflow-layout">
+<div class="workflow-copy reveal">
+<div class="eyebrow">Built around the actual workflow</div>
+<h2>Inspect. Filter. Select. Use.</h2>
+<p>
+            PageData is not designed to become another dashboard you have to manage. It stays beside the page, surfaces the current snapshot, and helps you move that data somewhere useful with as little friction as possible.
+          </p>
+</div>
+<div class="workflow-steps">
+<article class="workflow-step reveal">
+<div class="workflow-index">01</div>
+<div>
+<h3>Open PageData beside the current tab.</h3>
+<p>The extension uses Chrome Side Panel, so the webpage stays visible while its structured data appears next to it. Reloads, URL changes and rapid tab switches are handled by the scan lifecycle rather than leaving stale snapshots behind.</p>
+<div class="workflow-tags"><span class="workflow-tag">Side Panel</span><span class="workflow-tag">Current tab</span><span class="workflow-tag">Fresh snapshot</span></div>
+</div>
+</article>
+<article class="workflow-step reveal">
+<div class="workflow-index">02</div>
+<div>
+<h3>Go directly to the data category you need.</h3>
+<p>Use Overview for the big picture, SEO for metadata, Content for document structure, Links for URL extraction, Media for assets, or Technical for document and resource details.</p>
+<div class="workflow-tags"><span class="workflow-tag">Overview</span><span class="workflow-tag">SEO</span><span class="workflow-tag">Content</span><span class="workflow-tag">Links</span><span class="workflow-tag">Media</span><span class="workflow-tag">Technical</span></div>
+</div>
+</article>
+<article class="workflow-step reveal">
+<div class="workflow-index">03</div>
+<div>
+<h3>Search, filter and narrow the snapshot.</h3>
+<p>Search within page data, switch link filters, turn unique URL mode on, and select only the fields or links relevant to the task instead of copying an oversized dump.</p>
+<div class="workflow-tags"><span class="workflow-tag">Search</span><span class="workflow-tag">Filters</span><span class="workflow-tag">Unique URL</span><span class="workflow-tag">Selection</span></div>
+</div>
+</article>
+<article class="workflow-step reveal">
+<div class="workflow-index">04</div>
+<div>
+<h3>Copy in the format your next tool expects.</h3>
+<p>Choose Key: Value, plain text, Markdown, JSON or CSV. Copy a single field, multiple selected values, a filtered link set, or export the full inspection snapshot as JSON.</p>
+<div class="workflow-tags"><span class="workflow-tag">Key: Value</span><span class="workflow-tag">Plain</span><span class="workflow-tag">Markdown</span><span class="workflow-tag">JSON</span><span class="workflow-tag">CSV</span></div>
+</div>
+</article>
+</div>
+</div>
+</section>
+<!-- OVERVIEW + SEO -->
+<section class="section" id="seo">
+<div class="container split-section">
+<div class="split-copy reveal">
+<div class="eyebrow">Overview + SEO</div>
+<h2>Start with the page identity, then go deeper.</h2>
+<p>
+            The Overview keeps the most useful page facts close. The SEO view expands that snapshot into metadata and document signals without forcing you to inspect source code manually.
+          </p>
+<div class="detail-list">
+<div class="detail-item"><span class="detail-mark">01</span><div><strong>Page identity</strong><p>Title, URL, domain, path, language, charset and capture context stay easy to copy individually.</p></div></div>
+<div class="detail-item"><span class="detail-mark">02</span><div><strong>Search metadata</strong><p>Inspect title, meta description, canonical and robots values in one place.</p></div></div>
+<div class="detail-item"><span class="detail-mark">03</span><div><strong>Heading structure</strong><p>See H1 through H6 entries and quickly identify the page’s outline.</p></div></div>
+<div class="detail-item"><span class="detail-mark">04</span><div><strong>Social &amp; structured data</strong><p>Review Open Graph, Twitter/X metadata, hreflang and JSON-LD detected in the document.</p></div></div>
+</div>
+</div>
+<figure class="reveal">
+<div class="media-frame">
+<div class="media-shell">
+<img alt="PageData SEO view with canonical, robots, heading structure, Open Graph and structured data." class="media-image" loading="lazy" src="assets/pagedata-seo.png"/>
 
-<div class="policy-progress" aria-hidden="true"><div class="policy-progress-bar"></div></div>
+</div>
+</div>
+<figcaption class="media-caption">SEO view with metadata, heading structure and structured data visible together.</figcaption>
+</figure>
+</div>
+</section>
+<!-- CONTENT -->
+<section class="section section-light" id="content">
+<div class="container split-section reverse">
+<div class="split-copy reveal">
+<div class="eyebrow">Content structure</div>
+<h2>Measure the document and pull out the text that matters.</h2>
+<p>
+            PageData treats content as more than a word count. It exposes the structure surrounding the text so research, QA and content review can start from a useful snapshot instead of manual counting.
+          </p>
+<div class="detail-list">
+<div class="detail-item"><span class="detail-mark">01</span><div><strong>Words, characters &amp; reading time</strong><p>Get lightweight size and reading estimates without copying the page into another tool first.</p></div></div>
+<div class="detail-item"><span class="detail-mark">02</span><div><strong>Structural counts</strong><p>Paragraphs, lists, tables, forms, inputs and buttons help describe how the page is built.</p></div></div>
+<div class="detail-item"><span class="detail-mark">03</span><div><strong>Main content text</strong><p>Extract the primary content area when PageData can identify it from the document.</p></div></div>
+<div class="detail-item"><span class="detail-mark">04</span><div><strong>Visible page text</strong><p>Copy the broader visible text when the task needs more than the main article or content region.</p></div></div>
+</div>
+</div>
+<figure class="reveal">
+<div class="media-frame">
+<div class="media-shell">
+<img alt="PageData Content view showing word count, reading time, structural counts and extracted text." class="media-image" loading="lazy" src="assets/pagedata-content.png"/>
 
-<section class="policy-wrap">
-  <div class="policy-shell">
-    <div class="policy-topline">
-      <a href="../">← Back to Privacy Center</a>
-      <span>KeyPulse Studio · Privacy Policy · v1.4.0</span>
-    </div>
+</div>
+</div>
+<figcaption class="media-caption">Content view on a long-form page with meaningful structural data.</figcaption>
+</figure>
+</div>
+</section>
+<!-- LINKS -->
+<section class="section section-soft" id="links">
+<div class="container">
+<div class="section-heading reveal">
+<div class="eyebrow">Link extraction</div>
+<h2>A link list you can actually work with.</h2>
+<p>
+            PageData separates link discovery from link cleanup. Filter the page’s anchors by relationship, remove duplicate URLs when needed, inspect attributes, and copy only the subset that belongs in your next step.
+          </p>
+</div>
+<div class="split-section">
+<div class="split-copy reveal">
+<div class="detail-list">
+<div class="detail-item"><span class="detail-mark">01</span><div><strong>All / Internal / External / Other</strong><p>Move between link groups without manually comparing domains.</p></div></div>
+<div class="detail-item"><span class="detail-mark">02</span><div><strong>Unique URL mode</strong><p>Collapse repeated destinations when a page contains the same URL in navigation, body content and footer areas.</p></div></div>
+<div class="detail-item"><span class="detail-mark">03</span><div><strong>Anchor + destination</strong><p>Keep the text users see next to the URL it points to instead of losing context.</p></div></div>
+<div class="detail-item"><span class="detail-mark">04</span><div><strong>Rel, target &amp; download flags</strong><p>Inspect nofollow, sponsored, ugc, target blank and download behavior alongside each link.</p></div></div>
+</div>
+</div>
+<figure class="reveal">
+<div class="media-frame">
+<div class="media-shell">
+<img alt="PageData Links view with internal, external and other filters plus unique URL mode." class="media-image" loading="lazy" src="assets/pagedata-links.png"/>
 
-    <div class="policy-content">
+</div>
+</div>
+<figcaption class="media-caption">Links view with mixed destinations, rel attributes and Unique URL enabled.</figcaption>
+</figure>
+</div>
+<div class="link-feature-grid">
+<div class="link-feature reveal"><strong>Copy URLs</strong><span>Take only destinations when anchor text is not needed.</span></div>
+<div class="link-feature reveal"><strong>Copy anchor text</strong><span>Extract the visible labels independently of their destinations.</span></div>
+<div class="link-feature reveal"><strong>Copy text + URL</strong><span>Preserve the relationship between the anchor and its link.</span></div>
+<div class="link-feature reveal"><strong>Copy selected links</strong><span>Build a smaller dataset instead of exporting every anchor on the page.</span></div>
+</div>
+</div>
+</section>
+<!-- MEDIA -->
+<section class="section" id="media">
+<div class="container split-section reverse">
+<div class="split-copy reveal">
+<div class="eyebrow">Media &amp; files</div>
+<h2>See what the page loads and what each image says about itself.</h2>
+<p>
+            The Media view turns image discovery into a compact asset inventory and keeps other embedded or downloadable resources close enough to inspect without opening DevTools or source code.
+          </p>
+<div class="detail-list">
+<div class="detail-item"><span class="detail-mark">01</span><div><strong>Image preview + URL</strong><p>Browse discovered images visually while keeping their source URL available for copying.</p></div></div>
+<div class="detail-item"><span class="detail-mark">02</span><div><strong>Dimensions</strong><p>See available image width and height information beside the asset.</p></div></div>
+<div class="detail-item"><span class="detail-mark">03</span><div><strong>Alt states</strong><p>Distinguish useful alt text, empty alt attributes and missing alt attributes.</p></div></div>
+<div class="detail-item"><span class="detail-mark">04</span><div><strong>Other media &amp; files</strong><p>Surface videos, audio, iframes and common downloadable files such as PDF, DOC, XLSX and ZIP links.</p></div></div>
+</div>
+</div>
+<figure class="reveal">
+<div class="media-frame">
+<div class="media-shell">
+<img alt="PageData Media view showing image previews, dimensions, alt states and other media resources." class="media-image" loading="lazy" src="assets/pagedata-media.png"/>
 
-      <article class="policy-section">
-        <div class="section-kicker">01 · Scope</div>
-        <div class="section-copy">
-          <h2>Scope and Purpose of This Policy</h2>
-          <p>This Privacy Policy applies to KeyPulse Studio version 1.4.0. It explains how the extension processes physical keyboard activity, updates its on-page visual interfaces, calculates live session metrics, stores limited local preferences, operates its Keyboard Arcade features, and uses the browser permissions required for those functions.</p>
-          <p>KeyPulse Studio is designed as a physical keyboard visualizer and lightweight keyboard interaction workspace. It includes a Compact Mode for minimal on-page feedback and a larger Studio Mode with a full keyboard layout, animation controls, live statistics, and three built-in Arcade challenges.</p>
-          <p>The extension is not designed as a keylogger, text recorder, productivity surveillance tool, behavioral advertising service, cloud account product, or remote analytics platform. Its primary purpose is to provide immediate visual and interactive feedback from current keyboard activity inside the browser.</p>
-          <p>This policy does not govern the privacy practices of the user&apos;s browser, operating system, extension marketplace, websites visited by the user, or other applications and extensions installed on the device.</p>
-        </div>
-      </article>
+</div>
+</div>
+<figcaption class="media-caption">Media view on an image-rich page with dimensions, alt-state variety and downloadable resources.</figcaption>
+</figure>
+</div>
+</section>
+<!-- COPY FORMATS -->
+<section class="section section-soft" id="copy">
+<div class="container copy-layout">
+<div class="split-copy copy-copy reveal">
+<div class="eyebrow">Copy it your way</div>
+<h2>Copy once. Use it anywhere.</h2>
+<p>
+            Choose the output that fits the next step: quick notes, Markdown, JSON, CSV or plain text. Copy one field, a focused selection, or export the complete inspection as JSON.
+          </p>
+<div class="format-list" aria-label="Available copy formats">
+<div class="format-row"><strong>Key: Value</strong></div>
+<div class="format-row"><strong>Plain text</strong></div>
+<div class="format-row"><strong>Markdown</strong></div>
+<div class="format-row"><strong>JSON</strong></div>
+<div class="format-row"><strong>CSV</strong></div>
+</div>
+<div class="copy-actions-compact" aria-label="Copy actions">
+<span>Single field</span>
+<span>Selected fields</span>
+<span>Full JSON export</span>
+</div>
+</div>
+<div class="format-stage reveal">
+<div class="media-shell">
+<img alt="PageData showing selected fields and multiple copy format options." class="media-image" loading="lazy" src="assets/pagedata-copy-formats.png"/>
 
-      <article class="policy-section">
-        <div class="section-kicker">02 · Operation</div>
-        <div class="section-copy">
-          <h2>How KeyPulse Studio Operates</h2>
-          <p>KeyPulse Studio uses browser content scripts on ordinary HTTP and HTTPS webpages so that its visual interface can appear directly over the page the user is viewing. The extension can show a small Compact HUD or an expanded Studio interface without requiring the user to open a separate web application.</p>
-          <p>The extension&apos;s toolbar action and built-in controls are used to show, hide, collapse, expand, or switch the visualizer between Compact and Studio modes. The current interface state is rendered locally inside the browser.</p>
-          <p>Studio Mode combines a visual representation of the physical keyboard with live session metrics, animation controls, and access to Keyboard Arcade. Compact Mode presents a smaller visual layer intended to stay visible while the user continues browsing, presenting, recording, or demonstrating shortcuts.</p>
-          <p>The extension does not require a developer-operated account, login system, cloud database, or remote API to decide which key should be highlighted or which visual effect should be displayed.</p>
-        </div>
-      </article>
+</div>
+</div>
+</div>
+</section>
+<!-- TECHNICAL -->
+<section class="section section-light" id="technical">
+<div class="container">
+<div class="section-heading reveal">
+<div class="eyebrow">Technical view</div>
+<h2>Enough document detail to answer common questions without becoming DevTools.</h2>
+<p>
+            PageData is intentionally not a replacement for Chrome DevTools. The Technical view focuses on information that is frequently useful during inspection, QA and research, while keeping the workflow lightweight.
+          </p>
+</div>
+<div class="split-section">
+<div class="split-copy reveal">
+<div class="technical-grid">
+<div class="technical-card"><span>DOCUMENT</span><strong>Document details</strong><p>Doctype, viewport, language, charset and other document-level values.</p></div>
+<div class="technical-card"><span>RESOURCES</span><strong>Resource counts</strong><p>See high-level counts by resource type rather than manually scanning network entries.</p></div>
+<div class="technical-card"><span>SCRIPTS</span><strong>JavaScript files</strong><p>Collect script resource URLs found by the current page inspection.</p></div>
+<div class="technical-card"><span>STYLES</span><strong>Stylesheets</strong><p>Inspect stylesheet resources referenced by the document.</p></div>
+<div class="technical-card"><span>HINTS</span><strong>Preload &amp; prefetch</strong><p>See resource hints that the page declares for loading behavior.</p></div>
+<div class="technical-card"><span>META</span><strong>Meta tags</strong><p>Review the broader meta collection beyond the most common SEO fields.</p></div>
+</div>
+</div>
+<figure class="reveal">
+<div class="media-frame">
+<div class="media-shell">
+<img alt="PageData Technical view showing document details, resources, scripts, stylesheets and meta tags." class="media-image" loading="lazy" src="assets/pagedata-technical.png"/>
 
-      <article class="policy-section">
-        <div class="section-kicker">03 · Keyboard processing</div>
-        <div class="section-copy">
-          <h2>Physical Keyboard Event Processing</h2>
-          <p>KeyPulse Studio listens for supported browser keyboard events, including keydown and keyup activity, on webpages where its content script is allowed to run. The extension primarily uses browser-provided physical-key information such as <code>KeyboardEvent.code</code> so the on-screen keyboard can represent the physical key position being pressed.</p>
-          <p>This physical-key approach allows KeyPulse Studio to visualize individual keys, held modifiers, and simultaneous key combinations without depending solely on the final text character produced by a keyboard layout or input method.</p>
-          <p>The extension processes keyboard activity as it occurs in order to update visual key states, the last-physical-key indicator, temporary counters, and interactive Arcade logic. It does not create a persistent chronological transcript of every key the user presses.</p>
-          <p>KeyPulse Studio does not intentionally preserve complete typed sentences, messages, search queries, document content, form submissions, or other text as a replayable history. Current keyboard events are used for immediate extension behavior rather than for building a stored text log.</p>
-        </div>
-      </article>
-
-      <article class="policy-section">
-        <div class="section-kicker">04 · IME and composition</div>
-        <div class="section-copy">
-          <h2>Input Methods, Composition, and International Keyboards</h2>
-          <p>Some keyboard layouts and input methods, including IME-based composition and language-specific typing tools, can cause browser keyboard events to behave differently from simple Latin-key input. KeyPulse Studio includes handling intended to keep physical-key visualization stable during composition-related input and to reduce duplicate or misleading visual responses.</p>
-          <p>The extension&apos;s purpose in handling composition-related events is to identify physical-key activity for visualization. It is not designed to reconstruct or store the composed text produced by an IME, Vietnamese input method, or other language-input system.</p>
-          <p>Because browser, operating-system, keyboard-layout, and third-party input-method behavior can differ, the exact event sequence may vary by environment. Regardless of those differences, KeyPulse Studio does not intentionally transmit composed text or maintain a persistent record of composition output.</p>
-        </div>
-      </article>
-
-      <article class="policy-section">
-        <div class="section-kicker">05 · Sensitive input</div>
-        <div class="section-copy">
-          <h2>Password Fields and Sensitive Input</h2>
-          <p>KeyPulse Studio includes a safeguard for standard HTML password fields. When supported keyboard activity originates from an input element recognized by the browser as <code>type=&quot;password&quot;</code>, the extension excludes that input from the normal visualization and counting path.</p>
-          <p>This means ordinary browser-recognized password fields are not intended to update the visible key indicator, increase normal session press counts, or become part of a stored key history.</p>
-          <p>Some websites may implement custom sensitive-input controls that are not technically standard password inputs. The internal structure of those controls is determined by the website and may not be detectable in the same way as a native password field.</p>
-          <div class="note"><strong>Important privacy boundary</strong>KeyPulse Studio does not maintain a developer-operated backend that receives keyboard events. The password-field safeguard reduces unnecessary processing of standard password input, while the broader privacy design avoids transmitting normal keyboard activity to the developer.</div>
-        </div>
-      </article>
-
-      <article class="policy-section">
-        <div class="section-kicker">06 · Live metrics</div>
-        <div class="section-copy">
-          <h2>Live Session Metrics</h2>
-          <p>Studio Mode can display live activity information such as current keys per second (KPS), peak KPS, total recognized presses during the active session, and the most recent supported physical key.</p>
-          <p>These values are calculated from current keyboard activity so the extension can provide immediate visual feedback about the rhythm and intensity of the session. They are not intended to create a long-term productivity record or behavioral profile.</p>
-          <p>Current KPS, peak KPS, total press counts, and the last-physical-key value are treated as active-session information. They are not used to build a remote account history and are not uploaded to a developer-controlled analytics service.</p>
-          <p>Temporary metrics may reset when the relevant extension session, page context, or visualizer session is recreated.</p>
-        </div>
-      </article>
-
-      <article class="policy-section">
-        <div class="section-kicker">07 · Animation Studio</div>
-        <div class="section-copy">
-          <h2>Visual Effects and Animation Preferences</h2>
-          <p>KeyPulse Studio includes selectable keypress effects such as Logo Orbit, Aurora Bloom, Shockwave, Ember Trail, Prism Shift, Signal Glitch, and Clean Press. These effects change how current physical-key activity is presented visually.</p>
-          <p>Selecting an effect does not require keyboard activity to be sent to a server. The animation is produced locally by the installed extension using the current visualizer state.</p>
-          <p>The extension may store the user&apos;s selected visual preference locally so that the chosen effect can be restored in a later browser session. This stored preference identifies an interface choice; it is not a stored history of the keys that produced the visual effect.</p>
-        </div>
-      </article>
-
-      <article class="policy-section">
-        <div class="section-kicker">08 · Keyboard Arcade</div>
-        <div class="section-copy">
-          <h2>Arcade Games and Local Best Scores</h2>
-          <p>KeyPulse Studio includes three keyboard-based Arcade challenges: Target Hunt, Key Sprint, and Sequence Relay. These games reuse the same physical-key event system to provide reaction, speed, and memory interactions inside the extension.</p>
-          <p>During active gameplay, current key events may be evaluated to determine whether the requested target was pressed, how many recognized presses occurred during a timed sprint, or whether a displayed sequence was reproduced correctly.</p>
-          <p>The extension may store Arcade best scores locally in browser extension storage so that a user can see their previous best result when returning to the game. Best-score storage is limited to game result values and is not intended to preserve the sequence of keys typed during normal browsing.</p>
-          <p>Arcade activity is not transmitted to a developer-operated leaderboard, remote profile, advertising service, or analytics backend in the reviewed version.</p>
-        </div>
-      </article>
-
-      <article class="policy-section">
-        <div class="section-kicker">09 · Local storage</div>
-        <div class="section-copy">
-          <h2>Locally Stored Preferences and Settings</h2>
-          <p>The extension uses browser extension storage to preserve limited settings that help restore the user&apos;s preferred KeyPulse Studio experience between sessions.</p>
-          <p>Depending on the feature state in version 1.4.0, locally stored values may include:</p>
-          <ul>
-            <li>whether the KeyPulse interface is shown or hidden;</li>
-            <li>whether Compact Mode or Studio Mode is selected;</li>
-            <li>the saved position used to restore the floating interface;</li>
-            <li>the selected animation or visual-effect preference;</li>
-            <li>locally retained best scores for supported Keyboard Arcade games.</li>
-          </ul>
-          <div class="note"><strong>What local storage is not used for</strong>KeyPulse Studio does not use local extension storage to save a persistent transcript of typed text, a chronological keypress history, complete form contents, private messages, or a remote browsing profile.</div>
-          <p>These preferences remain within the browser&apos;s extension storage environment unless they are changed or cleared by the user or removed when the extension is uninstalled.</p>
-        </div>
-      </article>
-
-      <article class="policy-section">
-        <div class="section-kicker">10 · Website access</div>
-        <div class="section-copy">
-          <h2>Website and Content-Script Access</h2>
-          <p>KeyPulse Studio declares access that allows its content script to run on ordinary HTTP and HTTPS webpages. This access is necessary because the extension&apos;s visualizer is intended to appear directly on webpages and respond to supported keyboard events while the user interacts with those pages.</p>
-          <p>This access allows the extension to insert the Compact or Studio interface, attach keyboard-event listeners, update visual states, and respond to extension controls. It does not mean that KeyPulse Studio operates a developer-maintained browsing-history service.</p>
-          <p>The reviewed implementation is not designed to capture screenshots, upload webpage text, collect form submissions, inspect private messages for analytics, or send webpage content to a developer-controlled server.</p>
-          <p>Browser-controlled pages and other restricted environments may block content scripts. On those pages, the extension may be unable to display or control its interface because the browser does not allow the required script to run.</p>
-        </div>
-      </article>
-
-      <article class="policy-section">
-        <div class="section-kicker">11 · Permissions</div>
-        <div class="section-copy">
-          <h2>Extension Permissions</h2>
-          <p>KeyPulse Studio uses browser permissions that support its visible functionality. These permissions may include storage access for local preferences and host or content-script access needed to place the visualizer on supported webpages.</p>
-          <p>Permissions are used to support extension features such as showing the visualizer, switching views, restoring interface preferences, and running the on-page keyboard interaction system. They are not intended to provide unrelated access for advertising, profiling, or remote data harvesting.</p>
-          <p>If future versions add materially different permissions, the privacy policy should be updated to explain why those permissions are required and whether they introduce any new data flow.</p>
-        </div>
-      </article>
-
-      <article class="policy-section">
-        <div class="section-kicker">12 · Network behavior</div>
-        <div class="section-copy">
-          <h2>Network Requests and Remote Code</h2>
-          <p>The reviewed version of KeyPulse Studio does not require a developer-operated backend to visualize keyboard activity, calculate live session metrics, apply keypress effects, or operate its built-in Arcade challenges.</p>
-          <p>The executable code required for those extension features is included with the installed extension package rather than being downloaded as remote executable code at runtime.</p>
-          <p>The reviewed implementation does not include a developer-configured endpoint used to upload physical key events, typed text, live KPS values, total press counts, Arcade input sequences, or local interface preferences.</p>
-          <p>The browser and extension marketplace may independently perform network operations for installation, updates, security scanning, account services, or other platform functions. Those operations are controlled by the relevant platform and are outside the extension&apos;s own data practices.</p>
-        </div>
-      </article>
-
-      <article class="policy-section">
-        <div class="section-kicker">13 · Data not collected</div>
-        <div class="section-copy">
-          <h2>Information KeyPulse Studio Does Not Intentionally Collect</h2>
-          <p>KeyPulse Studio is not designed as a personal-data collection service. The reviewed implementation does not intentionally maintain the following categories for the developer:</p>
-          <ul>
-            <li>names, email addresses, telephone numbers, postal addresses, or user account profiles;</li>
-            <li>passwords, authentication credentials, payment details, or financial information;</li>
-            <li>a persistent transcript or chronological history of the user&apos;s key presses;</li>
-            <li>complete typed messages, documents, search terms, or form submissions;</li>
-            <li>a developer-maintained database of visited URLs or browsing history;</li>
-            <li>IP-address profiles, precise location histories, advertising identifiers, or demographic profiles;</li>
-            <li>behavioral analytics, session replay, advertising-conversion data, or commercial user profiling;</li>
-            <li>remote long-term productivity records based on KPS, press counts, or Arcade activity.</li>
-          </ul>
-          <p>Because the extension does not operate a developer-managed keyboard-activity backend for these categories, the developer does not maintain a cloud archive of users&apos; typed content or physical keypress histories.</p>
-        </div>
-      </article>
-
-      <article class="policy-section">
-        <div class="section-kicker">14 · Advertising and sharing</div>
-        <div class="section-copy">
-          <h2>Advertising, Analytics, Tracking, and Data Sharing</h2>
-          <p>KeyPulse Studio does not display advertising and is not designed to include advertising SDKs, tracking pixels, browser-fingerprinting systems, session-replay tools, or behavioral analytics used for commercial profiling.</p>
-          <p>Keyboard activity used by the visualizer is not intended to infer purchasing intent, health characteristics, employment performance, financial status, political beliefs, or other unrelated personal traits.</p>
-          <p>The extension does not sell or rent physical keyboard activity, typed content, local preferences, live metrics, or Arcade best scores to advertisers, data brokers, or analytics providers.</p>
-          <p>Because the reviewed version does not maintain a developer-operated remote store of keyboard activity, there is ordinarily no remote keypress dataset available for commercial sharing or disclosure.</p>
-        </div>
-      </article>
-
-      <article class="policy-section">
-        <div class="section-kicker">15 · Retention and deletion</div>
-        <div class="section-copy">
-          <h2>Data Retention and Removal</h2>
-          <p>Individual physical keyboard events are processed as they occur and are not retained by KeyPulse Studio as a persistent chronological history.</p>
-          <p>Live session values such as current KPS, peak KPS, total presses, and last physical key are associated with the active visualizer session and are not intended to become a permanent remote record.</p>
-          <p>Limited interface preferences, selected visual settings, and supported Arcade best scores may remain in local browser extension storage so they can be restored later.</p>
-          <p>Users can remove locally stored extension data by clearing the extension&apos;s stored data through browser controls or by uninstalling KeyPulse Studio, subject to the browser&apos;s own storage and deletion behavior.</p>
-        </div>
-      </article>
-
-      <article class="policy-section">
-        <div class="section-kicker">16 · Security design</div>
-        <div class="section-copy">
-          <h2>Security and Privacy-Oriented Design</h2>
-          <p>KeyPulse Studio limits privacy risk by processing its primary keyboard visualization locally and by avoiding a developer-operated remote data pipeline for ordinary keyboard activity.</p>
-          <p>The extension excludes standard password fields from the normal visualization path and uses current keyboard activity for immediate interface behavior rather than for building a persistent key history.</p>
-          <p>The extension may also clear or reset active visual key states when focus or page visibility changes, helping prevent stale on-screen key states from remaining after the user&apos;s browsing context changes.</p>
-          <p>No software can eliminate every possible privacy or security risk, particularly when its declared function requires access to keyboard events on supported webpages. KeyPulse Studio therefore follows a purpose-limited model: process what is needed for current visual or game behavior, avoid storing typed content as history, avoid transmitting normal keyboard activity to a developer backend, and retain only limited local state needed for usability.</p>
-        </div>
-      </article>
-
-      <article class="policy-section">
-        <div class="section-kicker">17 · Policy changes</div>
-        <div class="section-copy">
-          <h2>Changes to This Privacy Policy</h2>
-          <p>This Privacy Policy may be revised when KeyPulse Studio&apos;s implementation or data practices change. Examples that may require a meaningful policy update include adding new permissions, introducing a backend service, transmitting new categories of information, changing how keyboard events are retained, adding analytics, expanding website access, or storing additional long-term data.</p>
-          <p>Future versions should be reviewed against the actual extension implementation rather than assuming that behavior described for version 1.4.0 remains unchanged indefinitely.</p>
-          <p>When material changes occur, the policy should be updated with a revised effective date and an explanation that accurately reflects the new data flow or feature behavior.</p>
-        </div>
-      </article>
-
-      <article class="policy-section">
-        <div class="section-kicker">18 · Contact</div>
-        <div class="section-copy">
-          <h2>Contact</h2>
-          <p>Questions about this Privacy Policy or the privacy behavior of KeyPulse Studio may be sent to <a href="mailto:thanhthuc284917@gmail.com" style="color:#d8d2ff;font-weight:750">thanhthuc284917@gmail.com</a>.</p>
-          <p>When contacting support about privacy or extension behavior, users do not need to provide passwords, private text, complete browsing histories, or other sensitive content. A description of the issue and the relevant extension version is generally sufficient.</p>
-        </div>
-      </article>
-
-    </div>
-  </div>
+</div>
+</div>
+<figcaption class="media-caption">Technical view populated with real document and resource data.</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<!-- USE CASES -->
+<section class="section" id="use-cases">
+<div class="container">
+<div class="section-heading center reveal">
+<div class="eyebrow">Where PageData fits</div>
+<h2>Useful whenever the page contains information you need somewhere else.</h2>
+<p>
+            PageData stays deliberately general-purpose. The same inspection engine can support different workflows because the output is structured, filterable and easy to copy.
+          </p>
+</div>
+<div class="use-case-grid">
+<article class="use-case-card reveal"><span class="use-case-number">01 / 06</span><h3>SEO inspection</h3><p>Check page titles, descriptions, canonicals, robots, headings, social metadata, hreflang and structured data without opening the source.</p></article>
+<article class="use-case-card reveal"><span class="use-case-number">02 / 06</span><h3>Content research</h3><p>Capture page identity, content size, document outline and extractable text before moving the useful parts into notes, docs or AI workflows.</p></article>
+<article class="use-case-card reveal"><span class="use-case-number">03 / 06</span><h3>Link collection</h3><p>Turn a page full of anchors into a filtered internal, external or unique URL dataset with anchor context and rel attributes intact.</p></article>
+<article class="use-case-card reveal"><span class="use-case-number">04 / 06</span><h3>Page QA</h3><p>Review heading structure, image alt states, forms, resource hints and page-level counts while the original page remains visible beside the panel.</p></article>
+<article class="use-case-card reveal"><span class="use-case-number">05 / 06</span><h3>Asset discovery</h3><p>Locate image sources, embedded media and common downloadable files without manually hunting through markup or network requests.</p></article>
+<article class="use-case-card reveal"><span class="use-case-number">06 / 06</span><h3>Developer inspection</h3><p>Get a fast overview of document metadata, resource references and technical details before deciding whether deeper DevTools investigation is necessary.</p></article>
+</div>
+</div>
+</section>
+<!-- PRIVACY -->
+<section class="section section-soft" id="privacy">
+<div class="container privacy-grid">
+<div class="privacy-copy reveal">
+<div class="eyebrow">Local-first by design</div>
+<h2>The page snapshot is processed inside your browser.</h2>
+<p>
+            PageData needs to read the webpage you ask it to inspect, but the current build does not send that inspected data to a backend service. Scanning, grouping and copy formatting happen locally in Chrome.
+          </p>
+<div class="permission-note">
+            PageData requests access to normal <code>http://</code> and <code>https://</code> pages so it can inspect the current document when the Side Panel needs data. Chrome-protected browser pages remain inaccessible to extensions and PageData shows an explanatory state instead of trying to bypass that restriction.
+          </div>
+<div class="hero-actions privacy-actions"><a class="button button-primary" href="https://thanhvanthuc.github.io/my-page/privacy-policy/pagedata">Read Privacy Policy <span>→</span></a></div></div>
+<div class="privacy-list">
+<article class="privacy-item reveal">
+<div class="privacy-item-head"><strong>No inspected page data sent to a server</strong><span class="privacy-badge">LOCAL</span></div>
+<p>The extension reads the current DOM to build the inspection snapshot, then displays and formats that information locally.</p>
+</article>
+<article class="privacy-item reveal">
+<div class="privacy-item-head"><strong>No analytics or advertising SDK</strong><span class="privacy-badge">NONE</span></div>
+<p>The current build includes no analytics service, advertising SDK, remote script or backend integration.</p>
+</article>
+<article class="privacy-item reveal">
+<div class="privacy-item-head"><strong>Only UI preferences are stored locally</strong><span class="privacy-badge">LOCAL</span></div>
+<p><code>chrome.storage.local</code> is used for preferences such as the selected theme and copy format.</p>
+</article>
+<article class="privacy-item reveal">
+<div class="privacy-item-head"><strong>No page inspection history is stored</strong><span class="privacy-badge">SESSION</span></div>
+<p>The active inspection snapshot stays in the Side Panel session and is not written to <code>chrome.storage.local</code>. A file is created only when you explicitly choose to export the current snapshot.</p>
+</article>
+<article class="privacy-item reveal">
+<div class="privacy-item-head"><strong>Protected Chrome pages stay protected</strong><span class="privacy-badge">CHROME</span></div>
+<p>Pages such as <code>chrome://...</code> and protected Chrome Web Store surfaces cannot be scripted by extensions, and PageData respects that boundary.</p>
+</article>
+</div>
+</div>
+</section>
+<!-- LIMITS -->
+<section class="section section-light" id="browser-behavior">
+<div class="container">
+<div class="section-heading reveal">
+<div class="eyebrow">Designed for normal webpages</div>
+<h2>Clear behavior when Chrome does not allow inspection.</h2>
+<p>
+            A useful inspector should also explain where it cannot operate. PageData distinguishes normal webpages from protected browser surfaces instead of presenting a misleading empty scan.
+          </p>
+</div>
+<div class="limits-grid">
+<article class="limit-card reveal">
+<h3>Normal websites</h3>
+<p>PageData is designed to inspect standard HTTP and HTTPS pages. The Side Panel refreshes the snapshot as the active page changes and avoids stale results during navigation.</p>
+<code>https://example.com/page</code>
+</article>
+<article class="limit-card reveal">
+<h3>Protected browser pages</h3>
+<p>Chrome does not let extensions inject scripts into browser-internal pages or certain protected store surfaces. PageData detects those cases and shows a clear unavailable state.</p>
+<code>chrome://... · Chrome Web Store</code>
+</article>
+</div>
+</div>
+</section>
+<!-- CTA -->
+<section class="cta" id="support">
+<div class="container">
+<div class="cta-box reveal">
+<div class="eyebrow">PageData</div>
+<h2>Keep the webpage open. Take the useful data with you.</h2>
+<p>
+            PageData turns the current page into a structured, copy-ready inspection without forcing you to dig through source code for everyday metadata, links, media and document details. For support, feedback or bug reports, contact the developer directly.
+          </p>
+<div class="hero-actions">
+<a class="button button-primary" href="mailto:thanhthuc284917@gmail.com?subject=PageData%20Support">Email Support</a>
+<a class="button button-secondary" href="mailto:thanhthuc284917@gmail.com?subject=PageData%20Feedback">Send Feedback</a>
+</div>
+</div>
+</div>
 </section>
 </main>
-
 <footer class="site-footer">
-  <div class="container">
-    <div class="footer-main">
-      <div class="footer-brand">
-        <a class="footer-lockup" href="../../" aria-label="Thanh Thuc home">
-          <img class="footer-logo" src="../../assets/thanh-thuc-logo.png" alt="Thanh Thuc logo">
-          <div><h3>Thanh Thuc</h3><span>Independent Developer</span></div>
-        </a>
-        <p>Independent developer building practical, thoughtful digital products with a focus on clarity, usefulness, privacy-conscious decisions, and purposeful interaction design.</p>
-      </div>
-      <div class="footer-nav">
-        <div class="footer-col"><strong>Explore</strong><a href="../../">Home</a><a href="../../app/">Apps</a><a href="../">Privacy</a></div>
-        <div class="footer-col"><strong>Contact</strong><a href="mailto:thanhthuc284917@gmail.com">Email</a><a href="mailto:thanhthuc284917@gmail.com?subject=Product%20Support">Support</a><a href="mailto:thanhthuc284917@gmail.com?subject=Privacy%20Inquiry">Privacy inquiry</a></div>
-      </div>
-    </div>
-    <div class="footer-bottom"><span>© <span id="year"></span> Thanh Thuc. All rights reserved.</span><span>Independent software &amp; digital product development.</span></div>
-  </div>
+<div class="container">
+<div class="footer-main">
+<div class="footer-brand">
+<a aria-label="Thanh Thuc home" class="footer-lockup" href="../../">
+<img alt="Thanh Thuc logo" class="footer-logo" src="../../assets/thanh-thuc-logo.png"/>
+<div>
+<h3>Thanh Thuc</h3>
+<span>Independent Developer</span>
+</div>
+</a>
+<p>
+            Independent developer building practical, thoughtful digital products with a focus on clarity, usefulness, privacy-conscious decisions, and purposeful interaction design.
+          </p>
+</div>
+<div class="footer-nav">
+<div class="footer-col">
+<strong>Explore</strong>
+<a href="../../">Home</a>
+<a href="../">Apps</a>
+<a href="https://thanhvanthuc.github.io/my-page/privacy-policy/pagedata">Privacy</a>
+</div>
+<div class="footer-col">
+<strong>Contact</strong>
+<a href="mailto:thanhthuc284917@gmail.com">Email</a>
+<a href="mailto:thanhthuc284917@gmail.com?subject=PageData%20Support">PageData support</a>
+<a href="mailto:thanhthuc284917@gmail.com?subject=General%20Inquiry">General inquiry</a>
+</div>
+</div>
+</div>
+<div class="footer-bottom">
+<span>© <span id="year"></span> Thanh Thuc. All rights reserved.</span>
+<span>Independent software &amp; digital product development.</span>
+</div>
+</div>
 </footer>
-<script>document.getElementById("year").textContent=new Date().getFullYear();</script>
-
 <script>
-(() => {
-  const sections = document.querySelectorAll(".policy-section");
-  const progressBar = document.querySelector(".policy-progress-bar");
-  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    (() => {
+      document.getElementById("year").textContent = new Date().getFullYear();
 
-  if (reducedMotion) {
-    sections.forEach(section => section.classList.add("is-visible"));
-  } else {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
+      const revealItems = document.querySelectorAll(".reveal");
+      const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      if (reducedMotion || !("IntersectionObserver" in window)) {
+        revealItems.forEach((item) => item.classList.add("visible"));
+        return;
+      }
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          });
+        },
+        {
+          threshold: 0.1,
+          rootMargin: "0px 0px -45px 0px"
         }
-      });
-    }, {
-      threshold: 0.08,
-      rootMargin: "0px 0px -8% 0px"
-    });
+      );
 
-    sections.forEach(section => observer.observe(section));
-  }
-
-  const updateProgress = () => {
-    if (!progressBar) return;
-
-    const documentElement = document.documentElement;
-    const scrollable = documentElement.scrollHeight - window.innerHeight;
-    const progress = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
-
-    progressBar.style.width = `${Math.min(100, Math.max(0, progress))}%`;
-  };
-
-  updateProgress();
-  window.addEventListener("scroll", updateProgress, { passive: true });
-  window.addEventListener("resize", updateProgress, { passive: true });
-})();
-</script>
-
+      revealItems.forEach((item) => observer.observe(item));
+    })();
+  </script>
 </body>
 </html>
