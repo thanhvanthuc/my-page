@@ -851,45 +851,81 @@
 
     .copy-layout {
       display: grid;
-      grid-template-columns: 0.78fr 1.22fr;
-      gap: 56px;
+      grid-template-columns: 0.86fr 1.14fr;
+      gap: 48px;
       align-items: center;
+    }
+
+    .copy-copy h2 {
+      max-width: 520px;
+      font-size: clamp(38px, 4.35vw, 54px);
+      line-height: 1.01;
+    }
+
+    .copy-copy > p {
+      max-width: 560px;
     }
 
     .format-list {
-      display: grid;
-      gap: 10px;
-      margin-top: 27px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 22px;
     }
 
     .format-row {
-      display: grid;
-      grid-template-columns: 92px 1fr;
-      gap: 14px;
+      display: inline-flex;
       align-items: center;
-      padding: 14px 15px;
+      min-height: 38px;
+      padding: 9px 12px;
       border: 1px solid var(--line);
-      border-radius: 14px;
-      background: rgba(255, 255, 255, 0.035);
+      border-radius: 11px;
+      background: rgba(255, 255, 255, 0.04);
     }
 
     .format-row strong {
-      color: #c9dcff;
-      font-size: 12px;
+      color: #d4e4ff;
+      font-size: 11px;
+      white-space: nowrap;
     }
 
-    .format-row code {
-      overflow: hidden;
+    .copy-actions-compact {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 16px;
+      margin-top: 18px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .copy-actions-compact span {
+      position: relative;
+      padding-left: 15px;
       color: var(--muted);
-      font-size: 11px;
-      text-overflow: ellipsis;
+      font-size: 12px;
       white-space: nowrap;
+    }
+
+    .copy-actions-compact span::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--cyan);
+      transform: translateY(-50%);
+      box-shadow: 0 0 10px rgba(69, 215, 210, 0.28);
     }
 
     .format-stage {
       position: relative;
-      min-height: 530px;
-      padding: 22px;
+      min-height: 460px;
+      padding: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       border: 1px solid rgba(255, 255, 255, 0.11);
       border-radius: 28px;
       background:
@@ -898,9 +934,17 @@
       box-shadow: var(--shadow);
     }
 
-    .format-stage .media-shell,
+    .format-stage .media-shell {
+      width: 100%;
+      overflow: hidden;
+      border-radius: 18px;
+    }
+
     .format-stage .media-image {
-      min-height: 484px;
+      width: 100%;
+      max-height: 520px;
+      min-height: 0;
+      object-fit: contain;
       border-radius: 18px;
     }
 
@@ -1377,17 +1421,16 @@
       }
 
       .format-stage {
-        min-height: 430px;
+        min-height: 390px;
         padding: 12px;
       }
 
-      .format-stage .media-shell,
       .format-stage .media-image {
-        min-height: 404px;
+        max-height: 460px;
       }
 
-      .format-row {
-        grid-template-columns: 78px 1fr;
+      .copy-copy h2 {
+        max-width: 620px;
       }
 
       .cta-box {
@@ -1740,23 +1783,23 @@
 <!-- COPY FORMATS -->
 <section class="section section-soft" id="copy">
 <div class="container copy-layout">
-<div class="split-copy reveal">
+<div class="split-copy copy-copy reveal">
 <div class="eyebrow">Copy it your way</div>
-<h2>The inspection is only useful if the data can leave the panel cleanly.</h2>
+<h2>Copy once. Use it anywhere.</h2>
 <p>
-            PageData lets the same selected fields become human-readable notes, Markdown, structured JSON or spreadsheet-friendly CSV. You choose the destination format instead of reformatting the data after copying it.
+            Choose the output that fits the next step: quick notes, Markdown, JSON, CSV or plain text. Copy one field, a focused selection, or export the complete inspection as JSON.
           </p>
-<div class="format-list">
-<div class="format-row"><strong>Key: Value</strong><code>Title: Example page</code></div>
-<div class="format-row"><strong>Plain text</strong><code>Example page</code></div>
-<div class="format-row"><strong>Markdown</strong><code>- Title: Example page</code></div>
-<div class="format-row"><strong>JSON</strong><code>{ "title": "Example page" }</code></div>
-<div class="format-row"><strong>CSV</strong><code>Title,Example page</code></div>
+<div class="format-list" aria-label="Available copy formats">
+<div class="format-row"><strong>Key: Value</strong></div>
+<div class="format-row"><strong>Plain text</strong></div>
+<div class="format-row"><strong>Markdown</strong></div>
+<div class="format-row"><strong>JSON</strong></div>
+<div class="format-row"><strong>CSV</strong></div>
 </div>
-<div class="detail-list">
-<div class="detail-item"><span class="detail-mark">✓</span><div><strong>Copy one field</strong><p>Everyday values remain one click away.</p></div></div>
-<div class="detail-item"><span class="detail-mark">✓</span><div><strong>Copy selected fields</strong><p>Build a focused bundle from different parts of the current view.</p></div></div>
-<div class="detail-item"><span class="detail-mark">✓</span><div><strong>Export the full snapshot</strong><p>Save the complete current inspection as JSON when you need everything.</p></div></div>
+<div class="copy-actions-compact" aria-label="Copy actions">
+<span>Single field</span>
+<span>Selected fields</span>
+<span>Full JSON export</span>
 </div>
 </div>
 <div class="format-stage reveal">
